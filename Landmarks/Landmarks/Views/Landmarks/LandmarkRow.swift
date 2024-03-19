@@ -11,21 +11,31 @@ struct LandmarkRow: View {
     var landmark : Landmark
     
     var body: some View {
-            HStack {
-                landmark.image
-                    .resizable()
-                    .frame(width: 50, height: 50)
+        HStack {
+            landmark.image
+                .resizable()
+                .frame(width: 50, height: 50)
+                .cornerRadius(5)
+            VStack(alignment: .leading) {
                 Text(landmark.name)
-
-
-                Spacer()
+                    .bold()
+                #if !os(watchOS)
+                Text(landmark.park)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                #endif
                 
-                if(landmark.isFavorite){
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(.yellow)
-                }
+            }
+            
+            Spacer()
+            
+            if(landmark.isFavorite){
+                Image(systemName: "star.fill")
+                    .foregroundStyle(.yellow)
             }
         }
+        .padding(.vertical, 4)
+    }
 }
 
 #Preview {
