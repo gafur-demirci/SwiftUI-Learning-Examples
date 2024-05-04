@@ -41,3 +41,7 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 iOSInjectionProject
+
+learningSwiftUI.entitlements
+
+!Contents.json
