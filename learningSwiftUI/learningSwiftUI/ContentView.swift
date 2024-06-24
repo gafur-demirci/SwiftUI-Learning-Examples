@@ -29,6 +29,21 @@ struct ContentView: View {
     }
 }
 
+struct HeaderView: View {
+    
+    var title: String
+    @Binding var titleInput: String
+    
+    var body: some View {
+        VStack{
+            Text(title)
+                .padding(10)
+            TextField("Insert Title", text: $titleInput)
+                .textFieldStyle(.roundedBorder)
+        }
+    }
+}
+
 #Preview {
     ContentView()
 }
