@@ -14,37 +14,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(title)
-                .padding(10)
-            TextField(
-                "Enter the title",
-                text: $titleInput
-            )
-            .font(.headline)
-            .padding(10)
-            .textFieldStyle(.roundedBorder)
-            HStack {
-                Spacer()
-                Button(action: {
-                    title = titleInput
-                    titleInput = ""
-                }, label: {
-                    Text("Change Title")
-                })
-                .buttonStyle(.bordered)
-                Spacer()
-                Button(action: {
-                    title = "Default Title"
-                    titleInput = ""
-                }, label: {
-                    Text("Reset Title")
-                })
-                .buttonStyle(.bordered)
-                .tint(.red)
-                .foregroundStyle(.blue)
-//                .background(.purple)
-                Spacer()
-            }
+            HeaderView(title: title, titleInput: $titleInput)
+            Button(action: {
+                title = titleInput
+                titleInput = ""
+            }, label: {
+                Text("Change Title")
+            })
+            .buttonStyle(.bordered)
            Spacer()
             
         }
