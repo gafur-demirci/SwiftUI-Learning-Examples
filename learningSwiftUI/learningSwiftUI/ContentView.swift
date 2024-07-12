@@ -9,40 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var title: String = "Default Title"
-    @State private var titleInput: String = ""
+    @State private var colorActive: Bool = false
     
     var body: some View {
         VStack {
-            HeaderView(title: title, titleInput: $titleInput)
-            Button(action: {
-                title = titleInput
-                titleInput = ""
-            }, label: {
-                Text("Change Title")
-            })
-            .buttonStyle(.bordered)
-           Spacer()
-            
+//            HeaderView(title: title, titleInput: $titleInput)
+            Text("Default Title")
+                .padding()
+                .background(colorActive ? Color.green : Color.clear)
+            Button("Change Color"){
+                colorActive.toggle()
+            }
+            Spacer()
         }
         .padding()
     }
 }
 
-struct HeaderView: View {
-    
-    var title: String
-    @Binding var titleInput: String
-    
-    var body: some View {
-        VStack{
-            Text(title)
-                .padding(10)
-            TextField("Insert Title", text: $titleInput)
-                .textFieldStyle(.roundedBorder)
-        }
-    }
-}
+//struct HeaderView: View {
+//    
+//    var title: String
+//    @Binding var titleInput: String
+//    
+//    var body: some View {
+//        VStack{
+//            Text(title)
+//                .padding(10)
+//            TextField("Insert Title", text: $titleInput)
+//                .textFieldStyle(.roundedBorder)
+//        }
+//    }
+//}
 
 #Preview {
     ContentView()
