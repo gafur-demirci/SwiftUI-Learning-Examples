@@ -34,7 +34,7 @@ struct ContentView: View {
 //            .disabled(buttonDisabled)
             HStack {
                 Button("Delete", role: .destructive) {
-                    print("Delete2 Action...")
+                    print("Delete Action...")
                 }.buttonStyle(.bordered)
                 Spacer()
                 Button("Send") {
