@@ -24,6 +24,10 @@ struct ContentView: View {
         }
         .padding()
     }
+    
+    func changeColor() {
+        colorActive.toggle()
+    }
 }
 
 //struct HeaderView: View {
