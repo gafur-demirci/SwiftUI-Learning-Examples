@@ -32,15 +32,27 @@ struct ContentView: View {
 //                }
 //            })
 //            .disabled(buttonDisabled)
-            HStack {
-                Button("Delete", role: .destructive) {
-                    print("Delete Action...")
-                }.buttonStyle(.bordered)
-                Spacer()
-                Button("Send") {
-                    print("Send Information")
-                }.buttonStyle(.borderedProminent)
-            }
+//            HStack {
+//                Button("Delete", role: .destructive) {
+//                    print("Delete Action...")
+//                }.buttonStyle(.bordered)
+//                Spacer()
+//                Button("Send") {
+//                    print("Send Information")
+//                }.buttonStyle(.borderedProminent)
+//            }
+            Button(action: {
+                print("Delete item")
+            }, label: {
+                HStack {
+                    Image(systemName: "mail")
+                        .imageScale(.large)
+                    Text("Send")
+                }
+            })
+            .buttonStyle(.borderedProminent)
+            .font(.largeTitle)
+            .controlSize(.large)
             Spacer()
         }
         .padding()
