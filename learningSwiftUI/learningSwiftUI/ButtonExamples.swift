@@ -17,7 +17,7 @@ struct MyStyle: ButtonStyle {
     }
 }
 
-struct ContentView: View {
+struct ButtonExamples: View {
     
     @State private var colorActive: Bool = false
     @State private var color = Color.gray
@@ -96,5 +96,5 @@ struct ContentView: View {
 //}
 
 #Preview {
-    ContentView()
+    ButtonExamples()
 }
