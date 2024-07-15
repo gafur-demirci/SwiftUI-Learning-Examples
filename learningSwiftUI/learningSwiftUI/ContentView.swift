@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var colorActive: Bool = false
-    @State private var color = Color.clear
+    @State private var color = Color.gray
     @State private var buttonDisabled = false
     @State private var expanded: Bool = false
     
