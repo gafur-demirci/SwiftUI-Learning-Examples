@@ -41,18 +41,25 @@ struct ContentView: View {
 //                    print("Send Information")
 //                }.buttonStyle(.borderedProminent)
 //            }
-            Button(action: {
-                print("Delete item")
-            }, label: {
-                HStack {
-                    Image(systemName: "mail")
-                        .imageScale(.large)
-                    Text("Send")
-                }
-            })
-            .buttonStyle(.borderedProminent)
-            .font(.largeTitle)
-            .controlSize(.large)
+//            Button(action: {
+//                print("Delete item")
+//            }, label: {
+//                HStack {
+//                    Image(systemName: "mail")
+//                        .imageScale(.large)
+//                    Text("Send")
+//                }
+//            })
+//            .buttonStyle(.borderedProminent)
+//            .font(.largeTitle)
+//            .controlSize(.large)
+            Text("Default Title")
+                .padding()
+                .foregroundStyle(color)
+            Button("Change Color") {
+                color = Color.green
+            }
+            .buttonStyle(MyStyle())
             Spacer()
         }
         .padding()
