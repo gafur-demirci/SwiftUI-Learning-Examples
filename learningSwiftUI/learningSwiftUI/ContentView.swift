@@ -17,11 +17,29 @@ struct ContentView: View {
     var body: some View {
         VStack {
 //            HeaderView(title: title, titleInput: $titleInput)
-            Text("Default Title")
-                .padding()
-                .background(colorActive ? Color.green : Color.clear)
-            Button("Change Color"){
-                colorActive.toggle()
+//            Text("Default Title")
+//                .padding()
+//                .frame(minWidth: 0, maxWidth: expanded ? .infinity : 150, maxHeight: 50)
+//                .background(Color.yellow)
+//                .foregroundStyle(colorActive ? Color.black : Color.blue)
+//            Button(action: {
+//                expanded.toggle()
+//            }, label: {
+//                VStack {
+//                    Image(expanded ? "contract" : "expand")
+//                        .renderingMode(.template)
+//                    Text(expanded ? "Contract" : "Expand")
+//                }
+//            })
+//            .disabled(buttonDisabled)
+            HStack {
+                Button("Delete", role: .destructive) {
+                    print("Delete Action...")
+                }.buttonStyle(.bordered)
+                Spacer()
+                Button("Send") {
+                    print("Send Information")
+                }.buttonStyle(.borderedProminent)
             }
             Spacer()
         }
