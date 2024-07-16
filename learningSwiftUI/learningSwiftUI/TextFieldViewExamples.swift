@@ -7,40 +7,16 @@
 
 import SwiftUI
 
-class TextFieldViewData: ObservableObject {
-    @Published var title: String = "Default Name"
-    @Published var numberInput: String = ""
-    var currentNumber = ""
-}
-
 struct TextFieldViewExamples: View {
     
-    @State private var title: String = "Default Name"
-    @State private var numberInput = ""
+    @State private var text: String = ""
     
     var body: some View {
         VStack(spacing: 10){
-            Text(title)
-                .padding()
-                .background(Color.yellow)
-            TextField("Insert Number", text: $numberInput)
+            TextField("Insert Text", text: $text, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
-                .padding(4)
-                .keyboardType(.numbersAndPunctuation)
-                .onChange(of: numberInput, initial: false){ old, value in
-                    if !value.isEmpty && Int(value) == nil {
-                        numberInput = old
-                    }
-                }
-            HStack {
-                Spacer()
-                Button("Save") {
-                    title = numberInput
-                    numberInput = ""
-                }
-                
-            }
-            Spacer()
+                .padding(20)
+                .lineLimit(5)
         }
         .padding()
     }
