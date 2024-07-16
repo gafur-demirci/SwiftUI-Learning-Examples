@@ -39,6 +39,8 @@ struct TextFieldViewExamples: View {
                 Spacer()
                 Button("Save") {
                     title = nameInput + " " + surnameInput
+                    // keyboard closed
+                    focusName = nil
                 }
             }
             Spacer()
