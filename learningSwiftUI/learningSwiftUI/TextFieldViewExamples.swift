@@ -20,14 +20,25 @@ struct TextFieldViewExamples: View {
                 .background(Color.yellow)
             TextField("Insert Title", text: $titleInput)
                 .textFieldStyle(.roundedBorder)
+                .submitLabel(.continue)
+                .onSubmit {
+                    assignTitle()
+                }
                 .textInputAutocapitalization(.words)
-            Button("Save") {
-                title = titleInput
-                titleInput = ""
+            HStack {
+                Spacer()
+                Button("Save") {
+                    assignTitle()
+                }
             }
             Spacer()
         }
         .padding()
+    }
+    
+    func assignTitle() {
+        title = titleInput
+        titleInput = ""
     }
 }
 
