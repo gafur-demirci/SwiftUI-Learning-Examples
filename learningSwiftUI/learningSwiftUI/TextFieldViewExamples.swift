@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+enum FocusName: Hashable {
+    case name
+    case surname
+}
+
 struct TextFieldViewExamples: View {
     
+    @FocusState var focusName: FocusName?
     @State private var title: String = "Default Title"
-    @State private var titleInput: String = ""
+    @State private var nameInput: String = ""
+    @State private var surnameInput: String = ""
     
     var body: some View {
         VStack{
@@ -18,27 +25,25 @@ struct TextFieldViewExamples: View {
                 .lineLimit(1)
                 .padding()
                 .background(Color.yellow)
-            TextField("Insert Title", text: $titleInput)
+            TextField("Insert Name", text: $nameInput)
                 .textFieldStyle(.roundedBorder)
-                .submitLabel(.continue)
-                .onSubmit {
-                    assignTitle()
-                }
-                .textInputAutocapitalization(.words)
+                .padding(4)
+                .background(focusName == .name ? Color(white: 0.9) : .white)
+                .focused($focusName, equals: .name)
+            TextField("Insert Surname", text: $surnameInput)
+                .textFieldStyle(.roundedBorder)
+                .padding(4)
+                .background(focusName == .surname ? Color(white: 0.9) : .white)
+                .focused($focusName, equals: .surname)
             HStack {
                 Spacer()
                 Button("Save") {
-                    assignTitle()
+                    title = nameInput + " " + surnameInput
                 }
             }
             Spacer()
         }
         .padding()
-    }
-    
-    func assignTitle() {
-        title = titleInput
-        titleInput = ""
     }
 }
 
