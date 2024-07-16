@@ -9,14 +9,15 @@ import SwiftUI
 
 struct TextFieldViewExamples: View {
     
-    @State private var text: String = ""
+    @State private var pass: String = ""
     
     var body: some View {
-        VStack(spacing: 10){
-            TextField("Insert Text", text: $text, axis: .vertical)
+        VStack(spacing: 15){
+            Text(pass)
+                .padding()
+            SecureField("Insert Password", text: $pass)
                 .textFieldStyle(.roundedBorder)
-                .padding(20)
-                .lineLimit(5)
+            Spacer()
         }
         .padding()
     }
