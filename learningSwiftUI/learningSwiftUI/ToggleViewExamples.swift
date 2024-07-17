@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct ToggleViewExamples: View {
+    
+    @State private var currentState: Bool = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Toggle(isOn: $currentState, label: {
+                Text(currentState ? "On" : "Off")
+            })
+            Spacer()
+        }
+        .padding()
     }
 }
 

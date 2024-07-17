@@ -12,7 +12,8 @@ struct learningSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
 //            ButtonExamples()
-            TextFieldViewExamples()
+//            TextFieldViewExamples()
+            ToggleViewExamples()
         }
     }
 }
