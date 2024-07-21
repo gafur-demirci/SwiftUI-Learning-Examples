@@ -7,20 +7,24 @@
 
 import SwiftUI
 
+@Observable class ViewData {
+    var titleInput: String = ""
+}
+
 struct ContentView: View {
-    
+    @Bindable var viewData = ViewData()
     // Bindable for two way model data updating
-    @Bindable var appData = ApplicationData()
+    var appData = ApplicationData()
     
     var body: some View {
         VStack {
             Text(appData.title)
                 .padding(10)
-            TextField("Insert Title", text: $appData.titleInput)
+            TextField("Insert Title", text: $viewData.titleInput)
                 .textFieldStyle(.roundedBorder)
             Button(action: {
-                appData.title = appData.titleInput
-                appData.titleInput = ""
+                appData.title = viewData.titleInput
+                viewData.titleInput = ""
             }, label: {
                 Text("Save")
             })
