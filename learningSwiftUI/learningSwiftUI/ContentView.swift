@@ -9,6 +9,7 @@ import SwiftUI
 
 @Observable class ViewData {
     var titleInput: String = ""
+    @ObservationIgnored var counter: Int = 0
 }
 
 struct ContentView: View {
@@ -22,7 +23,7 @@ struct ContentView: View {
 //    }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Text(appData.title)
                 .padding(10)
             TextField("Insert Title", text: $viewData.titleInput)
@@ -30,6 +31,8 @@ struct ContentView: View {
             Button(action: {
                 appData.title = viewData.titleInput
                 viewData.titleInput = ""
+                viewData.counter += 1
+                print("Current counter: \(viewData.counter)")
             }, label: {
                 Text("Save")
             })
