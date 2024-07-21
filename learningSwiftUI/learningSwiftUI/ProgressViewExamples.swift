@@ -13,7 +13,8 @@ struct ProgressViewExamples: View {
     
     var body: some View {
         VStack {
-            ProgressView(value: currentValue, total: 10)
+            ProgressView()
+                .progressViewStyle(.circular)
             Spacer()
         }
     }
