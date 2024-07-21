@@ -11,9 +11,10 @@ import SwiftUI
 struct learningSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-//            ButtonExamples()
-//            TextFieldViewExamples()
+            ButtonExamples()
+            TextFieldViewExamples()
             ToggleViewExamples()
+            SliderViewExamples()
         }
     }
 }
