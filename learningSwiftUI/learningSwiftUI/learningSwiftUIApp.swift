@@ -15,6 +15,8 @@ struct learningSwiftUIApp: App {
             TextFieldViewExamples()
             ToggleViewExamples()
             SliderViewExamples()
+            ProgressViewExamples()
+            StepperViewExamples()
         }
     }
 }
