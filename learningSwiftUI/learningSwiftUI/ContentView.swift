@@ -16,6 +16,11 @@ struct ContentView: View {
     // Bindable for two way model data updating
     var appData = ApplicationData()
     
+    // use appData in viewData prop shows - first way
+//    init() {
+//        viewData.titleInput = appData.title
+//    }
+    
     var body: some View {
         VStack {
             Text(appData.title)
@@ -31,6 +36,10 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        // use appData in viewData prop shows - second way
+        .onAppear() {
+            viewData.titleInput = appData.title
+        }
     }
 }
 
