@@ -6,13 +6,9 @@
 //
 
 import SwiftUI
+import Observation
 
-struct ApplicationData: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    ApplicationData()
+@Observable class ApplicationData {
+    var title: String = "Default Title"
+    var titleInput: String = ""
 }
