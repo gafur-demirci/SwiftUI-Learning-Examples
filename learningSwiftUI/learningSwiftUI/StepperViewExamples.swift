@@ -28,7 +28,7 @@ struct StepperViewExamples: View {
             }
             
             Spacer()
-        }
+        }.padding()
     }
 }
 
