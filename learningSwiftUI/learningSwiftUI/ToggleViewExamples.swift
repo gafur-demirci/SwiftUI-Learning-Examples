@@ -7,16 +7,32 @@
 
 import SwiftUI
 
+struct MyToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(alignment: .center) {
+            configuration.label
+            Spacer()
+            Image(systemName: "checkmark.rectangle.fill")
+                .font(.largeTitle)
+                .foregroundColor(configuration.isOn ? Color.green : Color.gray)
+                .onTapGesture {
+                    configuration.$isOn.wrappedValue.toggle()
+                }
+        }
+    }
+}
+
 struct ToggleViewExamples: View {
     
     @State private var currentState: Bool = true
     
     var body: some View {
-        HStack {
-            Toggle(isOn: $currentState, label: {
-                Label("Send", systemImage: "mail")
-            })
-            .toggleStyle(.button)
+        VStack {
+            HStack {
+                Toggle(currentState ? "Enabled" : "Disabled", isOn: $currentState)
+                    .toggleStyle(MyToggleStyle())
+            }
+            Spacer()
         }
         .padding()
     }
