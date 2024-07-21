@@ -10,6 +10,7 @@ import SwiftUI
 struct SliderViewExamples: View {
     
     @State private var currentValue: Float = 5
+    @State private var textActive: Bool = false
     
     var body: some View {
         VStack{
