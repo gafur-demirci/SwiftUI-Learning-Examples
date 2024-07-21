@@ -14,7 +14,7 @@ struct StepperViewExamples: View {
     var body: some View {
         VStack {
             Text("Current value: \(currentValue.formatted(.number.precision(.fractionLength(0))))")
-            Stepper("Counter", value: $currentValue, in: 0...100)
+            Stepper("Counter", value: $currentValue, in: 0...100, step: 5)
             Spacer()
         }
     }
