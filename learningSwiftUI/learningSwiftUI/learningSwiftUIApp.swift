@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct learningSwiftUIApp: App {
+    
+    @State private var appData = ApplicationData()
+    
     var body: some Scene {
         WindowGroup {
             ButtonExamples()
@@ -17,6 +20,8 @@ struct learningSwiftUIApp: App {
             SliderViewExamples()
             ProgressViewExamples()
             StepperViewExamples()
+            ContentView()
+                .environment(appData)
         }
     }
 }
