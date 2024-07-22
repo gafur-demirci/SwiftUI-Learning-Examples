@@ -15,8 +15,8 @@ import SwiftUI
 struct ContentView: View {
     @Bindable var viewData = ViewData()
     // Bindable for two way model data updating
-    var appData = ApplicationData()
-    
+    // var appData = ApplicationData()
+    @Environment(ApplicationData.self) private var appData
     // use appData in viewData prop shows - first way
 //    init() {
 //        viewData.titleInput = appData.title
@@ -48,4 +48,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(ApplicationData())
 }
