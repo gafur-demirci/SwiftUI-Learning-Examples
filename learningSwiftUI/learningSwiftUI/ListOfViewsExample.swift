@@ -10,15 +10,39 @@ import SwiftUI
 struct ListOfViewsExample: View {
     
     let listCities: [String] = ["Paris","Toronto","Dublin"]
+    @Environment(ApplicationData.self) private var appData
     
     var body: some View {
+//        VStack {
+//            ForEach(listCities, id: \.self) { value in
+//                VStack {
+//                    Text(value)
+//                    Divider()
+//                }
+//                
+//            }
+//        }
+//        Spacer()
         VStack {
-            ForEach(listCities, id: \.self) { value in
+            ForEach(appData.userData) { book in
                 VStack {
-                    Text(value)
+                    HStack(alignment: .top) {
+                        Image(book.cover)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 100)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(book.title)
+                                .bold()
+                            Text(book.author)
+                            Text(book.displayYear)
+                                .font(.caption)
+                        }
+                        .padding(.top, 5)
+                        Spacer()
+                    }
                     Divider()
                 }
-                
             }
             Spacer()
         }
@@ -28,4 +52,5 @@ struct ListOfViewsExample: View {
 
 #Preview {
     ListOfViewsExample()
+        .environment(ApplicationData())
 }
