@@ -22,6 +22,8 @@ struct learningSwiftUIApp: App {
             StepperViewExamples()
             ContentView()
                 .environment(appData)
+            ListOfViewsExample()
+                .environment(appData)
         }
     }
 }
