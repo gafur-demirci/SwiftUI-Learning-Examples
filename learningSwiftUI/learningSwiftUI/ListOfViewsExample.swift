@@ -13,16 +13,6 @@ struct ListOfViewsExample: View {
     @Environment(ApplicationData.self) private var appData
     
     var body: some View {
-//        VStack {
-//            ForEach(listCities, id: \.self) { value in
-//                VStack {
-//                    Text(value)
-//                    Divider()
-//                }
-//                
-//            }
-//        }
-//        Spacer()
         ScrollView {
             LazyVStack {
                 ForEach(appData.userData) { book in
