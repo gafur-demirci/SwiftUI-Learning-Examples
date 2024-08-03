@@ -14,15 +14,17 @@ struct learningSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ButtonExamples()
-            TextFieldViewExamples()
-            ToggleViewExamples()
-            SliderViewExamples()
-            ProgressViewExamples()
-            StepperViewExamples()
-            ContentView()
-                .environment(appData)
-            ListOfViewsExample()
+//            ButtonExamples()
+//            TextFieldViewExamples()
+//            ToggleViewExamples()
+//            SliderViewExamples()
+//            ProgressViewExamples()
+//            StepperViewExamples()
+//            ContentView()
+//                .environment(appData)
+//            ListOfViewsExample()
+//                .environment(appData)
+            GridViewExample()
                 .environment(appData)
         }
     }
