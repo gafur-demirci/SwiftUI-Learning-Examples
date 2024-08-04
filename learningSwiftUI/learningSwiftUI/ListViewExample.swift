@@ -10,12 +10,15 @@ import SwiftUI
 struct ListViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
+    let colors = [.white, Color(white: 0.95)]
     
     var body: some View {
         List(appData.userData) { book in
+            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
+            
             CellBook(book: book)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                .listRowBackground(Color(red: 0.99, green: 0.55, blue: 0.55))
+//                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
                 .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
