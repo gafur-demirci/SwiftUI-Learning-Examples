@@ -21,8 +21,8 @@ struct ListViewExample: View {
                     Text(String(appData.userData.count))
                 }
             }
-            .listSectionSeparator(.hidden, edges: .top)
-            .listSectionSeparatorTint(.blue)
+//            .listSectionSeparator(.hidden, edges: .top)
+//            .listSectionSeparatorTint(.blue)
 //            .headerProminence(.increased)
             Section(header: Text("My Books")) {
                 ForEach(appData.userData) { book in
@@ -30,9 +30,10 @@ struct ListViewExample: View {
                 }
 //                .headerProminence(.increased)
             }
-            .listSectionSeparator(.hidden)
+//            .listSectionSeparator(.hidden)
         }
-        .listStyle(.plain)
+        .environment(\.defaultMinListRowHeight, 100)
+//        .listStyle(.plain)
 //        List(appData.userData) { book in
 //            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
 //            
