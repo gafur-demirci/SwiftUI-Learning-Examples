@@ -21,14 +21,18 @@ struct ListViewExample: View {
                     Text(String(appData.userData.count))
                 }
             }
-            .headerProminence(.increased)
+            .listSectionSeparator(.hidden, edges: .top)
+            .listSectionSeparatorTint(.blue)
+//            .headerProminence(.increased)
             Section(header: Text("My Books")) {
                 ForEach(appData.userData) { book in
                     CellBook(book: book)
                 }
-                .headerProminence(.increased)
+//                .headerProminence(.increased)
             }
+            .listSectionSeparator(.hidden)
         }
+        .listStyle(.plain)
 //        List(appData.userData) { book in
 //            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
 //            
