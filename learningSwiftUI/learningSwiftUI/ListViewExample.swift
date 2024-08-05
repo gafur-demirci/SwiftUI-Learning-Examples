@@ -13,15 +13,31 @@ struct ListViewExample: View {
     let colors = [.white, Color(white: 0.95)]
     
     var body: some View {
-        List(appData.userData) { book in
-            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
-            
-            CellBook(book: book)
-//                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
-                .listRowSeparator(.hidden)
+        List{
+            Section(header: Text("Statistics")) {
+                HStack {
+                    Text("Total Books")
+                    Spacer()
+                    Text(String(appData.userData.count))
+                }
+            }
+            .headerProminence(.increased)
+            Section(header: Text("My Books")) {
+                ForEach(appData.userData) { book in
+                    CellBook(book: book)
+                }
+                .headerProminence(.increased)
+            }
         }
-        .listStyle(.plain)
+//        List(appData.userData) { book in
+//            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
+//            
+//            CellBook(book: book)
+////                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+//                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
+//                .listRowSeparator(.hidden)
+//        }
+//        .listStyle(.plain)
     }
 }
 
