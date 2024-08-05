@@ -12,37 +12,55 @@ struct ListViewExample: View {
     @Environment(ApplicationData.self) private var appData
     let colors = [.white, Color(white: 0.95)]
     
+    var orderList: [(key: String, value: [Book])] {
+        let listGroup: [String: [Book]] = Dictionary(grouping: appData.userData, by: { value in
+            let index = value.title.startIndex
+            let initial = value.title[index]
+            return String(initial)
+        })
+        return listGroup.sorted(by: { $0.key < $1.key })
+    }
+    
     var body: some View {
         List{
-            Section(header: Text("Statistics")) {
-                HStack {
-                    Text("Total Books")
-                    Spacer()
-                    Text(String(appData.userData.count))
+            ForEach(orderList, id: \.key) { sections in
+                Section(header: Text(sections.key)) {
+                    ForEach(sections.value) { book in
+                        CellBook(book: book)
+                    }
                 }
+                .headerProminence(.increased)
             }
-//            .listSectionSeparator(.hidden, edges: .top)
-//            .listSectionSeparatorTint(.blue)
-//            .headerProminence(.increased)
-            Section(header: Text("My Books")) {
-                ForEach(appData.userData) { book in
-                    CellBook(book: book)
-                }
-//                .headerProminence(.increased)
-            }
-//            .listSectionSeparator(.hidden)
         }
-        .environment(\.defaultMinListRowHeight, 100)
-//        .listStyle(.plain)
-//        List(appData.userData) { book in
-//            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
-//            
-//            CellBook(book: book)
-////                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-//                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
-//                .listRowSeparator(.hidden)
-//        }
-//        .listStyle(.plain)
+        //            Section(header: Text("Statistics")) {
+        //                HStack {
+        //                    Text("Total Books")
+        //                    Spacer()
+        //                    Text(String(appData.userData.count))
+        //                }
+        //            }
+        //            .listSectionSeparator(.hidden, edges: .top)
+        //            .listSectionSeparatorTint(.blue)
+        //            .headerProminence(.increased)
+        //            Section(header: Text("My Books")) {
+        //                ForEach(appData.userData) { book in
+        //                    CellBook(book: book)
+        //                }
+        //                .headerProminence(.increased)
+        //            }
+        //            .listSectionSeparator(.hidden)
+        //        }
+        //        .environment(\.defaultMinListRowHeight, 100)
+        //        .listStyle(.plain)
+        //        List(appData.userData) { book in
+        //            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
+        //
+        //            CellBook(book: book)
+        //                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+        //                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
+        //                .listRowSeparator(.hidden)
+        //        }
+        //        .listStyle(.plain)
     }
 }
 
