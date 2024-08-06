@@ -22,10 +22,15 @@ struct ListViewExample: View {
     }
     
     @State private var selectedRows: Set<Book.ID> = []
+    @State private var editActive: Bool = false
     
     var body: some View {
         VStack {
             HStack {
+                Button(editActive ? "Done": "Edit") {
+                    editActive.toggle()
+                }
+//                EditButton()
                 Spacer()
                 Button (action: {
                     removeSelected()
@@ -43,6 +48,7 @@ struct ListViewExample: View {
                 }
             })
             .listStyle(.plain)
+            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
         }
     }
         
