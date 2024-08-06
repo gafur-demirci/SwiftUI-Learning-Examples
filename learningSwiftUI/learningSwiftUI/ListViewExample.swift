@@ -21,17 +21,49 @@ struct ListViewExample: View {
         return listGroup.sorted(by: { $0.key < $1.key })
     }
     
+    @State private var selectedRow: Book.ID? = nil
+    
     var body: some View {
-        List{
-            ForEach(orderList, id: \.key) { sections in
-                Section(header: Text(sections.key)) {
-                    ForEach(sections.value) { book in
-                        CellBook(book: book)
-                    }
-                }
-                .headerProminence(.increased)
+        VStack {
+            HStack {
+                Spacer()
+                Button (action: {
+                    removeSelected()
+                }, label: {
+                    Image(systemName: "trash")
+                })
+                .disabled(selectedRow == nil ? true : false)
+                
             }
+            .padding()
+            
+            List(selection: $selectedRow, content: {
+                ForEach(appData.userData) { book in
+                    CellBook(book: book)
+                }
+            })
+            .listStyle(.plain)
         }
+    }
+        
+    func removeSelected() {
+        if let index = appData.userData.firstIndex(where: { $0.id == selectedRow }) {
+            appData.userData.remove(at: index)
+            selectedRow = nil
+        }
+    }
+        
+        
+//        List{
+//            ForEach(orderList, id: \.key) { sections in
+//                Section(header: Text(sections.key)) {
+//                    ForEach(sections.value) { book in
+//                        CellBook(book: book)
+//                    }
+//                }
+//                .headerProminence(.increased)
+//            }
+//        }
         //            Section(header: Text("Statistics")) {
         //                HStack {
         //                    Text("Total Books")
@@ -62,7 +94,7 @@ struct ListViewExample: View {
         //        }
         //        .listStyle(.plain)
     }
-}
+
 
 struct CellBook: View {
     
