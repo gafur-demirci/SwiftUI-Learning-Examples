@@ -21,7 +21,7 @@ struct ListViewExample: View {
         return listGroup.sorted(by: { $0.key < $1.key })
     }
     
-    @State private var selectedRow: Book.ID? = nil
+    @State private var selectedRows: Set<Book.ID> = []
     
     var body: some View {
         VStack {
@@ -32,12 +32,12 @@ struct ListViewExample: View {
                 }, label: {
                     Image(systemName: "trash")
                 })
-                .disabled(selectedRow == nil ? true : false)
+                .disabled(selectedRows.count == 0 ? true : false)
                 
             }
             .padding()
             
-            List(selection: $selectedRow, content: {
+            List(selection: $selectedRows, content: {
                 ForEach(appData.userData) { book in
                     CellBook(book: book)
                 }
@@ -47,10 +47,14 @@ struct ListViewExample: View {
     }
         
     func removeSelected() {
-        if let index = appData.userData.firstIndex(where: { $0.id == selectedRow }) {
-            appData.userData.remove(at: index)
-            selectedRow = nil
+        var indexes = IndexSet()
+        for item in selectedRows {
+            if let index = appData.userData.firstIndex(where: { $0.id == item }) {
+                indexes.insert(index)
+            }
         }
+        appData.userData.remove(atOffsets: indexes)
+        selectedRows = []
     }
         
         
