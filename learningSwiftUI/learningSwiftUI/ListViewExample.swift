@@ -28,10 +28,18 @@ struct ListViewExample: View {
         List {
             ForEach(Bindable(appData).userData) { $book in
                 CellBook(book: book)
-                    .background(.white)
-                    .onTapGesture {
-                        book.selected.toggle()
+                    .swipeActions {
+                        Button(role: .destructive, action: {
+                            removeBook(book: book)
+                        }, label: {
+                            Image(systemName: "trash")
+                        })
+                        
                     }
+//                    .background(.white)
+//                    .onTapGesture {
+//                        book.selected.toggle()
+//                    }
             }
         }
         .listStyle(.plain)
@@ -62,6 +70,14 @@ struct ListViewExample: View {
 //            .listStyle(.plain)
 //            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
 //        }
+    }
+    
+    func removeBook(book: Book) {
+        var indexes = IndexSet()
+        if let index = appData.userData.firstIndex(where: {$0.id == book.id }) {
+            indexes.insert(index)
+        }
+        appData.userData.remove(atOffsets: indexes)
     }
         
 //    func removeSelected() {
