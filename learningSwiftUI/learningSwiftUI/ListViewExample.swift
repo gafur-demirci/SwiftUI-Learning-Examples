@@ -25,43 +25,56 @@ struct ListViewExample: View {
     @State private var editActive: Bool = false
     
     var body: some View {
-        VStack {
-            HStack {
-                Button(editActive ? "Done": "Edit") {
-                    editActive.toggle()
-                }
-//                EditButton()
-                Spacer()
-                Button (action: {
-                    removeSelected()
-                }, label: {
-                    Image(systemName: "trash")
-                })
-                .disabled(selectedRows.count == 0 ? true : false)
-                
+        List {
+            ForEach(Bindable(appData).userData) { $book in
+                CellBook(book: book)
+                    .background(.white)
+                    .onTapGesture {
+                        book.selected.toggle()
+                    }
             }
-            .padding()
-            
-            List(selection: $selectedRows, content: {
-                ForEach(appData.userData) { book in
-                    CellBook(book: book)
-                }
-            })
-            .listStyle(.plain)
-            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
         }
+        .listStyle(.plain)
+        
+        
+//        VStack {
+//            HStack {
+//                Button(editActive ? "Done": "Edit") {
+//                    editActive.toggle()
+//                }
+////                EditButton()
+//                Spacer()
+//                Button (action: {
+//                    removeSelected()
+//                }, label: {
+//                    Image(systemName: "trash")
+//                })
+//                .disabled(selectedRows.count == 0 ? true : false)
+//                
+//            }
+//            .padding()
+//            
+//            List(selection: $selectedRows, content: {
+//                ForEach(appData.userData) { book in
+//                    CellBook(book: book)
+//                }
+//            })
+//            .listStyle(.plain)
+//            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
+//        }
     }
         
-    func removeSelected() {
-        var indexes = IndexSet()
-        for item in selectedRows {
-            if let index = appData.userData.firstIndex(where: { $0.id == item }) {
-                indexes.insert(index)
-            }
-        }
-        appData.userData.remove(atOffsets: indexes)
-        selectedRows = []
-    }
+//    func removeSelected() {
+//        var indexes = IndexSet()
+//        for item in selectedRows {
+//            if let index = appData.userData.firstIndex(where: { $0.id == item }) {
+//                indexes.insert(index)
+//            }
+//        }
+//        appData.userData.remove(atOffsets: indexes)
+//        selectedRows = []
+//        editActive = false
+//    }
         
         
 //        List{
@@ -126,6 +139,11 @@ struct CellBook: View {
             }
             .padding(.top, 5)
             Spacer()
+            if book.selected {
+                Image(systemName: "checkmark")
+                    .foregroundColor(.green)
+                    .frame(width: 25, height: 25)
+            }
         }
     }
 }
