@@ -28,14 +28,14 @@ struct ListViewExample: View {
         List {
             ForEach(Bindable(appData).userData) { $book in
                 CellBook(book: book)
-                    .swipeActions {
-                        Button(role: .destructive, action: {
-                            removeBook(book: book)
-                        }, label: {
-                            Image(systemName: "trash")
-                        })
-                        
-                    }
+//                    .swipeActions {
+//                        Button(role: .destructive, action: {
+//                            removeBook(book: book)
+//                        }, label: {
+//                            Image(systemName: "trash")
+//                        })
+//                        
+//                    }
 //                    .background(.white)
 //                    .onTapGesture {
 //                        book.selected.toggle()
@@ -72,13 +72,13 @@ struct ListViewExample: View {
 //        }
     }
     
-    func removeBook(book: Book) {
-        var indexes = IndexSet()
-        if let index = appData.userData.firstIndex(where: {$0.id == book.id }) {
-            indexes.insert(index)
-        }
-        appData.userData.remove(atOffsets: indexes)
-    }
+//    func removeBook(book: Book) {
+//        var indexes = IndexSet()
+//        if let index = appData.userData.firstIndex(where: {$0.id == book.id }) {
+//            indexes.insert(index)
+//        }
+//        appData.userData.remove(atOffsets: indexes)
+//    }
         
 //    func removeSelected() {
 //        var indexes = IndexSet()
@@ -137,6 +137,7 @@ struct ListViewExample: View {
 
 struct CellBook: View {
     
+    @Environment(ApplicationData.self) private var appData
     let book: Book
     
     var body: some View {
@@ -155,12 +156,31 @@ struct CellBook: View {
             }
             .padding(.top, 5)
             Spacer()
-            if book.selected {
-                Image(systemName: "checkmark")
-                    .foregroundColor(.green)
-                    .frame(width: 25, height: 25)
-            }
+            
+            Button(action: {
+                removeBook(book: book)
+            }, label: {
+                Image(systemName: "trash")
+                    .foregroundColor(.red)
+                    .frame(width: 30, height: 30)
+            })
+            .padding(.top, 5)
+            .buttonStyle(.plain)
+            
+//            if book.selected {
+//                Image(systemName: "checkmark")
+//                    .foregroundColor(.green)
+//                    .frame(width: 25, height: 25)
+//            }
         }
+    }
+    
+    func removeBook(book: Book) {
+        var indexes = IndexSet()
+        if let index = appData.userData.firstIndex(where: {$0.id == book.id }) {
+            indexes.insert(index)
+        }
+        appData.userData.remove(atOffsets: indexes)
     }
 }
 
