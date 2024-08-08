@@ -26,7 +26,9 @@ struct learningSwiftUIApp: App {
 //                .environment(appData)
 //            GridViewExample()
 //                .environment(appData)
-            ListViewExample()
+//            ListViewExample()
+//                .environment(appData)
+            TableViewExample()
                 .environment(appData)
         }
     }
