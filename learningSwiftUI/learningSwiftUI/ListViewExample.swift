@@ -43,6 +43,9 @@ struct ListViewExample: View {
             }
         }
         .listStyle(.plain)
+        .refreshable {
+            print("Loading values")
+        }
         
         
 //        VStack {
