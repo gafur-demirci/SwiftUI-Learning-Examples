@@ -29,12 +29,21 @@ struct MainItems: Identifiable, Hashable {
     var options: [MainItems]?
 }
 
+struct ConsumableItem: Identifiable {
+    var id = UUID()
+    var name: String
+    var category: String
+    var calories: Int
+    var included: Bool
+}
+
 
 @Observable class ApplicationData {
     var title: String = "Default Title"
     //var titleInput: String = ""
     var userData: [Book] = []
     var items: [MainItems] = []
+    var listOfItems: [ConsumableItem] = []
     
     init() {
         userData = [
