@@ -25,9 +25,20 @@ struct ListViewExample: View {
     @State private var editActive: Bool = false
     
     var body: some View {
-        List(appData.items, children: \.options, rowContent: { item in
-            Text(item.name)
-        })
+        List {
+            ForEach(appData.items) { section in
+                Section(header: Text(section.name)) {
+                    OutlineGroup(section.options ?? [], children: \.options) { item in
+                        Text(item.name)
+                    }
+                }
+                
+            }
+        }
+        
+//        List(appData.items, children: \.options, rowContent: { item in
+//            Text(item.name)
+//        })
         //            ForEach(Bindable(appData).userData) { $book in
         //                CellBook(book: book)
         //                    .swipeActions {
