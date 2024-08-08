@@ -23,11 +23,18 @@ struct Book: Identifiable, Hashable {
     }
 }
 
+struct MainItems: Identifiable, Hashable {
+    var id = UUID()
+    var name: String!
+    var options: [MainItems]?
+}
+
 
 @Observable class ApplicationData {
     var title: String = "Default Title"
     //var titleInput: String = ""
     var userData: [Book] = []
+    var items: [MainItems] = []
     
     init() {
         userData = [
@@ -44,6 +51,26 @@ struct Book: Identifiable, Hashable {
             Book(title: "IT", author: "Stephen King", cover: "book11", year: 1987, selected: false),
             Book(title: "Ending Aging", author: "Aubrey de Grey", cover: "book12", year: 2007, selected: false)
         
+        ]
+        
+        items = [
+            MainItems(name: "Food", options: [
+                MainItems(name: "Oatmeal"),
+                MainItems(name: "Bagels"),
+                MainItems(name: "Brownies"),
+                MainItems(name: "Cheese", options: [
+                    MainItems(name: "Roquefort"),
+                    MainItems(name: "Mozzarella"),
+                    MainItems(name: "Chedar")
+                ]),
+                MainItems(name: "Cookies"),
+                MainItems(name: "Donuts")
+            ]),
+            MainItems(name: "Beverages", options: [
+                MainItems(name: "Coffee"),
+                MainItems(name: "Juice"),
+                MainItems(name: "Lemonade")
+            ])
         ]
     }
 }

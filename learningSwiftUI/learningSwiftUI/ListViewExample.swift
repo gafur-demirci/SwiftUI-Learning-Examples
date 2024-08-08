@@ -25,56 +25,56 @@ struct ListViewExample: View {
     @State private var editActive: Bool = false
     
     var body: some View {
-        List {
-            ForEach(Bindable(appData).userData) { $book in
-                CellBook(book: book)
-//                    .swipeActions {
-//                        Button(role: .destructive, action: {
-//                            removeBook(book: book)
-//                        }, label: {
-//                            Image(systemName: "trash")
-//                        })
-//                        
-//                    }
-//                    .background(.white)
-//                    .onTapGesture {
-//                        book.selected.toggle()
-//                    }
-            }
-        }
-        .listStyle(.plain)
-        .refreshable {
-            print("Loading values")
-        }
-        
-        
-//        VStack {
-//            HStack {
-//                Button(editActive ? "Done": "Edit") {
-//                    editActive.toggle()
-//                }
-////                EditButton()
-//                Spacer()
-//                Button (action: {
-//                    removeSelected()
-//                }, label: {
-//                    Image(systemName: "trash")
-//                })
-//                .disabled(selectedRows.count == 0 ? true : false)
-//                
-//            }
-//            .padding()
-//            
-//            List(selection: $selectedRows, content: {
-//                ForEach(appData.userData) { book in
-//                    CellBook(book: book)
-//                }
-//            })
-//            .listStyle(.plain)
-//            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
-//        }
-    }
+        List(appData.items, children: \.options, rowContent: { item in
+            Text(item.name)
+        })
+        //            ForEach(Bindable(appData).userData) { $book in
+        //                CellBook(book: book)
+        //                    .swipeActions {
+        //                        Button(role: .destructive, action: {
+        //                            removeBook(book: book)
+        //                        }, label: {
+        //                            Image(systemName: "trash")
+        //                        })
+        //
+        //                    }
+        //                    .background(.white)
+        //                    .onTapGesture {
+        //                        book.selected.toggle()
+        //                    }
+    //        .listStyle(.plain)
+    //        .refreshable {
+    //            print("Loading values")
+    //        }
     
+    
+    //        VStack {
+    //            HStack {
+    //                Button(editActive ? "Done": "Edit") {
+    //                    editActive.toggle()
+    //                }
+    ////                EditButton()
+    //                Spacer()
+    //                Button (action: {
+    //                    removeSelected()
+    //                }, label: {
+    //                    Image(systemName: "trash")
+    //                })
+    //                .disabled(selectedRows.count == 0 ? true : false)
+    //
+    //            }
+    //            .padding()
+    //
+    //            List(selection: $selectedRows, content: {
+    //                ForEach(appData.userData) { book in
+    //                    CellBook(book: book)
+    //                }
+    //            })
+    //            .listStyle(.plain)
+    //            .environment(\.editMode, .constant(editActive ?  EditMode.active : EditMode.inactive))
+    //        }
+}
+
 //    func removeBook(book: Book) {
 //        var indexes = IndexSet()
 //        if let index = appData.userData.firstIndex(where: {$0.id == book.id }) {
@@ -82,7 +82,7 @@ struct ListViewExample: View {
 //        }
 //        appData.userData.remove(atOffsets: indexes)
 //    }
-        
+
 //    func removeSelected() {
 //        var indexes = IndexSet()
 //        for item in selectedRows {
@@ -94,8 +94,8 @@ struct ListViewExample: View {
 //        selectedRows = []
 //        editActive = false
 //    }
-        
-        
+
+
 //        List{
 //            ForEach(orderList, id: \.key) { sections in
 //                Section(header: Text(sections.key)) {
@@ -106,36 +106,36 @@ struct ListViewExample: View {
 //                .headerProminence(.increased)
 //            }
 //        }
-        //            Section(header: Text("Statistics")) {
-        //                HStack {
-        //                    Text("Total Books")
-        //                    Spacer()
-        //                    Text(String(appData.userData.count))
-        //                }
-        //            }
-        //            .listSectionSeparator(.hidden, edges: .top)
-        //            .listSectionSeparatorTint(.blue)
-        //            .headerProminence(.increased)
-        //            Section(header: Text("My Books")) {
-        //                ForEach(appData.userData) { book in
-        //                    CellBook(book: book)
-        //                }
-        //                .headerProminence(.increased)
-        //            }
-        //            .listSectionSeparator(.hidden)
-        //        }
-        //        .environment(\.defaultMinListRowHeight, 100)
-        //        .listStyle(.plain)
-        //        List(appData.userData) { book in
-        //            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
-        //
-        //            CellBook(book: book)
-        //                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-        //                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
-        //                .listRowSeparator(.hidden)
-        //        }
-        //        .listStyle(.plain)
-    }
+//            Section(header: Text("Statistics")) {
+//                HStack {
+//                    Text("Total Books")
+//                    Spacer()
+//                    Text(String(appData.userData.count))
+//                }
+//            }
+//            .listSectionSeparator(.hidden, edges: .top)
+//            .listSectionSeparatorTint(.blue)
+//            .headerProminence(.increased)
+//            Section(header: Text("My Books")) {
+//                ForEach(appData.userData) { book in
+//                    CellBook(book: book)
+//                }
+//                .headerProminence(.increased)
+//            }
+//            .listSectionSeparator(.hidden)
+//        }
+//        .environment(\.defaultMinListRowHeight, 100)
+//        .listStyle(.plain)
+//        List(appData.userData) { book in
+//            let index = appData.userData.firstIndex(where: { $0.id == book.id}) ?? 0
+//
+//            CellBook(book: book)
+//                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+//                .listRowBackground(index % 2 == 0 ? colors[0] : colors[1])
+//                .listRowSeparator(.hidden)
+//        }
+//        .listStyle(.plain)
+}
 
 
 struct CellBook: View {
@@ -170,11 +170,11 @@ struct CellBook: View {
             .padding(.top, 5)
             .buttonStyle(.plain)
             
-//            if book.selected {
-//                Image(systemName: "checkmark")
-//                    .foregroundColor(.green)
-//                    .frame(width: 25, height: 25)
-//            }
+            //            if book.selected {
+            //                Image(systemName: "checkmark")
+            //                    .foregroundColor(.green)
+            //                    .frame(width: 25, height: 25)
+            //            }
         }
     }
     
