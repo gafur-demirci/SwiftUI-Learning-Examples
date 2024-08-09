@@ -12,14 +12,17 @@ struct TableViewExample: View {
     @Environment(ApplicationData.self) private var appData
     
     var body: some View {
-        Table(appData.listOfItems) {
+        Table(of: ConsumableItem.self, columns: {
             TableColumn("Name", value: \.name)
             TableColumn("Category", value: \.category)
             TableColumn("Calories") { item in
                 Text("\(item.calories)")
             }
             .width(100)
-        }
+        }, rows: {
+            TableRow(ConsumableItem(name: "STANDARD", category: "", calories: 0, included: false))
+            ForEach(appData.listOfItems)
+        })
     }
 }
 
