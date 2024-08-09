@@ -21,14 +21,20 @@ struct TableViewExample: View {
     var body: some View {
 //        VStack {
 //            EditButton()
-            Table(appData.listOfItems, selection: $selectedItems) {
+            Table(appData.listOfItems) {
                 TableColumn("Name", value: \.name)
                 TableColumn("Category", value: \.category)
                 TableColumn("Calories") { item in
                     Text("\(item.calories)")
                 }
                 .width(100)
+                TableColumn("Included") { item in
+                    Toggle("", isOn: itemBinding(id: item.id).included)
+                        .labelsHidden()
+                }
+                .width(100)
             }
+        /*
             .contextMenu(forSelectionType: ConsumableItem.ID.self, menu: { selected in
                 if(selected.count <= 0) {
                     Button("Create New Item") {
@@ -47,10 +53,15 @@ struct TableViewExample: View {
                     }
                 }
             })
+         */
 //            Text(listSelected())
 //                .padding()
 //        }
         
+    }
+    func itemBinding(id: UUID) -> Binding<ConsumableItem> {
+        let index = appData.listOfItems.firstIndex(where: { $0.id == id}) ?? 0
+        return Bindable(appData).listOfItems[index]
     }
     /*
     func listSelected() -> String {
