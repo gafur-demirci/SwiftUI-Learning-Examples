@@ -9,23 +9,24 @@ import SwiftUI
 
 struct PickerViewExample: View {
     
-    @State private var selectedValue: String = "No value"
+    @State private var selectedValue: Int = 0
     let listCities: [String] = ["Paris","Toronto", "Dublin"]
     
     var body: some View {
         VStack {
-            Text(selectedValue)
+            Text(listCities[selectedValue])
             Picker("Cities", selection: $selectedValue) {
-                ForEach(listCities, id: \.self) { value in
-                    Text(value)
+                ForEach(listCities.indices, id: \.self) { value in
+                    Text(listCities[value])
+                        .tag(value)
                 }
             }
             Spacer()
         }
         .padding()
-        .onAppear {
-            selectedValue = listCities[2]
-        }
+//        .onAppear {
+//            selectedValue = listCities[2]
+//        }
     }
 }
 
