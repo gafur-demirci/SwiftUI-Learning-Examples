@@ -10,19 +10,22 @@ import SwiftUI
 struct TableViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
+    @State private var sort = [KeyPathComparator(\ConsumableItem.name),KeyPathComparator(\ConsumableItem.calories)]
+    
+    var sortedItems: [ConsumableItem] {
+        let list = appData.listOfItems.sorted(using: sort)
+        return list
+    }
     
     var body: some View {
-        Table(of: ConsumableItem.self, columns: {
+        Table(sortedItems, sortOrder: $sort) {
             TableColumn("Name", value: \.name)
             TableColumn("Category", value: \.category)
-            TableColumn("Calories") { item in
+            TableColumn("Calories", value: \.calories) { item in
                 Text("\(item.calories)")
             }
             .width(100)
-        }, rows: {
-            TableRow(ConsumableItem(name: "STANDARD", category: "", calories: 0, included: false))
-            ForEach(appData.listOfItems)
-        })
+        }
     }
 }
 
