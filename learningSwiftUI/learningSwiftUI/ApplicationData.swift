@@ -37,6 +37,13 @@ struct ConsumableItem: Identifiable {
     var included: Bool
 }
 
+struct Employees: Identifiable {
+    let id = UUID()
+    var name: String
+    var position: String
+    var subordinates: [Employees]
+}
+
 
 @Observable class ApplicationData {
     var title: String = "Default Title"
@@ -44,6 +51,7 @@ struct ConsumableItem: Identifiable {
     var userData: [Book] = []
     var items: [MainItems] = []
     var listOfItems: [ConsumableItem] = []
+    var listOfEmployees: [Employees] = []
     
     init() {
         userData = [
@@ -91,5 +99,14 @@ struct ConsumableItem: Identifiable {
             ConsumableItem(name: "Lemonade", category: "Beverages", calories: 40, included: false),
         
         ]
+        
+        let emp1 = Employees(name: "Sander", position: "Subordinate", subordinates: [])
+        let emp2 = Employees(name: "Annie", position: "Subordinate", subordinates: [])
+        let emp3 = Employees(name: "Charlie", position: "Subordinate", subordinates: [])
+        let emp4 = Employees(name: "Sebastian", position: "Subordinate", subordinates: [])
+        let emp5 = Employees(name: "Bill", position: "Subordinate", subordinates: [])
+        
+        listOfEmployees.append(Employees(name: "Robert", position: "Manager", subordinates: [emp1,emp2,emp3]))
+        listOfEmployees.append(Employees(name: "Anna", position: "Manager", subordinates: [emp4,emp5]))
     }
 }
