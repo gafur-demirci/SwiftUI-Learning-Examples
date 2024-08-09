@@ -19,8 +19,8 @@ struct TableViewExample: View {
 //    }
     
     var body: some View {
-        VStack {
-            EditButton()
+//        VStack {
+//            EditButton()
             Table(appData.listOfItems, selection: $selectedItems) {
                 TableColumn("Name", value: \.name)
                 TableColumn("Category", value: \.category)
@@ -29,17 +29,37 @@ struct TableViewExample: View {
                 }
                 .width(100)
             }
-            Text(listSelected())
-                .padding()
-        }
+            .contextMenu(forSelectionType: ConsumableItem.ID.self, menu: { selected in
+                if(selected.count <= 0) {
+                    Button("Create New Item") {
+                        let newItem = ConsumableItem(name: "Test", category: "Test", calories: 0, included:false)
+                        appData.listOfItems.append(newItem)
+                    }
+                }else if (selected.count == 1 ){
+                    Button("Remove Item") {
+                        appData.listOfItems.removeAll(where: { item in
+                                                      item.id == selected.first})
+                    }
+                } else {
+                    Button("Remove Selected Items") {
+                        appData.listOfItems.removeAll(where: { item in
+                            selected.contains(item.id)})
+                    }
+                }
+            })
+//            Text(listSelected())
+//                .padding()
+//        }
         
     }
+    /*
     func listSelected() -> String {
         let list: [String] = selectedItems.map({ id in
             let item = appData.listOfItems.first(where: { $0.id == id })
             return item?.name ?? ""})
         return String(list.sorted().joined(separator: " "))
     }
+     */
 }
 
 #Preview {
