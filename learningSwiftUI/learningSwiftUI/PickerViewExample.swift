@@ -21,6 +21,7 @@ struct PickerViewExample: View {
                         .tag(value)
                 }
             }
+            .pickerStyle(.segmented)
             Spacer()
         }
         .padding()
