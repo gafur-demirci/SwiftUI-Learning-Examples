@@ -10,25 +10,26 @@ import SwiftUI
 struct TableViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
-    @State private var selectedItems: Set<ConsumableItem.ID> = []
+//    @State private var selectedItems: Set<ConsumableItem.ID> = []
+    @State private var sort = [KeyPathComparator(\ConsumableItem.name)]
 //    @State private var sort = [KeyPathComparator(\ConsumableItem.name),KeyPathComparator(\ConsumableItem.calories)]
     
-//    var sortedItems: [ConsumableItem] {
-//        let list = appData.listOfItems.sorted(using: sort)
-//        return list
-//    }
+    var sortedItems: [ConsumableItem] {
+        let list = appData.listOfItems.sorted(using: sort)
+        return list
+    }
     
     var body: some View {
 //        VStack {
 //            EditButton()
-            Table(appData.listOfItems) {
+            Table(sortedItems, sortOrder: $sort) {
                 TableColumn("Name", value: \.name)
                 TableColumn("Category", value: \.category)
                 TableColumn("Calories") { item in
                     Text("\(item.calories)")
                 }
                 .width(100)
-                TableColumn("Included") { item in
+                TableColumn("Included", value: \.included, comparator: BoolComparator()) { item in
                     Toggle("", isOn: itemBinding(id: item.id).included)
                         .labelsHidden()
                 }
@@ -58,6 +59,19 @@ struct TableViewExample: View {
 //                .padding()
 //        }
         
+    }
+    
+    struct BoolComparator: SortComparator {
+      var order: SortOrder = .forward
+      func compare(_ lhs: Bool, _ rhs: Bool) -> ComparisonResult {
+          switch (lhs, rhs) {
+            case (true, false):
+              return order == .forward ? .orderedDescending : .orderedAscending
+            case (false, true):
+              return order == .forward ? .orderedAscending : .orderedDescending
+            default: return .orderedSame
+            }
+      }
     }
     func itemBinding(id: UUID) -> Binding<ConsumableItem> {
         let index = appData.listOfItems.firstIndex(where: { $0.id == id}) ?? 0
