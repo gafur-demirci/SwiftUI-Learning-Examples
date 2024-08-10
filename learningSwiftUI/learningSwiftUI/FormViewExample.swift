@@ -15,6 +15,21 @@ struct FormViewExample: View {
     
     var body: some View {
         Form {
+            DisclosureGroup("Controls") {
+                Toggle("Active", isOn: $setActive)
+                Toggle("Show Pictures", isOn: $setShowPictures)
+            }
+            DisclosureGroup("Values") {
+                HStack {
+                    Text("Total")
+                    Spacer()
+                    Text(String(setTotal))
+                    Stepper("", value: $setTotal, in: 0...10)
+                        .labelsHidden()
+                }
+            }
+            
+            /*
             Section(header: Text("Options"), footer: Text("Activate the options you want to see")) {
                 Toggle("Active", isOn: $setActive)
                 Toggle("Show Pictures", isOn: $setShowPictures)
@@ -25,7 +40,8 @@ struct FormViewExample: View {
                     Stepper("", value: $setTotal, in: 0...10)
                         .labelsHidden()
                 }
-            }            
+            }
+            */
             /*
             HStack {
                 Text("Total")
