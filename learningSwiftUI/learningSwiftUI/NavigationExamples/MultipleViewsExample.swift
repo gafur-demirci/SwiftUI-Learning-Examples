@@ -14,7 +14,10 @@ struct MultipleViewsExample: View {
         NavigationStack {
             List(appData.userData) { book in
                 BookView(book: book)
-            }.navigationTitle(Text("Books"))
+            }
+            .listStyle(.plain)
+            .navigationTitle(Text("Books"))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
