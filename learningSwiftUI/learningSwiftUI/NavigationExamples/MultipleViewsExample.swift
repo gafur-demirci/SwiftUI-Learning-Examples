@@ -65,7 +65,7 @@ struct MultipleViewsExample: View {
                      */
                 }
                 .toolbarRole(.editor)
-                
+                */
                 /*
                  ToolbarItem(placement: .bottomBar, content: {
                  HStack(content: {
