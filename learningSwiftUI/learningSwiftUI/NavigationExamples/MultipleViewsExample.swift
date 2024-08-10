@@ -21,7 +21,23 @@ struct MultipleViewsExample: View {
                 .navigationTitle(Text("Books"))
                 .navigationBarTitleDisplayMode(.automatic)
                 //                .toolbar(.hidden, for: .navigationBar)
-                .toolbar {
+                .toolbar(id: "mybar") {
+                    ToolbarItem(id: "sort", placement: .secondaryAction, content: {
+                        Button(action: {
+                            print("Sorting books...")
+                        }, label: {
+                            Label("Sort Books", systemImage: "arrow.up.arrow.down")
+                        })
+                    })
+                    ToolbarItem(id: "settings", placement: .secondaryAction, content: {
+                        Button(action: {
+                            print("Settings...")
+                        }, label: {
+                            Label("Settings", systemImage: "gearshape")
+                        })
+                    })
+                    
+                    /*
                     ToolbarItemGroup(placement: .primaryAction, content: {
                         Button(action: {
                             print("Adding book...")
@@ -36,6 +52,7 @@ struct MultipleViewsExample: View {
                             Label("Sort Books", systemImage: "arrow.up.arrow.down")
                         })
                     })
+                     */
                 }
                 .toolbarRole(.editor)
                 
