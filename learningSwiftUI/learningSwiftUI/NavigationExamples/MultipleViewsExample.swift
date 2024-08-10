@@ -17,7 +17,18 @@ struct MultipleViewsExample: View {
             }
             .listStyle(.plain)
             .navigationTitle(Text("Books"))
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button(action: {
+                        print("Delete Item")
+                    }, label: {
+                        Image(systemName: "trash")
+                    })
+                })
+                
+            }
         }
     }
 }
