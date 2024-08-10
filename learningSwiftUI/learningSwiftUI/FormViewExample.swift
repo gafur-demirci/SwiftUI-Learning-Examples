@@ -17,6 +17,12 @@ struct FormViewExample: View {
         Form {
             Toggle("Active", isOn: $setActive)
             Toggle("Show Pictures", isOn: $setShowPictures)
+            LabeledContent("Total") {
+                Text(String(setTotal))
+                Stepper("", value: $setTotal, in: 0...10)
+                    .labelsHidden()
+            }
+            /*
             HStack {
                 Text("Total")
                 Spacer()
@@ -24,6 +30,7 @@ struct FormViewExample: View {
                 Stepper("", value: $setTotal, in: 0...10)
                     .labelsHidden()
             }
+             */
         }
     }
 }
