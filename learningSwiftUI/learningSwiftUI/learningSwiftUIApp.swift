@@ -28,8 +28,11 @@ struct learningSwiftUIApp: App {
 //                .environment(appData)
 //            ListViewExample()
 //                .environment(appData)
-            TableViewExample()
-                .environment(appData)
+//            TableViewExample()
+//                .environment(appData)
+//            PickerViewExample()
+//            DatePickerExample()
+            FormViewExample()
         }
     }
 }
