@@ -13,7 +13,7 @@ struct DatePickerExample: View {
     
     var body: some View {
         VStack {
-            DatePicker("Date:", selection: $selectedDate)
+            DatePicker("Date:", selection: $selectedDate, in: Date()..., displayedComponents: .date)
             Spacer()
         }
         .padding()
