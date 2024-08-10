@@ -20,8 +20,25 @@ struct MultipleViewsExample: View {
                 .listStyle(.plain)
                 .navigationTitle(Text("Books"))
                 .navigationBarTitleDisplayMode(.automatic)
-                .toolbar(.hidden, for: .navigationBar)
+//                .toolbar(.hidden, for: .navigationBar)
                 .toolbar {
+                    ToolbarItemGroup(placement: .primaryAction, content: {
+                        Button(action: {
+                            print("Adding book...")
+                        }, label: {
+                            Image(systemName: "plus.app")
+                        })
+                    })
+                    ToolbarItemGroup(placement: .secondaryAction, content: {
+                        Button(action: {
+                            print("Sorting Book...")
+                        }, label: {
+                            Label("Sort Books", systemImage: "arrow.up.arrow.down")
+                        })
+                    })
+                    
+                    
+                    /*
                     ToolbarItem(placement: .bottomBar, content: {
                         HStack(content: {
                             Button("Show") {
@@ -30,6 +47,7 @@ struct MultipleViewsExample: View {
                         })
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                     })
+                    */
                     /*
                     ToolbarItemGroup(placement: .topBarTrailing, content: {
                         Button(action: {
