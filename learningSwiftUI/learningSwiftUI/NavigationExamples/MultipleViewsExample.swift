@@ -21,6 +21,16 @@ struct MultipleViewsExample: View {
                 .navigationTitle(Text("Books"))
                 .navigationBarTitleDisplayMode(.automatic)
                 //                .toolbar(.hidden, for: .navigationBar)
+                .toolbar {
+                    Menu(content: {
+                        Button("Option 1") { print("Option 1")}
+                        Button("Option 2") { print("Option 2")}
+                        Button("Option 3") { print("Option 3")}
+                    }, label: {
+                        Image(systemName: "filemenu.and.selection")
+                    })
+                }
+                /*
                 .toolbar(id: "mybar") {
                     ToolbarItem(id: "sort", placement: .secondaryAction, content: {
                         Button(action: {
