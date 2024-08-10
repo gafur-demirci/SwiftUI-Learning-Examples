@@ -15,13 +15,17 @@ struct FormViewExample: View {
     
     var body: some View {
         Form {
-            Toggle("Active", isOn: $setActive)
-            Toggle("Show Pictures", isOn: $setShowPictures)
-            LabeledContent("Total") {
-                Text(String(setTotal))
-                Stepper("", value: $setTotal, in: 0...10)
-                    .labelsHidden()
+            Section(header: Text("Options"), footer: Text("Activate the options you want to see")) {
+                Toggle("Active", isOn: $setActive)
+                Toggle("Show Pictures", isOn: $setShowPictures)
             }
+            Section(header: Text("Values"), footer: Text("Insert the number of items to display")) {
+                LabeledContent("Total") {
+                    Text(String(setTotal))
+                    Stepper("", value: $setTotal, in: 0...10)
+                        .labelsHidden()
+                }
+            }            
             /*
             HStack {
                 Text("Total")
