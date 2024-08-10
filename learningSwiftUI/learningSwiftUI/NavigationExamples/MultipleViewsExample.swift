@@ -20,7 +20,7 @@ struct MultipleViewsExample: View {
                 .listStyle(.plain)
                 .navigationTitle(Text("Books"))
                 .navigationBarTitleDisplayMode(.automatic)
-//                .toolbar(.hidden, for: .navigationBar)
+                //                .toolbar(.hidden, for: .navigationBar)
                 .toolbar {
                     ToolbarItemGroup(placement: .primaryAction, content: {
                         Button(action: {
@@ -36,46 +36,46 @@ struct MultipleViewsExample: View {
                             Label("Sort Books", systemImage: "arrow.up.arrow.down")
                         })
                     })
-                    
-                    
-                    /*
-                    ToolbarItem(placement: .bottomBar, content: {
-                        HStack(content: {
-                            Button("Show") {
-                                print("Show Values")
-                            }
-                        })
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
-                    })
-                    */
-                    /*
-                    ToolbarItemGroup(placement: .topBarTrailing, content: {
-                        Button(action: {
-                            if let firstIndex = appData.userData.first?.id {
-                                proxy.scrollTo(firstIndex, anchor: .bottom)
-                            }
-                        }, label: {
-                            Image(systemName: "arrow.up.doc")
-                        })
-                        Button(action: {
-                            if let lastIndex = appData.userData.last?.id {
-                                proxy.scrollTo(lastIndex, anchor: .top)
-                            }
-                        }, label: {
-                            Image(systemName: "arrow.down.doc")
-                        })
-                    })
-                    */
-                    /*
-                     ToolbarItem(placement: .topBarTrailing, content: {
-                     Button(action: {
-                     print("Delete Item")
-                     }, label: {
-                     Image(systemName: "trash")
-                     })
-                     })
-                     */
                 }
+                .toolbarRole(.editor)
+                
+                /*
+                 ToolbarItem(placement: .bottomBar, content: {
+                 HStack(content: {
+                 Button("Show") {
+                 print("Show Values")
+                 }
+                 })
+                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                 })
+                 */
+                /*
+                 ToolbarItemGroup(placement: .topBarTrailing, content: {
+                 Button(action: {
+                 if let firstIndex = appData.userData.first?.id {
+                 proxy.scrollTo(firstIndex, anchor: .bottom)
+                 }
+                 }, label: {
+                 Image(systemName: "arrow.up.doc")
+                 })
+                 Button(action: {
+                 if let lastIndex = appData.userData.last?.id {
+                 proxy.scrollTo(lastIndex, anchor: .top)
+                 }
+                 }, label: {
+                 Image(systemName: "arrow.down.doc")
+                 })
+                 })
+                 */
+                /*
+                 ToolbarItem(placement: .topBarTrailing, content: {
+                 Button(action: {
+                 print("Delete Item")
+                 }, label: {
+                 Image(systemName: "trash")
+                 })
+                 })
+                 */
             })
         }
     }
