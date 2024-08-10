@@ -20,7 +20,17 @@ struct MultipleViewsExample: View {
                 .listStyle(.plain)
                 .navigationTitle(Text("Books"))
                 .navigationBarTitleDisplayMode(.automatic)
+                .toolbar(.hidden, for: .navigationBar)
                 .toolbar {
+                    ToolbarItem(placement: .bottomBar, content: {
+                        HStack(content: {
+                            Button("Show") {
+                                print("Show Values")
+                            }
+                        })
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    })
+                    /*
                     ToolbarItemGroup(placement: .topBarTrailing, content: {
                         Button(action: {
                             if let firstIndex = appData.userData.first?.id {
@@ -37,7 +47,7 @@ struct MultipleViewsExample: View {
                             Image(systemName: "arrow.down.doc")
                         })
                     })
-                    
+                    */
                     /*
                      ToolbarItem(placement: .topBarTrailing, content: {
                      Button(action: {
