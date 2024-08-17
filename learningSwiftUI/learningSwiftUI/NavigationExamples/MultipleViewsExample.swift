@@ -113,10 +113,19 @@ struct MultipleViewsExample: View {
             */
         }
         .searchable(text: $searchItem, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"))
+        .onSubmit(of: .search) { performSearch()}
         .onChange(of: searchItem, initial: false, { old, value in
-            let search = value.trimmingCharacters(in: .whitespaces)
-            appData.filterValues(search: search)
+            if value.isEmpty {
+                performSearch()
+            }
+//            let search = value.trimmingCharacters(in: .whitespaces)
+//            appData.filterValues(search: search)
         })
+    }
+    
+    func performSearch() {
+        let search = searchItem.trimmingCharacters(in: .whitespaces)
+        appData.filterValues(search: search)
     }
 }
 
