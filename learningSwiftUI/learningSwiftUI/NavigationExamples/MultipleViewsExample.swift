@@ -112,7 +112,7 @@ struct MultipleViewsExample: View {
             })
             */
         }
-        .searchable(text: $searchItem, prompt: Text("Insert title"))
+        .searchable(text: $searchItem, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"))
         .onChange(of: searchItem, initial: false, { old, value in
             let search = value.trimmingCharacters(in: .whitespaces)
             appData.filterValues(search: search)
