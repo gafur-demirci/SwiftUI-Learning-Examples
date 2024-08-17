@@ -14,6 +14,9 @@ struct MultipleViewsExample: View {
     
     var body: some View {
         NavigationStack {
+            SearchableView()
+                .navigationTitle(Text("Books"))
+            /*
             List(appData.filteredItems) { book in
                 CellBook(book: book)
             }.navigationTitle(Text("Books"))
@@ -113,12 +116,12 @@ struct MultipleViewsExample: View {
             */
         }
         .searchable(text: $searchItem, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"))
-        .searchSuggestions({
-            ForEach(appData.filteredItems) { item in
-                Text("\(item.title) - \(item.author)")
-                    .searchCompletion(item.title)
-            }
-        })
+//        .searchSuggestions({
+//            ForEach(appData.filteredItems) { item in
+//                Text("\(item.title) - \(item.author)")
+//                    .searchCompletion(item.title)
+//            }
+//        })
 //        .onSubmit(of: .search) { performSearch()}
         .onChange(of: searchItem, initial: false, { old, value in
 //            if value.isEmpty {
@@ -132,6 +135,26 @@ struct MultipleViewsExample: View {
     func performSearch() {
         let search = searchItem.trimmingCharacters(in: .whitespaces)
         appData.filterValues(search: search)
+    }
+}
+
+struct SearchableView: View {
+    
+    @Environment(ApplicationData.self) private var appData
+    @Environment(\.isSearching) var isSearching
+    @Environment(\.dismissSearch) var dismissSearch
+    
+    var body: some View {
+        List {
+            if isSearching {
+                Button("Dismiss") {
+                    dismissSearch()
+                }
+            }
+            ForEach ( appData.filteredItems) { book in
+                    CellBook(book: book)
+            }
+        }
     }
 }
 
