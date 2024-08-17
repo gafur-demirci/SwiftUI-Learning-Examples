@@ -62,12 +62,13 @@ struct Employees: Identifiable {
     
     var filteredItems: [Book] = []
     
-    func filterValues(search: String) {
+    func filterValues(search: String, scope: Scopes = .title) {
         if search.isEmpty {
             filteredItems = userData.sorted(by: { $0.title < $1.title })
         } else {
             let list = userData.filter({ item in
-                return item.title.localizedStandardContains(search)
+                let value = scope == .title ? item.title : item.author
+                return value.localizedStandardContains(search)
             })
             filteredItems = list.sorted(by: { $0.title < $1.title })
         }

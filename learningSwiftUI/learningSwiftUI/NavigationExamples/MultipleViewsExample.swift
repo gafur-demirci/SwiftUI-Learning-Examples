@@ -7,19 +7,28 @@
 
 import SwiftUI
 
+enum Scopes {
+    case title, author
+}
+
 struct MultipleViewsExample: View {
     
     @Environment(ApplicationData.self) private var appData
     @State private var searchItem: String = ""
+    @State private var searchScope: Scopes = .title
     
     var body: some View {
         NavigationStack {
-            SearchableView()
+            List ( appData.filteredItems) { book in
+                CellBook(book: book)
+            }
+//            SearchableView()
                 .navigationTitle(Text("Books"))
             /*
             List(appData.filteredItems) { book in
                 CellBook(book: book)
             }.navigationTitle(Text("Books"))
+            */
             /*
             ScrollViewReader(content: { proxy in
                 List(appData.userData) { book in
@@ -116,6 +125,16 @@ struct MultipleViewsExample: View {
             */
         }
         .searchable(text: $searchItem, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"))
+        .searchScopes($searchScope, scopes: {
+            Text("Title").tag(Scopes.title)
+            Text("Author").tag(Scopes.author)
+        })
+        .onChange(of: searchItem, initial: false) { _, _ in
+            performSearch()
+        }
+        .onChange(of: searchScope, initial: false) { _, _ in
+            performSearch()
+        }
 //        .searchSuggestions({
 //            ForEach(appData.filteredItems) { item in
 //                Text("\(item.title) - \(item.author)")
@@ -134,7 +153,7 @@ struct MultipleViewsExample: View {
     
     func performSearch() {
         let search = searchItem.trimmingCharacters(in: .whitespaces)
-        appData.filterValues(search: search)
+        appData.filterValues(search: search, scope: searchScope)
     }
 }
 
