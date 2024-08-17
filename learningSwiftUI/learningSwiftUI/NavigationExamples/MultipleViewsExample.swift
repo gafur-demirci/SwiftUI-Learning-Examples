@@ -11,11 +11,17 @@ enum Scopes {
     case title, author
 }
 
+struct Tokens: Identifiable, Equatable {
+    let id = UUID()
+    let name: String
+}
+
 struct MultipleViewsExample: View {
     
     @Environment(ApplicationData.self) private var appData
     @State private var searchItem: String = ""
     @State private var searchScope: Scopes = .title
+    @State private var searchTokens: [Tokens] = []
     
     var body: some View {
         NavigationStack {
@@ -23,7 +29,21 @@ struct MultipleViewsExample: View {
                 CellBook(book: book)
             }
 //            SearchableView()
-                .navigationTitle(Text("Books"))
+            .navigationTitle(Text("Books"))
+            .toolbar {
+                let list = appData.userData.map( {$0.author })
+                let authors = Set(list).sorted()
+                Menu(content: {
+                    ForEach(authors, id: \.self) { author in
+                        Button(author) {
+                            let token = Tokens(name: author)
+                            searchTokens = [token]
+                        }
+                    }
+                }, label: {
+                    Image(systemName: "pencil.circle")
+                })
+            }
             /*
             List(appData.filteredItems) { book in
                 CellBook(book: book)
@@ -124,15 +144,20 @@ struct MultipleViewsExample: View {
             })
             */
         }
-        .searchable(text: $searchItem, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"))
-        .searchScopes($searchScope, scopes: {
-            Text("Title").tag(Scopes.title)
-            Text("Author").tag(Scopes.author)
+        .searchable(text: $searchItem, tokens: $searchTokens, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Insert title"), token: { token in
+            Text(token.name)
         })
+//        .searchScopes($searchScope, scopes: {
+//            Text("Title").tag(Scopes.title)
+//            Text("Author").tag(Scopes.author)
+//        })
         .onChange(of: searchItem, initial: false) { _, _ in
             performSearch()
         }
-        .onChange(of: searchScope, initial: false) { _, _ in
+//        .onChange(of: searchScope, initial: false) { _, _ in
+//            performSearch()
+//        }
+        .onChange(of: searchTokens, initial: false) { _, _ in
             performSearch()
         }
 //        .searchSuggestions({
@@ -142,18 +167,19 @@ struct MultipleViewsExample: View {
 //            }
 //        })
 //        .onSubmit(of: .search) { performSearch()}
-        .onChange(of: searchItem, initial: false, { old, value in
-//            if value.isEmpty {
-//                performSearch()
-//            }
-            let search = value.trimmingCharacters(in: .whitespaces)
-            appData.filterValues(search: search)
-        })
+//        .onChange(of: searchItem, initial: false, { old, value in
+////            if value.isEmpty {
+////                performSearch()
+////            }
+//            let search = value.trimmingCharacters(in: .whitespaces)
+//            appData.filterValues(search: search)
+//        })
     }
     
     func performSearch() {
         let search = searchItem.trimmingCharacters(in: .whitespaces)
-        appData.filterValues(search: search, scope: searchScope)
+//        appData.filterValues(search: search, scope: searchScope)
+        appData.filterValues(search: search, author: searchTokens.first?.name ?? "")
     }
 }
 
