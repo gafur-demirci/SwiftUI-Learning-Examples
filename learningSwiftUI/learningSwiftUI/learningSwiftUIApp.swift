@@ -32,7 +32,9 @@ struct learningSwiftUIApp: App {
 //                .environment(appData)
 //            PickerViewExample()
 //            DatePickerExample()
-            FormViewExample()
+//            FormViewExample()
+            MultipleViewsExample()
+                .environment(appData)
         }
     }
 }

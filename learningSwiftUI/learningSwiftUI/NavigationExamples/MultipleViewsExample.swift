@@ -10,8 +10,14 @@ import SwiftUI
 struct MultipleViewsExample: View {
     
     @Environment(ApplicationData.self) private var appData
+    @State private var searchItem: String = ""
+    
     var body: some View {
         NavigationStack {
+            List(appData.filteredItems) { book in
+                CellBook(book: book)
+            }.navigationTitle(Text("Books"))
+            /*
             ScrollViewReader(content: { proxy in
                 List(appData.userData) { book in
                     BookView(book: book)
@@ -104,7 +110,13 @@ struct MultipleViewsExample: View {
                  })
                  */
             })
+            */
         }
+        .searchable(text: $searchItem, prompt: Text("Insert title"))
+        .onChange(of: searchItem, initial: false, { old, value in
+            let search = value.trimmingCharacters(in: .whitespaces)
+            appData.filterValues(search: search)
+        })
     }
 }
 

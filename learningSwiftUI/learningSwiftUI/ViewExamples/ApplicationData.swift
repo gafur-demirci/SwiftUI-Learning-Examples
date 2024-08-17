@@ -46,12 +46,33 @@ struct Employees: Identifiable {
 
 
 @Observable class ApplicationData {
+    
+    @ObservationIgnored var userData: [Book] {
+        didSet {
+            filterValues(search: "")
+        }
+    }
+    
     var title: String = "Default Title"
     //var titleInput: String = ""
-    var userData: [Book] = []
+    //var userData: [Book] = []
     var items: [MainItems] = []
     var listOfItems: [ConsumableItem] = []
     var listOfEmployees: [Employees] = []
+    
+    var filteredItems: [Book] = []
+    
+    func filterValues(search: String) {
+        if search.isEmpty {
+            filteredItems = userData.sorted(by: { $0.title < $1.title })
+        } else {
+            let list = userData.filter({ item in
+                return item.title.localizedStandardContains(search)
+            })
+            filteredItems = list.sorted(by: { $0.title < $1.title })
+        }
+    }
+    
     
     init() {
         userData = [
@@ -108,5 +129,7 @@ struct Employees: Identifiable {
         
         listOfEmployees.append(Employees(name: "Robert", position: "Manager", subordinates: [emp1,emp2,emp3]))
         listOfEmployees.append(Employees(name: "Anna", position: "Manager", subordinates: [emp4,emp5]))
+        
+        filterValues(search: "")
     }
 }
