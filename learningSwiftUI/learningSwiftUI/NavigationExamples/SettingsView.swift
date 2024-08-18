@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @Environment(\.dismiss) var dismiss
     @State private var showPictures: Bool = true
     @State private var showYear: Bool = true
     
@@ -18,6 +19,14 @@ struct SettingsView: View {
             Toggle("Show Year", isOn: $showYear)
         }
         .navigationTitle("Settings")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Go Back") {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
