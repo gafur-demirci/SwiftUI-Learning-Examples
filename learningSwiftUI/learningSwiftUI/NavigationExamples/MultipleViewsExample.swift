@@ -26,10 +26,16 @@ struct MultipleViewsExample: View {
     var body: some View {
         NavigationStack {
             List ( appData.filteredItems) { book in
-                CellBook(book: book)
+                NavigationLink(destination: {
+                    DetailView(book: book)
+                }, label: {
+                    BookView(book: book)
+                })                
             }
 //            SearchableView()
             .navigationTitle(Text("Books"))
+            
+            /*
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: SettingsView(), label: {
@@ -37,6 +43,7 @@ struct MultipleViewsExample: View {
                     })
                 }
             })
+            */
             /*
             .toolbar {
                 let list = appData.userData.map( {$0.author })
@@ -55,7 +62,7 @@ struct MultipleViewsExample: View {
             */
             /*
             List(appData.filteredItems) { book in
-                CellBook(book: book)
+                BookView(book: book)
             }.navigationTitle(Text("Books"))
             */
             /*
@@ -206,7 +213,7 @@ struct SearchableView: View {
                 }
             }
             ForEach ( appData.filteredItems) { book in
-                    CellBook(book: book)
+                    BookView(book: book)
             }
         }
     }

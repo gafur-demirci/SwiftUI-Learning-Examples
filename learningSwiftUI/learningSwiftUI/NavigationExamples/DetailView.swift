@@ -1,0 +1,34 @@
+//
+//  DetailView.swift
+//  learningSwiftUI
+//
+//  Created by Abdulgafur Demirci on 18.08.2024.
+//
+
+import SwiftUI
+
+struct DetailView: View {
+    
+    let book: Book
+    
+    var body: some View {
+        VStack {
+            Text(book.title)
+                .font(.title)
+            Text(book.author)
+            Image(book.cover)
+                .resizable()
+                .scaledToFit()
+        }
+        .padding()
+        .navigationTitle("Book")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        DetailView(book: ApplicationData().userData[0])
+    }
+    
+}
