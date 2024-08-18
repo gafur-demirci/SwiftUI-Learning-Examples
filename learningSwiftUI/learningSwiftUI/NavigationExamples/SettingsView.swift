@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
-    @Binding var viewPath: NavigationPath
+//    @Binding var viewPath: NavigationPath
     @State private var showPictures: Bool = true
     @State private var showYear: Bool = true
     
@@ -21,19 +21,20 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button("Go Back") {
-//                    dismiss()
-                    viewPath.removeLast()
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .topBarLeading) {
+//                Button("Go Back") {
+////                    dismiss()
+//                    viewPath.removeLast()
+//                }
+//            }
+//        }
     }
 }
 
 #Preview {
     NavigationStack {
-        SettingsView(viewPath: .constant(NavigationPath()))
+        SettingsView()
+//        SettingsView(viewPath: .constant(NavigationPath()))
     }
 }

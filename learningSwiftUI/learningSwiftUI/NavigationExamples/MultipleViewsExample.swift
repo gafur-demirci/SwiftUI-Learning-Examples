@@ -25,7 +25,28 @@ struct MultipleViewsExample: View {
 //    @State private var searchTokens: [Tokens] = []
     
     var body: some View {
-        NavigationStack(path: $viewPath) {
+        NavigationStack(path: Bindable(appData).viewPath, root: {
+            List(appData.userData) { book in
+                NavigationLink(value: book, label: {
+                    BookView(book: book)
+                })
+            }
+            .navigationTitle(Text("Books"))
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: Book.self, destination: { book in
+                DetailView(book: book)
+            })
+            .navigationDestination(for: String.self, destination: { viewID in
+                if viewID == "Settings View" {
+                    SettingsView()
+                }else if viewID == "Picture View" {
+                    PictureView()
+                }
+            })
+        })
+
+//        NavigationStack(path: $viewPath) {
+            /*
             List ( appData.userData) { book in
                 NavigationLink(value: book, label: {
                     BookView(book: book)
@@ -49,7 +70,7 @@ struct MultipleViewsExample: View {
                     SettingsView(viewPath: $viewPath)
                 }
             })
-            
+            */
             /*
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -205,7 +226,7 @@ struct MultipleViewsExample: View {
 //            let search = value.trimmingCharacters(in: .whitespaces)
 //            appData.filterValues(search: search)
 //        })
-    }
+//    }
     
 //    func performSearch() {
 //        let search = searchItem.trimmingCharacters(in: .whitespaces)

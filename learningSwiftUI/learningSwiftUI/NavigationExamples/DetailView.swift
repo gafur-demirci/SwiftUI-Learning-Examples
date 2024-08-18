@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DetailView: View {
     
-    @Binding var viewPath: NavigationPath
+//    @Binding var viewPath: NavigationPath
+    @Environment(ApplicationData.self) private var appData
     let book: Book
     
     var body: some View {
@@ -17,10 +18,15 @@ struct DetailView: View {
             Text(book.title)
                 .font(.title)
             Text(book.author)
-            Image(book.cover)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100)
+            Button(action: {
+                appData.selectedBook = book
+                appData.viewPath.append("Picture View")
+            }, label: {
+                Image(book.cover)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+            })
             Spacer()
         }
         .padding()
@@ -29,7 +35,7 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading, content: {
                 Button("Go Back") {
-                    viewPath.removeLast()
+                    appData.viewPath.removeLast()
                 }
             })
         }
@@ -38,7 +44,9 @@ struct DetailView: View {
 
 #Preview {
     NavigationStack {
-        DetailView(viewPath: .constant(NavigationPath()), book: ApplicationData().userData[0])
+        DetailView(book: ApplicationData().userData[0])
+            .environment(ApplicationData())
+//        DetailView(viewPath: .constant(NavigationPath()), book: ApplicationData().userData[0])
     }
     
 }

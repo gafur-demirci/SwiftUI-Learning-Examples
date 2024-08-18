@@ -47,20 +47,23 @@ struct Employees: Identifiable {
 
 @Observable class ApplicationData {
     
-    @ObservationIgnored var userData: [Book] {
-        didSet {
-            filterValues(search: "")
-        }
-    }
+//    @ObservationIgnored var userData: [Book] {
+//        didSet {
+//            filterValues(search: "")
+//        }
+//    }
     
     var title: String = "Default Title"
     //var titleInput: String = ""
-    //var userData: [Book] = []
+    var userData: [Book] = []
     var items: [MainItems] = []
     var listOfItems: [ConsumableItem] = []
     var listOfEmployees: [Employees] = []
     
     var filteredItems: [Book] = []
+    
+    var viewPath = NavigationPath()
+    var selectedBook: Book? = nil
     /*
     func filterValues(search: String, scope: Scopes = .title) {
         if search.isEmpty {
