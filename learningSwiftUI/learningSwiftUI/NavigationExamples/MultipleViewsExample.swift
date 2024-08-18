@@ -30,6 +30,13 @@ struct MultipleViewsExample: View {
             }
 //            SearchableView()
             .navigationTitle(Text("Books"))
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: SettingsView(), label: {
+                        Image(systemName: "gearshape")
+                    })
+                }
+            })
             /*
             .toolbar {
                 let list = appData.userData.map( {$0.author })
