@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     
+    @Binding var viewPath: NavigationPath
     let book: Book
     
     var body: some View {
@@ -19,16 +20,25 @@ struct DetailView: View {
             Image(book.cover)
                 .resizable()
                 .scaledToFit()
+                .frame(width: 100)
+            Spacer()
         }
         .padding()
-        .navigationTitle("Book")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(Text("Book"))
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading, content: {
+                Button("Go Back") {
+                    viewPath.removeLast()
+                }
+            })
+        }
     }
 }
 
 #Preview {
     NavigationStack {
-        DetailView(book: ApplicationData().userData[0])
+        DetailView(viewPath: .constant(NavigationPath()), book: ApplicationData().userData[0])
     }
     
 }

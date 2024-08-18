@@ -19,21 +19,36 @@ struct Tokens: Identifiable, Equatable {
 struct MultipleViewsExample: View {
     
     @Environment(ApplicationData.self) private var appData
+    @State private var viewPath = NavigationPath()
 //    @State private var searchItem: String = ""
 //    @State private var searchScope: Scopes = .title
 //    @State private var searchTokens: [Tokens] = []
     
     var body: some View {
-        NavigationStack {
-            List ( appData.filteredItems) { book in
-                NavigationLink(destination: {
-                    DetailView(book: book)
-                }, label: {
+        NavigationStack(path: $viewPath) {
+            List ( appData.userData) { book in
+                NavigationLink(value: book, label: {
                     BookView(book: book)
                 })                
             }
 //            SearchableView()
             .navigationTitle(Text("Books"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    NavigationLink(value: "Settings View", label: {
+                        Image(systemName: "gear")
+                    })
+                })
+            }
+            .navigationDestination(for: Book.self, destination: { book in
+                DetailView(viewPath: $viewPath, book: book)
+            })
+            .navigationDestination(for: String.self, destination: { viewId in
+                if viewId == "Settings View" {
+                    SettingsView(viewPath: $viewPath)
+                }
+            })
             
             /*
             .toolbar(content: {
