@@ -11,11 +11,16 @@ struct ModalViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
     @State private var showSheet: Bool = false
+    @State private var editItem: Book?
     
     var body: some View {
         NavigationStack {
             List(appData.userData) { book in
                 BookView(book: book)
+                    .background(.white)
+                    .onTapGesture {
+                        editItem = book
+                    }
             }
             .navigationTitle(Text("Books"))
             .toolbar {
@@ -27,6 +32,13 @@ struct ModalViewExample: View {
                     })
                 }
             }
+            .sheet(isPresented: $showSheet, content: {
+                AddBookView()
+            })
+            .sheet(item: $editItem, content: {item in
+                AddBookView(book: item)
+            })
+            /*
             .sheet(isPresented: $showSheet, content: {
                 AddBookView()
                 // user interaction close sheet disabled

@@ -14,10 +14,13 @@ struct AddBookView: View {
     @State private var titleInput: String = ""
     @State private var authorInput: String = ""
     @State private var yearInput: String = ""
+    var book: Book?
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
             HStack {
+                Text(book == nil ? "Add Book" : "Edit Book")
+                    .font(.body.weight(.bold))
                 Spacer()
                 Button("Close") {
                     dismiss()
@@ -39,14 +42,24 @@ struct AddBookView: View {
             Spacer()
         }
         .padding()
+        .onAppear {
+            titleInput = book?.title ?? ""
+            authorInput = book?.author ?? ""
+            yearInput = book?.displayYear ?? ""
+        }
     }
     
     func storeBook() {
         let title = titleInput.trimmingCharacters(in: .whitespaces)
         let author = authorInput.trimmingCharacters(in: .whitespaces)
         if let year = Int(yearInput), !title.isEmpty && !author.isEmpty {
-            let newBook  = Book(title: title, author: author, cover: "nocover", year: year, selected: false)
-            appData.userData.append(newBook)
+            if let index = appData.userData.firstIndex(where: { $0.id == book?.id}) {
+                let newBook  = Book(title: title, author: author, cover: appData.userData[index].cover, year: year, selected: false)
+                appData.userData[index] = newBook
+            } else {
+                let newBook  = Book(title: title, author: author, cover: "nocover", year: year, selected: false)
+                appData.userData.append(newBook)
+            }
         }
     }
 }
