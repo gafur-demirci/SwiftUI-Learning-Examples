@@ -29,6 +29,12 @@ struct ModalViewExample: View {
             }
             .sheet(isPresented: $showSheet, content: {
                 AddBookView()
+                // user interaction close sheet disabled
+                    .interactiveDismissDisabled(true)
+                // sheet background color sets
+                    .presentationBackground(.thinMaterial)
+                // sheet height sets -> default large for available space height
+                    .presentationDetents([.height(300)])
             })
         }
     }
