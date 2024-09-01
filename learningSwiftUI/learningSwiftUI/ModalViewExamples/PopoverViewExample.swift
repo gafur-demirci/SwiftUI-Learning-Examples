@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopoverView: View {
+struct PopoverViewExample: View {
     
     @State private var showPopover: Bool = false
     
@@ -26,5 +26,5 @@ struct PopoverView: View {
 }
 
 #Preview {
-    PopoverView()
+    PopoverViewExample()
 }

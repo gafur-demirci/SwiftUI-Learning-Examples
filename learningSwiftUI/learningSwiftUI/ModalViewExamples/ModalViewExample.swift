@@ -26,7 +26,7 @@ struct ModalViewExample: View {
             .navigationTitle(Text("Books"))
             .navigationBarTitleDisplayMode(.inline)
             .inspector(isPresented: $presentInspector) {
-                InspectorView()
+                InspectorViewExample()
                     .inspectorColumnWidth(min: 200, ideal: 250, max: 300)
             }
             .toolbar {

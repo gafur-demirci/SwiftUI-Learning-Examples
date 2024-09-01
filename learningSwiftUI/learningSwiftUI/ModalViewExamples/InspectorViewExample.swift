@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InspectorView: View {
+struct InspectorViewExample: View {
     var body: some View {
         VStack {
             Text("Option 1")
@@ -20,5 +20,5 @@ struct InspectorView: View {
 }
 
 #Preview {
-    InspectorView()
+    InspectorViewExample()
 }
