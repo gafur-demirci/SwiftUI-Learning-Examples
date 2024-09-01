@@ -26,9 +26,19 @@ struct AlertViewExample: View {
         }
         .padding()
         .alert("Error", isPresented: $openAlert, actions: {
+            Button("Cancel", role: .cancel, action: {})
+            Button("Delete", role: .destructive, action: {
+                name = ""
+            })
+            Button("Save Anyway", role: .none, action: {
+                print("Save value")
+            })
+            
+            /*
             Button("Cancel", role: .cancel, action: {
                 openAlert = false
             })
+             */
         }, message: {
             Text("Insert your name")
         })
