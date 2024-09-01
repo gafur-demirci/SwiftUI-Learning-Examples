@@ -10,19 +10,32 @@ import SwiftUI
 struct ModalViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
-    @State private var showSheet: Bool = false
-    @State private var editItem: Book?
+//    @State private var showSheet: Bool = false
+//    @State private var editItem: Book?
+    @State private var presentInspector: Bool = false
     
     var body: some View {
         NavigationStack {
             List(appData.userData) { book in
                 BookView(book: book)
-                    .background(.white)
-                    .onTapGesture {
-                        editItem = book
-                    }
+//                    .background(.white)
+//                    .onTapGesture {
+//                        editItem = book
+//                    }
             }
             .navigationTitle(Text("Books"))
+            .navigationBarTitleDisplayMode(.inline)
+            .inspector(isPresented: $presentInspector) {
+                InspectorView()
+                    .inspectorColumnWidth(min: 200, ideal: 250, max: 300)
+            }
+            .toolbar {
+                Spacer()
+                Button("Inspector") {
+                    presentInspector.toggle()
+                }
+            }
+            /*
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -38,6 +51,7 @@ struct ModalViewExample: View {
             .sheet(item: $editItem, content: {item in
                 AddBookView(book: item)
             })
+            */
             /*
             .sheet(isPresented: $showSheet, content: {
                 AddBookView()
