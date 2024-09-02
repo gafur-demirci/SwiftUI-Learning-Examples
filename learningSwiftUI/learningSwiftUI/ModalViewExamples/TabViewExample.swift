@@ -10,9 +10,10 @@ import SwiftUI
 struct TabViewExample: View {
     
     @Environment(ApplicationData.self) private var appData
+    @State private var selectedView: Int = 1
     
     var body: some View {
-        TabView {
+        TabView(selection: $selectedView) {
             BookView(
                 book: appData.userData[0]
             )
@@ -22,6 +23,7 @@ struct TabViewExample: View {
                     systemImage: "book.circle"
                 )
             }
+            .tag(0)
             ModalViewExample()
                 .tabItem {
                     Label(
@@ -30,6 +32,7 @@ struct TabViewExample: View {
                     )
                 }
                 .badge(12)
+                .tag(1)
         }
     }
 }
