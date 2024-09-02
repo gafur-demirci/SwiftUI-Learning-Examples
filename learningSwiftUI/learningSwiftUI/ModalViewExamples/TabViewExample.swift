@@ -14,20 +14,18 @@ struct TabViewExample: View {
     
     var body: some View {
         TabView(selection: $selectedView) {
-            BookView(
-                book: appData.userData[0]
-            )
+            MultipleViewsExample()
             .tabItem {
                 Label(
-                    "Favorite Book",
+                    "Books",
                     systemImage: "book.circle"
                 )
             }
             .tag(0)
-            ModalViewExample()
+            SettingsView()
                 .tabItem {
                     Label(
-                        "All Books",
+                        "Settings",
                         systemImage: "gear"
                     )
                 }

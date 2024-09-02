@@ -259,20 +259,26 @@ struct SearchableView: View {
 */
 
 struct BookView: View {
+    
+    @Environment(ApplicationData.self) private var appData
     let book: Book
     
     var body: some View {
         HStack(alignment: .top) {
-            Image(book.cover)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 80,height: 100)
+            if(appData.showPicture) {
+                Image(book.cover)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80,height: 100)
+            }
             VStack(alignment: .leading, spacing: 2) {
                 Text(book.title)
                     .bold()
                 Text(book.author)
-                Text(book.displayYear)
-                    .font(.caption)
+                if(appData.showYear) {
+                    Text(book.displayYear)
+                        .font(.caption)
+                }
                 Spacer()
             }
             .padding(.top, 5)

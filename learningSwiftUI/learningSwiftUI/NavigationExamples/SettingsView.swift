@@ -10,16 +10,19 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
+    @Environment(ApplicationData.self) private var appData
 //    @Binding var viewPath: NavigationPath
-    @State private var showPictures: Bool = true
-    @State private var showYear: Bool = true
+//    @State private var showPictures: Bool = true
+//    @State private var showYear: Bool = true
     
     var body: some View {
         Form {
-            Toggle("Show Pictures", isOn: $showPictures)
-            Toggle("Show Year", isOn: $showYear)
+            Section(header: Text("Settings"), footer: Text("Select what you want to see")) {
+                Toggle("Show Pictures", isOn: Bindable(appData).showPicture)
+                Toggle("Show Year", isOn: Bindable(appData).showYear)
+            }
         }
-        .navigationTitle("Settings")
+//        .navigationTitle("Settings")
         .navigationBarBackButtonHidden(true)
 //        .toolbar {
 //            ToolbarItem(placement: .topBarLeading) {
@@ -35,6 +38,7 @@ struct SettingsView: View {
 #Preview {
     NavigationStack {
         SettingsView()
+            .environment(ApplicationData())
 //        SettingsView(viewPath: .constant(NavigationPath()))
     }
 }

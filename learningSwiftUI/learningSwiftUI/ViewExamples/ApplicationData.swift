@@ -52,7 +52,8 @@ struct Employees: Identifiable {
 //            filterValues(search: "")
 //        }
 //    }
-    
+    var showPicture: Bool = true
+    var showYear: Bool = true
     var title: String = "Default Title"
     //var titleInput: String = ""
     var userData: [Book] = []
