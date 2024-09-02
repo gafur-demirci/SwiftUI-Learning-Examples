@@ -13,6 +13,16 @@ struct TabViewExample: View {
     @State private var selectedView: Int = 1
     
     var body: some View {
+        TabView {
+            ForEach(appData.userData) { book in
+                Image(book.cover)
+                .resizable()
+                .scaledToFit()
+            }
+        }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        /*
         TabView(selection: $selectedView) {
             MultipleViewsExample()
             .tabItem {
@@ -32,6 +42,7 @@ struct TabViewExample: View {
                 .badge(12)
                 .tag(1)
         }
+        */
     }
 }
 
