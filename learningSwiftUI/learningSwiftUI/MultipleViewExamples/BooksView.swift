@@ -19,6 +19,17 @@ struct BooksView: View {
         }
         .listStyle(.sidebar)
         .navigationTitle("Books")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing, content: {
+                NavigationLink(value: "Settings View", label: {
+                    Image(systemName: "gear")
+                })
+                .isDetailLink(false)
+            })
+        }
+        .navigationDestination(for: String.self, destination: { _ in
+            SettingsView()
+        })
     }
 }
 
