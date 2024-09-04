@@ -10,32 +10,40 @@ import SwiftUI
 struct DetailsView: View {
     
     @Environment(\.horizontalSizeClass) var horizontal
+    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
         Group {
             if horizontal == .regular {
-                DetailLarge(book: book)
+                DetailLarge(path: $path, book: book)
             } else {
-                DetailSmall(book: book)
+                DetailSmall(path: $path, book: book)
             }
         }
         .padding()
         .navigationTitle(Text("Information"))
+        .navigationDestination(for: String.self, destination: { _ in
+            PictureViewExample(book: book)
+        })
     }
 }
 
 struct DetailLarge: View {
-    
+    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
         HStack {
             VStack {
-                Image(book.cover)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 300)
+                Button(action: {
+                    path.append("Picture View")
+                }, label: {
+                    Image(book.cover)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 300)
+                })
                 Spacer()
             }
             VStack(alignment: .leading, spacing: 4, content: {
@@ -52,7 +60,7 @@ struct DetailLarge: View {
 }
 
 struct DetailSmall: View {
-    
+    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
@@ -62,10 +70,15 @@ struct DetailSmall: View {
             Text(book.author)
             Text(book.displayYear)
                 .font(.caption)
-            Image(book.cover)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 300)
+            Button(action: {
+                path.append("Picture View")
+            }, label: {
+                Image(book.cover)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 300)
+            })
+
         }
         .multilineTextAlignment(.center)
     }
@@ -73,5 +86,5 @@ struct DetailSmall: View {
 
 
 #Preview {
-    DetailsView(book: ApplicationData().userData[2])
+    DetailsView(path: .constant(NavigationPath()), book: ApplicationData().userData[2])
 }
