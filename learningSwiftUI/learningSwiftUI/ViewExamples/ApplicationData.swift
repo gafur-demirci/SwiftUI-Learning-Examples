@@ -47,16 +47,29 @@ struct Employees: Identifiable {
 
 @Observable class ApplicationData {
     
-//    @ObservationIgnored var userData: [Book] {
-//        didSet {
-//            filterValues(search: "")
-//        }
-//    }
+    @ObservationIgnored var userData: [Book] {
+        didSet {
+            updateAuthors()
+        }
+    }
+    
+    var listAuthors: [String] = []
+    
+    func updateAuthors() {
+        var list: [String] = []
+        for name in userData.map({ $0.author }) {
+            if !list.contains(name) {
+                list.append(name)
+            }
+        }
+        listAuthors = list.sorted(by: { $0 < $1 })
+    }
+    
     var showPicture: Bool = true
     var showYear: Bool = true
     var title: String = "Default Title"
     //var titleInput: String = ""
-    var userData: [Book] = []
+//    var userData: [Book] = []
     var items: [MainItems] = []
     var listOfItems: [ConsumableItem] = []
     var listOfEmployees: [Employees] = []
@@ -154,5 +167,7 @@ struct Employees: Identifiable {
         listOfEmployees.append(Employees(name: "Anna", position: "Manager", subordinates: [emp4,emp5]))
         
         filterValues(search: "")
+        
+        updateAuthors()
     }
 }

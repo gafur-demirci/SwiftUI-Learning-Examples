@@ -10,15 +10,17 @@ import SwiftUI
 struct DetailsView: View {
     
     @Environment(\.horizontalSizeClass) var horizontal
-    @Binding var path: NavigationPath
+//    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
         Group {
             if horizontal == .regular {
-                DetailLarge(path: $path, book: book)
+                DetailLarge(book: book)
+//                DetailLarge(path: $path, book: book)
             } else {
-                DetailSmall(path: $path, book: book)
+                DetailSmall(book: book)
+//                DetailSmall(path: $path, book: book)
             }
         }
         .padding()
@@ -30,14 +32,14 @@ struct DetailsView: View {
 }
 
 struct DetailLarge: View {
-    @Binding var path: NavigationPath
+//    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
         HStack {
             VStack {
                 Button(action: {
-                    path.append("Picture View")
+//                    path.append("Picture View")
                 }, label: {
                     Image(book.cover)
                         .resizable()
@@ -60,7 +62,7 @@ struct DetailLarge: View {
 }
 
 struct DetailSmall: View {
-    @Binding var path: NavigationPath
+//    @Binding var path: NavigationPath
     let book: Book
     
     var body: some View {
@@ -71,7 +73,7 @@ struct DetailSmall: View {
             Text(book.displayYear)
                 .font(.caption)
             Button(action: {
-                path.append("Picture View")
+//                path.append("Picture View")
             }, label: {
                 Image(book.cover)
                     .resizable()
@@ -86,5 +88,6 @@ struct DetailSmall: View {
 
 
 #Preview {
-    DetailsView(path: .constant(NavigationPath()), book: ApplicationData().userData[2])
+    DetailsView(book: ApplicationData().userData[2])
+//    DetailsView(path: .constant(NavigationPath()), book: ApplicationData().userData[2])
 }
