@@ -30,6 +30,9 @@ struct UniversalInterfaceExample: View {
 //            })
 
         })
+        .onChange(of: selectedBook, initial: false) { _, _ in
+            visibility = .detailOnly
+        }
 //        .onChange(of: selectedBook, initial: false) { _, _ in
 //            path = NavigationPath()
 //        }
