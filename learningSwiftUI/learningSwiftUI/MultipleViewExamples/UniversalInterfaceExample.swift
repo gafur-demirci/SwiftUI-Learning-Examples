@@ -18,8 +18,10 @@ struct UniversalInterfaceExample: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $visibility, sidebar: {
             AuthorsView(selectedAuthor: $selectedAuthor)
+                .navigationSplitViewColumnWidth(200)
         }, content: {
             BooksView(selectedBook: $selectedBook, selectedAuthor: selectedAuthor)
+                .navigationSplitViewColumnWidth(200)
         },detail: {
 //            NavigationStack(path: $path, root: {
             if let book = selectedBook {
@@ -30,9 +32,10 @@ struct UniversalInterfaceExample: View {
 //            })
 
         })
-        .onChange(of: selectedBook, initial: false) { _, _ in
-            visibility = .detailOnly
-        }
+        .navigationSplitViewStyle(.prominentDetail)
+//        .onChange(of: selectedBook, initial: false) { _, _ in
+//            visibility = .detailOnly
+//        }
 //        .onChange(of: selectedBook, initial: false) { _, _ in
 //            path = NavigationPath()
 //        }
