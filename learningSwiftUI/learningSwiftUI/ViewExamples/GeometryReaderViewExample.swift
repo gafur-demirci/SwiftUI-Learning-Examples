@@ -12,7 +12,11 @@ struct GeometryReaderViewExample: View {
         GeometryReader { geometry in
 //            let isPortrait = geometry.size.height > geometry.size.width
 //            let message = isPortrait ? "Portrait" : "Landscape"
-            
+            let globalX = Int(geometry.frame(in: .global).origin.x)
+            let globalY = Int(geometry.frame(in: .global).origin.y)
+            Text("Position: \(globalX) / \(globalY)")
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            /*
             HStack {
                 Image(.book1)
                     .resizable()
@@ -21,8 +25,11 @@ struct GeometryReaderViewExample: View {
                     .background(Color.gray)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+             */
         }
-        .ignoresSafeArea()
+        .frame(width: 200, height: 250)
+        .background(Color.gray)
+//        .ignoresSafeArea()
     }
 }
 
