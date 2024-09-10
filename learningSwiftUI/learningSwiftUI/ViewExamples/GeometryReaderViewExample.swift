@@ -8,7 +8,26 @@
 import SwiftUI
 
 struct GeometryReaderViewExample: View {
+    
+    @State private var size: CGSize = .zero
+    
     var body: some View {
+        VStack {
+            Image(.book2)
+                .resizable()
+                .scaledToFit()
+                .background(
+                    GeometryReader { geometry in
+                        Color.clear
+                            .onAppear {
+                                size = geometry.size
+                            }
+                    })
+            Text("\(Int(size.width)) x \(Int(size.height))")
+        }
+        .padding(100)
+        
+        /*
         GeometryReader { geometry in
 //            let isPortrait = geometry.size.height > geometry.size.width
 //            let message = isPortrait ? "Portrait" : "Landscape"
@@ -30,6 +49,7 @@ struct GeometryReaderViewExample: View {
         .frame(width: 200, height: 250)
         .background(Color.gray)
 //        .ignoresSafeArea()
+        */
     }
 }
 
