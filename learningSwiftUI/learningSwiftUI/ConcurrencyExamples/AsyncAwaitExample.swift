@@ -15,19 +15,28 @@ struct AsyncAwaitExample: View {
         }
         // task explicitly
         .onAppear {
-            Task(priority: .background) {
+            let myTask = Task(priority: .background) {
                 // nine second
                 let imageName1 = await loadImage(name: "book1")
-                let imageName2 = await loadImage(name: "book2")
-                let imageName3 = await loadImage(name: "book3")
-                print("\(imageName1), \(imageName2) and \(imageName3)")
+                print(imageName1)
+                //                let imageName2 = await loadImage(name: "book2")
+                //                let imageName3 = await loadImage(name: "book3")
+                //                print("\(imageName1), \(imageName2) and \(imageName3)")
+            }
+            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+                                 print("The time is up")
+                                 myTask.cancel()
             }
         }
     }
     
     func loadImage(name: String) async -> String {
         try? await Task.sleep(nanoseconds: 3 * 1000000000)
-        return "Name: \(name)"
+        if !Task.isCancelled {
+            return "Name \(name)"
+        } else {
+            return "Task Cancelled"
+        }
     }
     
 }
