@@ -14,8 +14,10 @@ struct AsyncAwaitExample: View {
                 .padding()
         }
         .task(priority: .background, {
-            let imageName = await loadImage(name: "book1")
-            print(imageName)
+            let imageName1 = await loadImage(name: "book1")
+            let imageName2 = await loadImage(name: "book2")
+            let imageName3 = await loadImage(name: "book3")
+            print("\(imageName1), \(imageName2) and \(imageName3)")
         })
     }
     
