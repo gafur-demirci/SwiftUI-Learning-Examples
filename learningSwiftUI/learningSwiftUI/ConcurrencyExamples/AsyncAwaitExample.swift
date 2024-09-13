@@ -28,7 +28,20 @@ struct AsyncAwaitExample: View {
         }
         // task explicitly
         .onAppear {
+            
+            let currentTime = Date()
+            
             Task(priority: .background) {
+                // parallel tasks ( three second )
+                async let imageName1 = loadImage(name: "book1")
+                async let imageName2 = loadImage(name: "book2")
+                async let imageName3 = loadImage(name: "book3")
+                
+                let listNames = await "\(imageName1), \(imageName2), and \(imageName3)"
+                print(listNames)
+                print("Total time: \(Date().timeIntervalSince(currentTime))")
+                
+                /*
                 do {
                     // nine second
                     let imageName = try await loadImage(name: "book10")
@@ -41,6 +54,7 @@ struct AsyncAwaitExample: View {
                 } catch MyErrors.noImage {
                     print("Error: No Image Available")
                 }
+                */
             }
             /*
              Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
@@ -51,13 +65,13 @@ struct AsyncAwaitExample: View {
         }
     }
     
-    func loadImage(name: String) async throws-> String {
+    func loadImage(name: String) async -> String {
         try? await Task.sleep(nanoseconds: 3 * 1000000000)
         
-        let error = true
-        if error {
-            throw MyErrors.noImage
-        }
+//        let error = true
+//        if error {
+//            throw MyErrors.noImage
+//        }
         
 //        let result = Task(priority: .background) { () -> String in
 //            let imageData = await getMetadata()
