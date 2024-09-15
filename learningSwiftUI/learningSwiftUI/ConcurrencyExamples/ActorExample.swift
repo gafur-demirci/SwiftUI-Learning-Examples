@@ -9,10 +9,15 @@ import SwiftUI
 
 class ItemData {
     var counter: Int = 0
+    let maximum: Int = 50
     
     func incrementCount() -> String {
        counter += 1
         return "Value: \(counter)"
+    }
+    
+    nonisolated func maximumValue() -> String {
+        return "Maximum Value: \(maximum)"
     }
 }
 
@@ -22,6 +27,9 @@ struct ActorExample: View {
     
     var body: some View {
         Button("Start Process") {
+            let value = item.maximumValue()
+            print(value)
+            /*
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (timer) in
                 Task(priority: .background) {
                     
@@ -35,6 +43,7 @@ struct ActorExample: View {
                     print(await operation)
                 }
             })
+            */
         }
     }
 }
