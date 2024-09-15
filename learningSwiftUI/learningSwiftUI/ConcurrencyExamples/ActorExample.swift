@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ItemData {
+actor ItemData {
     var counter: Int = 0
     let maximum: Int = 50
     
