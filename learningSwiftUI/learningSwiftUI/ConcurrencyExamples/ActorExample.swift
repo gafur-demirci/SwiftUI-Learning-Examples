@@ -23,9 +23,20 @@ actor ItemData {
 
 struct ActorExample: View {
     
-    var item: ItemData = ItemData()
+//    var item: ItemData = ItemData()
+    @State private var myText: String = "Hello World!"
     
     var body: some View {
+        VStack {
+            Text(myText)
+                .padding()
+        }
+        .onAppear{
+            Task(priority: .background, operation: {
+                await loadImage(name: "book1")
+            })
+        }
+        /*
         Button("Start Process") {
             let value = item.maximumValue()
             print(value)
@@ -45,6 +56,11 @@ struct ActorExample: View {
             })
             */
         }
+         */
+    }
+    
+    @MainActor func loadImage(name: String) async {
+        myText = name
     }
 }
 
