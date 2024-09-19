@@ -59,8 +59,11 @@ struct ActorExample: View {
          */
     }
     
-    @MainActor func loadImage(name: String) async {
-        myText = name
+    func loadImage(name: String) async {
+        await MainActor.run(body: {
+            myText = name
+        })
+        print(name)
     }
 }
 
