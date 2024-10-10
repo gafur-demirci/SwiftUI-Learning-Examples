@@ -13,9 +13,16 @@ struct AsyncImagesExample: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: website)
+            AsyncImage(url: website, content: { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+            }, placeholder: {
+                Image("nopicture")
+            })
+            Spacer()
         }.padding()
-
+        
     }
 }
 
