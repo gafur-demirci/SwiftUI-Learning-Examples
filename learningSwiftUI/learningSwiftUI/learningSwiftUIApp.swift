@@ -33,8 +33,9 @@ struct learningSwiftUIApp: App {
 //            PickerViewExample()
 //            DatePickerExample()
 //            FormViewExample()
-            MultipleViewsExample()
-                .environment(appData)
+//            MultipleViewsExample()
+//                .environment(appData)
+            UserDefaultsExample()
         }
     }
 }
