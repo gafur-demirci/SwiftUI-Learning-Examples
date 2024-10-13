@@ -75,9 +75,11 @@ struct UserDefaultsExample: View {
             myInterval = Date.timeIntervalSinceReferenceDate
             
         }
+         */
     }
 }
 
 #Preview {
     UserDefaultsExample()
+        .environment(ApplicationData())
 }
