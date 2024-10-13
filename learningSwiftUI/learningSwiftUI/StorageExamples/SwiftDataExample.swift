@@ -16,9 +16,21 @@ struct SwiftDataExample: View {
     
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
+            List {
+                ForEach(listBooks) { book in
+                        MyBook(book: book)
+                }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        dbContext.delete(listBooks[index])
+                    }
+                }
+            }
+            /*
             List(listBooks) { book in
                 MyBook(book: book)
             }
+             */
             .listStyle(.plain)
             .navigationTitle("Books")
             .toolbarTitleDisplayMode(.inline)
