@@ -10,10 +10,52 @@ import SwiftUI
 struct UserDefaultsExample: View {
     
 //    @AppStorage("counter") var myCounter: Double = 0
-    @AppStorage("interval") var myInterval = Date.timeIntervalSinceReferenceDate
-    @State private var message: String = ""
+//    @AppStorage("interval") var myInterval = Date.timeIntervalSinceReferenceDate
+//    @State private var message: String = ""
+    @Environment(ApplicationData.self) private var appData
+    @AppStorage("cornerSize") var cornerSize: Double = 0
+    @AppStorage("showYear") var showYear: Bool = true
+    @AppStorage("showCover") var showCover: Bool = true
     
     var body: some View {
+        NavigationStack {
+            List(appData.userData) { book in
+                VStack {
+                    HStack(alignment: .top) {
+                        if showCover {
+                            Image(book.cover)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(cornerSize)
+                                .frame(width: 80, height: 100)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(book.title)
+                                .bold()
+                            Text(book.author)
+                            if showYear {
+                                Text(book.displayYear)
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.top, 5)
+                        Spacer()
+                    }
+                    .padding([.leading, .trailing], 10)
+                    .padding([.top, .bottom], 5)
+                }
+            }
+            .navigationTitle("Books")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink("Settings", destination: {
+                        UserSettingsView()
+                    }
+                )
+                }
+            }
+        }
+        /*
         HStack {
             Text("\(message)")
                 .lineLimit(nil)
