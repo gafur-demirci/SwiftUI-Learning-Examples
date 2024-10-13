@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddBookView: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @Environment(\.dismiss) var dismiss
     @State private var titleInput: String = ""
     @State private var authorInput: String = ""
@@ -67,6 +67,6 @@ struct AddBookView: View {
 #Preview {
     NavigationStack {
         AddBookView()
-            .environment(ApplicationData())
+            .environment(ApplicationMyData())
     }
 }

@@ -44,8 +44,8 @@ struct DetailView: View {
 
 #Preview {
     NavigationStack {
-        DetailView(book: ApplicationData().userData[0])
-            .environment(ApplicationData())
+        DetailView(book: ApplicationMyData().userData[0])
+            .environment(ApplicationMyData())
 //        DetailView(viewPath: .constant(NavigationPath()), book: ApplicationData().userData[0])
     }
     

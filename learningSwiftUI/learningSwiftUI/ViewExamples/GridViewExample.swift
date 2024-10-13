@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GridViewExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     
     let guides = [
         GridItem(.adaptive(minimum: 75)),

@@ -45,7 +45,7 @@ struct Employees: Identifiable {
 }
 
 
-@Observable class ApplicationData {
+@Observable class ApplicationMyData {
     
     @ObservationIgnored var userData: [Book] {
         didSet {

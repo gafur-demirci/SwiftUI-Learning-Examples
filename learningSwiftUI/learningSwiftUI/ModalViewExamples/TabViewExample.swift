@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabViewExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @State private var selectedView: Int = 1
     
     var body: some View {
@@ -48,5 +48,5 @@ struct TabViewExample: View {
 
 #Preview {
     TabViewExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

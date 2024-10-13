@@ -8,12 +8,13 @@
 import SwiftUI
 import SwiftData
 
+@main
 struct SwiftDataApp: App {
-    @State private var appData = ApplicationMyData()
+    @State private var appData = ApplicationData()
 
     var body: some Scene {
        WindowGroup {
-          ContentView()
+          SwiftDataExample()
              .environment(appData)
              .modelContainer(for: [MineBook.self, Author.self])
        }

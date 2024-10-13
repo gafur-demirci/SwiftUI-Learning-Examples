@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
 //    @Binding var viewPath: NavigationPath
 //    @State private var showPictures: Bool = true
 //    @State private var showYear: Bool = true

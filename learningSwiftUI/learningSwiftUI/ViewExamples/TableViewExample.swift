@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TableViewExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
 //    @State private var selectedItems: Set<ConsumableItem.ID> = []
     @State private var sort = [KeyPathComparator(\ConsumableItem.name)]
 //    @State private var sort = [KeyPathComparator(\ConsumableItem.name),KeyPathComparator(\ConsumableItem.calories)]
@@ -98,5 +98,5 @@ struct TableViewExample: View {
 
 #Preview {
     TableViewExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ListAuthors: View {
-    @Environment(ApplicationMyData.self) private var appData
+    @Environment(ApplicationData.self) private var appData
     @Query private var authorsList: [Author]
     @State private var selection: Author.ID? = nil
 
@@ -34,6 +34,6 @@ struct ListAuthors: View {
 #Preview {
     NavigationStack {
        ListAuthors()
-          .environment(ApplicationMyData())
+          .environment(ApplicationData())
           .modelContainer(for: [MineBook.self, Author.self], inMemory: true)
     }}

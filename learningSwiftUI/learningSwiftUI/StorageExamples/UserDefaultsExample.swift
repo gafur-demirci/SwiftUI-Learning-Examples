@@ -12,7 +12,7 @@ struct UserDefaultsExample: View {
 //    @AppStorage("counter") var myCounter: Double = 0
 //    @AppStorage("interval") var myInterval = Date.timeIntervalSinceReferenceDate
 //    @State private var message: String = ""
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @AppStorage("cornerSize") var cornerSize: Double = 0
     @AppStorage("showYear") var showYear: Bool = true
     @AppStorage("showCover") var showCover: Bool = true
@@ -81,5 +81,5 @@ struct UserDefaultsExample: View {
 
 #Preview {
     UserDefaultsExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

@@ -18,7 +18,7 @@ struct Tokens: Identifiable, Equatable {
 */
 struct MultipleViewsExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @State private var viewPath = NavigationPath()
     //    @State private var searchItem: String = ""
     //    @State private var searchScope: Scopes = .title
@@ -260,7 +260,7 @@ struct SearchableView: View {
 
 struct BookView: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     let book: Book
     
     var body: some View {
@@ -289,5 +289,5 @@ struct BookView: View {
 
 #Preview {
     MultipleViewsExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

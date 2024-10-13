@@ -10,7 +10,7 @@ import SwiftData
 
 struct SwiftDataExample: View {
     
-    @Environment(ApplicationMyData.self) private var appData
+    @Environment(ApplicationData.self) private var appData
     @Environment(\.modelContext) var dbContext
 //    @Query var listBooks: [MineBook]
     @Query(sort: [SortDescriptor(\MineBook.title, comparator: .lexical, order: .forward)]) private var listBooks: [MineBook]
@@ -77,6 +77,6 @@ struct MyBook: View {
 
 #Preview {
     SwiftDataExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationData())
         .modelContainer(for: [MineBook.self], inMemory: true)
 }

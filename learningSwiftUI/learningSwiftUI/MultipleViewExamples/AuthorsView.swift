@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorsView: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @Binding var selectedAuthor: String?
     
     var body: some View {

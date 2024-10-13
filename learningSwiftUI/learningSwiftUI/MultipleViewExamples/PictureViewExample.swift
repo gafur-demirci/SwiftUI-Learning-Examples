@@ -33,6 +33,6 @@ struct PictureViewExample: View {
 
 #Preview {
     NavigationStack {
-        PictureViewExample(book: ApplicationData().userData[0])
+        PictureViewExample(book: ApplicationMyData().userData[0])
     }
 }

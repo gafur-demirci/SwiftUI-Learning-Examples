@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct AddBook: View {
-    @Environment(ApplicationMyData.self) private var appData
+    @Environment(ApplicationData.self) private var appData
     @Environment(\.modelContext) var dbContext
     @State private var titleInput: String = ""
     @State private var yearInput: String = ""
@@ -49,6 +49,6 @@ struct AddBook: View {
 
 #Preview {
     AddBook()
-       .environment(ApplicationMyData())
+       .environment(ApplicationData())
        .modelContainer(for: [MineBook.self], inMemory: true)
 }

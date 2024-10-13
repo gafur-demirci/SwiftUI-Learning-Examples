@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct AddAuthor: View {
-    @Environment(ApplicationMyData.self) private var appData
+    @Environment(ApplicationData.self) private var appData
        @Environment(\.modelContext) var dbContext
        @State private var nameInput: String = ""
 
@@ -40,7 +40,7 @@ struct AddAuthor: View {
 #Preview {
     NavigationStack {
        AddAuthor()
-          .environment(ApplicationMyData())
+          .environment(ApplicationData())
           .modelContainer(for: [MineBook.self, Author.self], inMemory: true)
     }
 }

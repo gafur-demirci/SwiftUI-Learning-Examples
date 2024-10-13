@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModalViewExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
 //    @State private var showSheet: Bool = false
 //    @State private var editItem: Book?
     @State private var presentInspector: Bool = false
@@ -69,5 +69,5 @@ struct ModalViewExample: View {
 
 #Preview {
     ModalViewExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

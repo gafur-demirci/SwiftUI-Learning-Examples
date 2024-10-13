@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListViewExample: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     let colors = [.white, Color(white: 0.95)]
     
     var orderList: [(key: String, value: [Book])] {
@@ -151,7 +151,7 @@ struct ListViewExample: View {
 
 struct CellBook: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     let book: Book
     
     var body: some View {
@@ -200,5 +200,5 @@ struct CellBook: View {
 
 #Preview {
     ListViewExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

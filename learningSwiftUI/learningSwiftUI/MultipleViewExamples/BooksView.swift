@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BooksView: View {
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     @Binding var selectedBook: Book?
     let selectedAuthor: String?
     
@@ -53,5 +53,5 @@ struct BooksView: View {
 
 #Preview {
     BooksView(selectedBook: .constant(nil), selectedAuthor: nil)
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

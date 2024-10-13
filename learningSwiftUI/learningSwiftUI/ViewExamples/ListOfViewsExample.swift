@@ -10,7 +10,7 @@ import SwiftUI
 struct ListOfViewsExample: View {
     
     let listCities: [String] = ["Paris","Toronto","Dublin"]
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     
     var body: some View {
         ScrollView {
@@ -45,5 +45,5 @@ struct ListOfViewsExample: View {
 
 #Preview {
     ListOfViewsExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData())
 }

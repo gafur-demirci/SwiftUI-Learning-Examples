@@ -9,7 +9,7 @@
 import SwiftUI
 import Observation
 
-@Observable class ApplicationMyData {
+@Observable class ApplicationData {
    var viewPath = NavigationPath()
    var selectedBook: Book? = nil
    var selectedAuthor: Author? = nil
