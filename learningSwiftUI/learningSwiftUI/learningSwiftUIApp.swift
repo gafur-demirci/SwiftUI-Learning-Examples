@@ -35,7 +35,11 @@ struct learningSwiftUIApp: App {
 //            FormViewExample()
 //            MultipleViewsExample()
 //                .environment(appData)
-            UserDefaultsExample()
+//            UserDefaultsExample()
+//                .environment(ApplicationData())
+            SwiftDataExample()
+                .environment(ApplicationMyData())
+                .modelContainer(for: [MineBook.self], inMemory: true)
         }
     }
 }

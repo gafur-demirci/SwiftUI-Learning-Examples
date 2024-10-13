@@ -12,7 +12,8 @@ struct SwiftDataExample: View {
     
     @Environment(ApplicationMyData.self) private var appData
     @Environment(\.modelContext) var dbContext
-    @Query var listBooks: [MineBook]
+//    @Query var listBooks: [MineBook]
+    @Query(sort: \MineBook.title, order: .forward) private var listBooks: [MineBook]
     
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
