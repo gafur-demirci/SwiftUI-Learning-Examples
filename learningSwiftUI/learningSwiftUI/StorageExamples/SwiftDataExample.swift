@@ -14,7 +14,8 @@ struct SwiftDataExample: View {
     @Environment(\.modelContext) var dbContext
 //    @Query var listBooks: [MineBook]
 //    @Query(sort: [SortDescriptor(\MineBook.title, comparator: .lexical, order: .forward)]) private var listBooks: [MineBook]
-    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
+//    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
+    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
     
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
