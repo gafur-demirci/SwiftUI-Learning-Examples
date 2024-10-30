@@ -15,9 +15,40 @@ struct SwiftDataExample: View {
 //    @Query var listBooks: [MineBook]
 //    @Query(sort: [SortDescriptor(\MineBook.title, comparator: .lexical, order: .forward)]) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
-    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
+//    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
+    @State private var orderBooks: SortOrder = .forward
     
     var body: some View {
+        NavigationStack(path: Bindable(appData).viewPath) {
+            ListBooksView(orderBooks: orderBooks)
+                .listStyle(.plain)
+                .navigationTitle("Books")
+                .toolbarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            orderBooks = orderBooks == .forward ? .reverse : .forward
+                        }, label: {
+                            Image(systemName: "gear")
+                        })
+                    }
+                    ToolbarItem(placement: .topBarTrailing, content: {
+                        NavigationLink(value: "Add Book", label: {
+                            Image(systemName: "plus")
+                        })
+                    })
+                }
+                .navigationDestination(for: String.self, destination: { viewID in
+                    if viewID == "Add Book" {
+                        AddBook()
+                    } else if  viewID == "List Authors" {
+                        ListAuthors()
+                    } else if viewID == "Add Author" {
+                        AddAuthor()
+                    }
+                })
+        }
+        /*
         NavigationStack(path: Bindable(appData).viewPath) {
             List {
                 ForEach(listBooks) { book in
@@ -53,6 +84,23 @@ struct SwiftDataExample: View {
                     AddAuthor()
                 }
             })
+        }
+        */
+    }
+}
+
+struct ListBooksView: View {
+    @Query var books: [MineBook]
+    
+    init(orderBooks: SortOrder) {
+        _books = Query(sort: \MineBook.title, order: orderBooks)
+    }
+    
+    var body: some View {
+        List {
+            ForEach(books) { book in
+                MyBook(book: book)
+            }
         }
     }
 }
