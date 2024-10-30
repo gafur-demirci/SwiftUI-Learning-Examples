@@ -17,10 +17,11 @@ struct SwiftDataExample: View {
 //    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
     @State private var orderBooks: SortOrder = .forward
+    @State private var searchText: String = ""
     
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
-            ListBooksView(orderBooks: orderBooks)
+            ListBooksView(orderBooks: orderBooks, search: searchText)
                 .listStyle(.plain)
                 .navigationTitle("Books")
                 .toolbarTitleDisplayMode(.inline)
@@ -47,6 +48,7 @@ struct SwiftDataExample: View {
                         AddAuthor()
                     }
                 })
+                .searchable(text: $searchText, prompt: "Search")
         }
         /*
         NavigationStack(path: Bindable(appData).viewPath) {
@@ -92,8 +94,15 @@ struct SwiftDataExample: View {
 struct ListBooksView: View {
     @Query var books: [MineBook]
     
-    init(orderBooks: SortOrder) {
-        _books = Query(sort: \MineBook.title, order: orderBooks)
+    init(orderBooks: SortOrder, search: String) {
+        var predicate = #Predicate<MineBook> { _ in true }
+        if (!search.isEmpty) {
+            let searchLower = search.lowercased()
+            predicate = #Predicate<MineBook> { book in
+                book.title.localizedStandardContains(searchLower ?? "")
+            }
+        }
+        _books = Query<MineBook, [MineBook]>(filter: predicate, sort: \MineBook.title, order: orderBooks)
     }
     
     var body: some View {
