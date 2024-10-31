@@ -26,14 +26,25 @@ struct AddAuthor: View {
             }
             Spacer()
         }.padding()
+            .alert("Error", isPresented: $openAlert, actions: {
+                Button("OK", role: .cancel, action: {})
+            }, message: {
+                Text("The Author already exist")
+            })
     }
     func storeAuthor() {
         let name = nameInput.trimmingCharacters(in: .whitespaces)
         if !name.isEmpty {
-            let newAuthor = Author(name: name, books: [])
-            dbContext.insert(newAuthor)
-            appData.selectedAuthor = newAuthor
-            appData.viewPath.removeLast(2)
+            let predicate = #Predicate<Author> { $0.name == name }
+            let descriptor = FetchDescriptor<Author>(predicate: predicate)
+            if let count = try? dbContext.fetchCount(descriptor), count > 0 {
+                openAlert = true
+            } else {
+                let newAuthor = Author(name: name, books: [])
+                dbContext.insert(newAuthor)
+                appData.selectedAuthor = newAuthor
+                appData.viewPath.removeLast(2)
+            }
         }
     }
 }
