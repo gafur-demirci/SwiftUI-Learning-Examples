@@ -48,8 +48,26 @@ struct SwiftDataExample: View {
                         AddAuthor()
                     }
                 })
-                .searchable(text: $searchText, prompt: "Search")
+                .onAppear {
+                    let predicate = #Predicate<MineBook> { book in
+                        book.author?.name == nil
+                    }
+                    let sort = SortDescriptor<MineBook>(\.title, order: orderBooks)
+                    
+                    let descriptor = FetchDescriptor<MineBook>(predicate: predicate, sortBy: [sort])
+                    
+                    if let count = try? dbContext.fetchCount(descriptor) {
+                        print(count)
+                    }
+                    
+//                    if let list = try? dbContext.fetch(descriptor) {
+//                        for book in list {
+//                            print(book.title)
+//                        }
+//                    }
+                }
         }
+        .searchable(text: $searchText, prompt: Text("Search"))
         /*
         NavigationStack(path: Bindable(appData).viewPath) {
             List {
