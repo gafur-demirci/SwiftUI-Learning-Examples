@@ -155,5 +155,5 @@ struct MyBook: View {
 #Preview {
     SwiftDataExample()
         .environment(ApplicationData())
-        .modelContainer(for: [MineBook.self], inMemory: true)
+        .modelContainer(PreviewContainer.container)
 }
