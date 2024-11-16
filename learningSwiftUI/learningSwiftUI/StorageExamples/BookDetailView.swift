@@ -17,7 +17,7 @@ struct BookDetailView: View {
             Text(book.title)
                 .font(.title)
             Text(book.author?.name ?? "Unknown")
-            Image(book.cover)
+            Image(uiImage: book.displayCover)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)

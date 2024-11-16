@@ -50,7 +50,7 @@ struct AddBook: View {
                 appData.selectedBook?.year = year
                 appData.selectedBook?.author = appData.selectedAuthor
             } else {
-                let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: "nocover", year: year)
+                let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: UIImage(named: "nocover")?.pngData(), year: year)
                 dbContext.insert(newBook)
             }
             appData.selectedBook = nil

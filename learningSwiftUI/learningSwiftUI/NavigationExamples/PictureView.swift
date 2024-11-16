@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PictureView: View {
     
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     
     var body: some View {
         VStack {
@@ -37,7 +37,7 @@ struct PictureView: View {
 #Preview {
     NavigationStack {
         PictureView()
-            .environment(ApplicationData())
+            .environment(ApplicationMyData())
     }
     
 }
