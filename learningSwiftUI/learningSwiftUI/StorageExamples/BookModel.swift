@@ -15,12 +15,14 @@ class MineBook: Identifiable {
     @Relationship(deleteRule: .nullify, inverse: \Author.books) var author: Author?
     @Attribute(.externalStorage)  var cover: Data?
     var year: Int = 0
+    @Relationship(deleteRule: .nullify, inverse: \SortLetters.books) var sortletter: SortLetters?
     
-    init(title: String, author: Author?, cover: Data?, year: Int) {
+    init(title: String, author: Author?, cover: Data?, year: Int, sortletter: SortLetters?) {
         self.title = title
         self.author = author
         self.cover = cover
         self.year = year
+        self.sortletter = sortletter
     }
     var displayYear: String {
         get {

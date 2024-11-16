@@ -18,10 +18,10 @@ class PreviewContainer {
             let author = Author(name: "Stephen King", books: [])
             container.mainContext.insert(author)
             
-            let book1 = MineBook(title: "Christine", author: author, cover: UIImage(named: "book10")?.pngData(), year: 1987)
+            let book1 = MineBook(title: "Christine", author: author, cover: UIImage(named: "book10")?.pngData(), year: 1987, sortletter: SortLetters(letter: "C", books: []))
             container.mainContext.insert(book1)
             
-            let book2 = MineBook(title: "IT", author: author, cover: UIImage(named: "book11")?.pngData(), year: 1986)
+            let book2 = MineBook(title: "IT", author: author, cover: UIImage(named: "book11")?.pngData(), year: 1986, sortletter: SortLetters(letter: "I", books: []))
             container.mainContext.insert(book2)
             
             return container

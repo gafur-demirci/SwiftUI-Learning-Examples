@@ -49,13 +49,33 @@ struct AddBook: View {
                 appData.selectedBook?.title = title
                 appData.selectedBook?.year = year
                 appData.selectedBook?.author = appData.selectedAuthor
+                appData.selectedBook?.sortletter = getFirstLetter(newTitle: title)
             } else {
-                let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: UIImage(named: "nocover")?.pngData(), year: year)
+                let letter = getFirstLetter(newTitle: title)
+                let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: UIImage(named: "nocover")?.pngData(), year: year, sortletter: letter)
                 dbContext.insert(newBook)
             }
             appData.selectedBook = nil
             appData.selectedAuthor = nil
             appData.viewPath.removeLast()
+        }
+    }
+    func getFirstLetter(newTitle: String) -> SortLetters {
+        var firstLetter = String(newTitle[newTitle.startIndex]).uppercased()
+        if let _ = Int(firstLetter), firstLetter.isEmpty {
+            firstLetter = "#"
+        }
+        let predicate = #Predicate<SortLetters> {
+            $0.letter == firstLetter
+        }
+        let descriptor = FetchDescriptor<SortLetters>(predicate: predicate)
+        if let request = try? dbContext.fetch(descriptor), request.count > 0 {
+            let oldLetter = request[0]
+            return oldLetter
+        } else {
+            let newLetter = SortLetters(letter: firstLetter, books: [])
+            dbContext.insert(newLetter)
+            return newLetter
         }
     }
 }

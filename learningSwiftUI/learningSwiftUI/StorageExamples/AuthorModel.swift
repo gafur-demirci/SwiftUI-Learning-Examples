@@ -18,4 +18,15 @@ class Author: Identifiable {
       self.name = name
       self.books = books
    }
+    
+    var listBooks: [MineBook] {
+        get {
+            if let books = self.books, !books.isEmpty {
+                let sortList = books.sorted(by: { $0.title < $1.title} )
+                return sortList
+            } else {
+                return []
+            }
+        }
+    }
 }

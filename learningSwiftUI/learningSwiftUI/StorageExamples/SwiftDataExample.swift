@@ -12,20 +12,31 @@ struct SwiftDataExample: View {
     
     @Environment(ApplicationData.self) private var appData
     @Environment(\.modelContext) var dbContext
-    @Query private var listBooks: [MineBook]
+//    @Query private var listBooks: [MineBook]
 //    @Query(sort: [SortDescriptor(\MineBook.title, comparator: .lexical, order: .forward)]) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
 //    @State private var orderBooks: SortOrder = .forward
 //    @State private var searchText: String = ""
-    
+    @Query(sort: \SortLetters.letter, order: .forward) private var listLetters: [SortLetters]
+
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
             List {
-                ForEach(listBooks) { book in
-                    NavigationLink(value: book, label: {
-                        MyBook(book: book)
-                    })
+                ForEach(listLetters) { letter in
+                    if !letter.listBooks.isEmpty {
+                        Section(letter.letter) {
+                            ForEach(letter.listBooks) { book in
+                                NavigationLink(value: book, label: {
+                                    MyBook(book: book)
+                                })
+                            }
+                        }
+                        .headerProminence(.increased)
+                    }
+//                    NavigationLink(value: book, label: {
+//                        MyBook(book: book)
+//                    })
                 }
             }
             .listStyle(.plain)
