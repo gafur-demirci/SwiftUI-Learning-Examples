@@ -12,15 +12,48 @@ struct SwiftDataExample: View {
     
     @Environment(ApplicationData.self) private var appData
     @Environment(\.modelContext) var dbContext
-//    @Query var listBooks: [MineBook]
+    @Query private var listBooks: [MineBook]
 //    @Query(sort: [SortDescriptor(\MineBook.title, comparator: .lexical, order: .forward)]) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.year == 1986 }) private var listBooks: [MineBook]
 //    @Query(filter: #Predicate<MineBook> { $0.author?.name.localizedStandardContains("Stephen") == true }) private var listBooks: [MineBook]
-    @State private var orderBooks: SortOrder = .forward
-    @State private var searchText: String = ""
+//    @State private var orderBooks: SortOrder = .forward
+//    @State private var searchText: String = ""
     
     var body: some View {
         NavigationStack(path: Bindable(appData).viewPath) {
+            List {
+                ForEach(listBooks) { book in
+                    NavigationLink(value: book, label: {
+                        MyBook(book: book)
+                    })
+                }
+            }
+            .listStyle(.plain)
+            .navigationTitle("Books")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        appData.selectedBook = nil
+                        appData.viewPath.append("Add Book")
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
+                }
+            }
+            .navigationDestination(for: String.self, destination: { viewID in
+                if viewID == "Add Book" {
+                    AddBook()
+                } else if viewID == "List Authors" {
+                    ListAuthors()
+                } else if viewID == "Add Author" {
+                    AddAuthor()
+                }
+            })
+            .navigationDestination(for: MineBook.self , destination: { book in
+                BookDetailView(book: book)
+            })
+            /*
             ListBooksView(orderBooks: orderBooks, search: searchText)
                 .listStyle(.plain)
                 .navigationTitle("Books")
@@ -66,8 +99,9 @@ struct SwiftDataExample: View {
 //                        }
 //                    }
                 }
+            */
         }
-        .searchable(text: $searchText, prompt: Text("Search"))
+//        .searchable(text: $searchText, prompt: Text("Search"))
         /*
         NavigationStack(path: Bindable(appData).viewPath) {
             List {
@@ -155,5 +189,5 @@ struct MyBook: View {
 #Preview {
     SwiftDataExample()
         .environment(ApplicationData())
-        .modelContainer(PreviewContainer.container)
+        .modelContainer(PreviewContainer.container)  // get previewCont data
 }

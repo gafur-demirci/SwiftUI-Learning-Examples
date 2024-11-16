@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailView: View {
     
 //    @Binding var viewPath: NavigationPath
-    @Environment(ApplicationData.self) private var appData
+    @Environment(ApplicationMyData.self) private var appData
     let book: Book
     
     var body: some View {

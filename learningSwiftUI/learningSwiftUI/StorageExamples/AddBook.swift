@@ -35,12 +35,25 @@ struct AddBook: View {
             }
             Spacer()
         }.padding()
+            .onAppear {
+                if let selectedBook = appData.selectedBook, titleInput.isEmpty && yearInput.isEmpty {
+                    titleInput = selectedBook.title
+                    yearInput = selectedBook.displayYear
+                }
+            }
     }
     func storeBook() {
         let title = titleInput.trimmingCharacters(in: .whitespaces)
         if let year = Int(yearInput), !title.isEmpty {
-            let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: "nocover", year: year)
-            dbContext.insert(newBook)
+            if appData.selectedBook != nil {
+                appData.selectedBook?.title = title
+                appData.selectedBook?.year = year
+                appData.selectedBook?.author = appData.selectedAuthor
+            } else {
+                let newBook = MineBook(title: title, author: appData.selectedAuthor, cover: "nocover", year: year)
+                dbContext.insert(newBook)
+            }
+            appData.selectedBook = nil
             appData.selectedAuthor = nil
             appData.viewPath.removeLast()
         }

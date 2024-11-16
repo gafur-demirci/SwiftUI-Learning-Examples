@@ -11,6 +11,6 @@ import Observation
 
 @Observable class ApplicationData {
    var viewPath = NavigationPath()
-   var selectedBook: Book? = nil
+   var selectedBook: MineBook? = nil
    var selectedAuthor: Author? = nil
 }
