@@ -21,6 +21,9 @@ struct BookDetailView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)
+            Text(book.author?.name ?? "Unknown")
+            Text(book.author?.showBirthday ?? "Unknown")
+            Text(book.author?.showPlaceOfBirth ?? "Unknown")
             Spacer()
         }
         .padding()

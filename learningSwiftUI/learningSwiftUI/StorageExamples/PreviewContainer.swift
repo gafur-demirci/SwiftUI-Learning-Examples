@@ -15,7 +15,7 @@ class PreviewContainer {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: MineBook.self, Author.self, configurations: config)
             
-            let author = Author(name: "Stephen King", books: [])
+            let author = Author(name: "Stephen King", books: [], info: try PropertyListEncoder().encode(AuthorInfo(birthDay: Date(), placeOfBirth: "New York")))
             container.mainContext.insert(author)
             
             let book1 = MineBook(title: "Christine", author: author, cover: UIImage(named: "book10")?.pngData(), year: 1987, sortletter: SortLetters(letter: "C", books: []))
