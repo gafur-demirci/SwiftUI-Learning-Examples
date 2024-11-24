@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PathViewExamples: View {
     var body: some View {
+        /*
         VStack {
             Path { path in
                 path.move(to: CGPoint(x: 100, y: 150))      // start point
@@ -40,6 +41,22 @@ struct PathViewExamples: View {
             }
             .stroke(Color.yellow, style: StrokeStyle(lineWidth: 5))
         }
+        */
+        GeometryReader { geometry in
+            Path { path in
+                let width = geometry.size.width / 2
+                let height = width
+                let posX = (geometry.size.width - width) / 2
+                let posY = (geometry.size.height - height) / 2
+                
+                path.move(to: CGPoint(x: posX, y: posY))
+                path.addLine(to: CGPoint(x: posX + width, y: posY))
+                path.addLine(to: CGPoint(x: posX, y: posY + height))
+                path.closeSubpath()
+            }
+            .stroke(Color.blue, style: StrokeStyle(lineWidth: 5))
+        }
+
     }
 }
 
