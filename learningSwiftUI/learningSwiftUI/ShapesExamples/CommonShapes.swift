@@ -21,10 +21,15 @@ struct CommonShapes: View {
     
     var body: some View {
         VStack {
+            Rectangle()
+                .fill(.image(Image("pattern")))
+                .frame(width: 100, height: 100)
+            /*
             RoundedRectangle(cornerRadius: 25)
                 .foregroundStyle(.shadow(.drop(color: .black, radius: 3, x: 4, y: 4)))
                 .foregroundStyle(Color.red)
                 .frame(width: 100, height: 100)
+             */
             /*
             RoundedRectangle(cornerRadius: 25)
                 .fill(.conicGradient(gradient, center: .center, angle: .degrees(180)))
