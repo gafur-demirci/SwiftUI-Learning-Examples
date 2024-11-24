@@ -42,6 +42,7 @@ struct PathViewExamples: View {
             .stroke(Color.yellow, style: StrokeStyle(lineWidth: 5))
         }
         */
+        /*
         GeometryReader { geometry in
             Path { path in
                 let width = geometry.size.width / 2
@@ -55,6 +56,27 @@ struct PathViewExamples: View {
                 path.closeSubpath()
             }
             .stroke(Color.blue, style: StrokeStyle(lineWidth: 5))
+        }
+        */
+        VStack {
+            ScrollView(.horizontal, showsIndicators: true) {
+                HStack {
+                    Triangle()
+                        .fill(Color.blue)
+                        .frame(width: 120, height: 50)
+                    Triangle()
+                        .fill(Color.green)
+                        .frame(width: 120, height: 100)
+                    Triangle()
+                        .fill(Color.yellow)
+                        .frame(width: 120, height: 80)
+                    Triangle()
+                        .fill(Color.red)
+                        .frame(width: 50, height: 50)
+                }
+                .padding()
+                Spacer()
+            }
         }
 
     }
