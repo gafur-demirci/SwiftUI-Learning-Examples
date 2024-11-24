@@ -10,16 +10,19 @@ import SwiftUI
 struct CommonShapes: View {
     
     let lineStyle = StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [20], dashPhase: 0)
+    /*
     let gradient: Gradient = Gradient(stops: [
         Gradient.Stop(color: .red, location: 0.0),
         Gradient.Stop(color: .green, location: 0.4)
     ])
+     */
+    let gradient: Gradient = Gradient(colors: [.red, .green])
     @State private var setActive: Bool = true
     
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(.linearGradient(gradient, startPoint: .bottom, endPoint: .top))
+                .fill(.radialGradient(gradient, center: .center, startRadius: 0, endRadius: 50))
                 .frame(width: 100, height: 100)
             /*
             Button(action: {
