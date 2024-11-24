@@ -22,7 +22,7 @@ struct CommonShapes: View {
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(.radialGradient(gradient, center: .center, startRadius: 0, endRadius: 50))
+                .fill(.conicGradient(gradient, center: .center, angle: .degrees(180)))
                 .frame(width: 100, height: 100)
             /*
             Button(action: {
