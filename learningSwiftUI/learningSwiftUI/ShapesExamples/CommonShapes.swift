@@ -23,10 +23,13 @@ struct CommonShapes: View {
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
             })
+            .background(setActive ? Color.green : Color.red, in: Capsule())
+            /*
             .background(
                 Capsule()
                     .fill(setActive ? Color.green : Color.red)
             )
+             */
             /*
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
