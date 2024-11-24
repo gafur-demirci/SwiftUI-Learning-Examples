@@ -26,6 +26,12 @@ struct PathViewExamples: View {
                 path.closeSubpath()
             }
             .stroke(Color.red, style: StrokeStyle(lineWidth: 5))
+            Path { path in
+                path.move(to: CGPoint(x: 100, y: 150))
+                path.addLine(to: CGPoint(x: 200 , y: 150))
+                path.addEllipse(in: CGRect(x: 200, y: 140, width: 20, height: 20))
+            }
+            .stroke(Color.green, style: StrokeStyle(lineWidth: 5))
         }
     }
 }
