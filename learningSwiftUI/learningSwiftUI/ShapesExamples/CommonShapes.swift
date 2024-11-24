@@ -10,10 +10,23 @@ import SwiftUI
 struct CommonShapes: View {
     
     let lineStyle = StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [20], dashPhase: 0)
+    @State private var setActive: Bool = true
     
     var body: some View {
         VStack {
-            
+            Button(action: {
+                setActive.toggle()
+            }, label: {
+                Text(setActive ? "Active" : "Inactive")
+                    .font(.title)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
+            })
+            .background(
+                Capsule()
+                    .fill(setActive ? Color.green : Color.red)
+            )
             /*
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
@@ -49,6 +62,7 @@ struct CommonShapes: View {
             */
             Spacer()
         }
+        .padding()
     }
 }
 
