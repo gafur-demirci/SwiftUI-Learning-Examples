@@ -9,11 +9,21 @@ import SwiftUI
 
 struct TransformExample: View {
     var body: some View {
+        HStack {
+            Triangle()
+                .fill(Color.blue)
+                .frame(width: 100, height: 100)
+            Triangle()
+                .scale(x: -1, y: 1)
+                .fill(Color.blue)
+                .frame(width: 100, height: 100)
+        }
+        /*
         RoundedRectangle(cornerRadius: 20)
             .rotation(.degrees(45))
             .fill(Color.red)
             .frame(width: 100, height: 100)
-        /*
+        
         Image("book5")
             .resizable()
             .scaledToFit()
