@@ -13,8 +13,7 @@ struct TransformExample: View {
             .resizable()
             .scaledToFit()
             .frame(width: 150, height: 200)
-            .scaleEffect(CGSize(width: 0.9, height: 0.9))
-            .rotation3DEffect(.degrees(30), axis: (x:0, y:1, z:0))
+            .clipShape(Circle())
     }
 }
 
