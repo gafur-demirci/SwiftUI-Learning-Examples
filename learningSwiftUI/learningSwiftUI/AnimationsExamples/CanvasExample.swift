@@ -10,7 +10,11 @@ import SwiftUI
 struct CanvasExample: View {
     var body: some View {
         Canvas { context, size in
-            let imageFrame = CGRect(origin: .zero, size: size)
+            let imageSize = CGSize(width: 161, height: 216)
+            let posX = (size.width - imageSize.width) / 2
+            let posY = posX
+            
+            let imageFrame = CGRect(x: posX, y: posY, width: imageSize.width, height: imageSize.height)
             context.draw(Image("book3"), in: imageFrame)
         }
         .ignoresSafeArea()
