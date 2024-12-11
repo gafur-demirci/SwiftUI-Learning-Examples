@@ -10,13 +10,12 @@ import SwiftUI
 struct CanvasExample: View {
     var body: some View {
         Canvas { context, size in
+            let imageFrame = CGRect(x: 0, y: 0, width: 100, height: 100)
             context.translateBy(x: size.width/2, y: size.height/2)
-            context.rotate(by: .degrees(45))
-            
-            let width: CGFloat = 161
-            let height: CGFloat = 216
-            let imageFrame = CGRect(x: -width/2, y: -height/2, width: width, height: height)
-            context.draw(Image("book3"), in: imageFrame)
+            for _ in 0..<10 {
+                context.rotate(by: .degrees(36))
+                context.draw(Image("book1"), in: imageFrame)
+            }
         }
         .ignoresSafeArea()
     }
