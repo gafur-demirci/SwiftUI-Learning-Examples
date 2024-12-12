@@ -14,7 +14,7 @@ struct ChartExample: View {
     var body: some View {
         VStack {
             Chart(chartData.listOfItems) { item in
-                RectangleMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                AreaMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
             }
             .frame(height: 300)
             .padding()
