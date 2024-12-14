@@ -16,11 +16,15 @@ struct ChartExample: View {
             Chart {
                 ForEach(chartData.sales) { product in
                     ForEach(product.sales) { sale in
-                        LineMark(x: .value("Date", sale.date, unit: .day), y: .value("Sales", sale.amount))
+                        BarMark(x: .value("Name", sale.date, unit: .day), y: .value("Sales", sale.amount))
                     }
-                    .foregroundStyle(by: .value("Product", product.name))
+                    .foregroundStyle(by: .value("Products", product.name))
                 }
             }
+            .chartForegroundStyleScale([
+                "Bagels": .red,
+                "Brownies": .orange,
+            ])
             .frame(height: 300)
             .padding()
             Spacer()
