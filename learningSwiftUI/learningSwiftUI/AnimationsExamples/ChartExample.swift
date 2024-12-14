@@ -22,6 +22,9 @@ struct ChartExample: View {
                     .position(by: .value("Products", product.name))
                 }
             }
+            .chartLegend(.hidden)
+            .chartScrollableAxes(.horizontal)            // scroll screen for horizontal axis
+            .chartXVisibleDomain(length: 3600 * 24 * 4)  // 4 days show on the screen
             .chartForegroundStyleScale([
                 "Bagels": .red,
                 "Brownies": .orange,
