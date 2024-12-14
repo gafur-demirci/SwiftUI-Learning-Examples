@@ -14,8 +14,12 @@ struct ChartExample: View {
     var body: some View {
         VStack {
             Chart(chartData.listOfItems) { item in
-                SectorMark(angle: .value("Value", item.calories))
-                    .foregroundStyle(by: .value("Product Category", item.name))
+                LineMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                    .interpolationMethod(.catmullRom)
+                PointMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                    .foregroundStyle(by: .value("Category", item.category))
+                    .symbol(by: .value("Category", item.category))
+                    .symbolSize(200)
             }
             .frame(height: 300)
             .padding()
