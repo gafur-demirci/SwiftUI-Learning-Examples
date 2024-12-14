@@ -14,9 +14,9 @@ struct ChartExample: View {
     var body: some View {
         VStack {
             Chart(chartData.listOfItems) { item in
-                BarMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                SectorMark(angle: .value("Value", item.calories))
+                    .foregroundStyle(by: .value("Product Category", item.name))
             }
-            .chartYScale(domain: 0...1000)
             .frame(height: 300)
             .padding()
             Spacer()
