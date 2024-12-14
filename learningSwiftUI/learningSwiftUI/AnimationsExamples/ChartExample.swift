@@ -19,6 +19,7 @@ struct ChartExample: View {
                         BarMark(x: .value("Name", sale.date, unit: .day), y: .value("Sales", sale.amount))
                     }
                     .foregroundStyle(by: .value("Products", product.name))
+                    .position(by: .value("Products", product.name))
                 }
             }
             .chartForegroundStyleScale([
