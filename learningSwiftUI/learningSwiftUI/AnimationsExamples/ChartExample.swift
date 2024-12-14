@@ -10,17 +10,19 @@ import Charts
 
 struct ChartExample: View {
     @Environment(ChartData.self) private var chartData
-    @State private var selectedFood: String? = nil
     
     var body: some View {
         VStack {
-            Chart(chartData.listOfItems) { item in
-                BarMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
-                    .foregroundStyle(item.name == selectedFood ? .yellow : .blue)
+            Chart {
+                ForEach(chartData.sales) { product in
+                    ForEach(product.sales) { sale in
+                        LineMark(x: .value("Date", sale.date, unit: .day), y: .value("Sales", sale.amount))
+                    }
+                    .foregroundStyle(by: .value("Product", product.name))
+                }
             }
             .frame(height: 300)
             .padding()
-            .chartXSelection(value: $selectedFood)
             Spacer()
         }
     }
