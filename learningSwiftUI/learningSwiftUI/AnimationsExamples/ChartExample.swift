@@ -13,21 +13,32 @@ struct ChartExample: View {
     
     var body: some View {
         VStack {
-            Chart(chartData.listOfItems) { item in
-                LineMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
-                    .interpolationMethod(.catmullRom)
-                PointMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
-                    .foregroundStyle(by: .value("Category", item.category))
-                    .symbol(by: .value("Category", item.category))
-                    .symbolSize(200)
+            Chart {
+                ForEach(chartData.listOfItems) { item in
+                    BarMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                        .foregroundStyle(.cyan)
+                        .opacity(0.5)
+                        .cornerRadius(20)
+                }
+                RuleMark(y: .value("Average", averageCalories()))
+                    .foregroundStyle(.black)
+                    .lineStyle(StrokeStyle(lineWidth: 5))
+                    .annotation(position: .top, alignment: .leading) {
+                        Text("Average Calories")
+                    }
             }
             .frame(height: 300)
             .padding()
             Spacer()
         }
     }
+    func averageCalories() -> Int {
+        let total = chartData.listOfItems.reduce(0, { $0 + $1.calories })
+        return total / chartData.listOfItems.count
+    }
 }
-
+                         
+                         
 #Preview {
     ChartExample()
         .environment(ChartData())
