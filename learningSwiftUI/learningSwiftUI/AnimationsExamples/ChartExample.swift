@@ -14,10 +14,23 @@ struct ChartExample: View {
     var body: some View {
         VStack {
             Chart(chartData.listOfItems) { item in
-                AreaMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
+                BarMark(x: .value("Name", item.name), y: .value("Calories", item.calories))
             }
             .frame(height: 300)
             .padding()
+            .chartOverlay(content: { proxy in
+                GeometryReader { geometry in
+                    if let plotFrame = proxy.plotContainerFrame {
+                        let frame = geometry[plotFrame]
+                        VStack {
+                            Text("My Chart")
+                                .padding(30)
+                        }
+                        .background(.ultraThinMaterial, in: Capsule())
+                        .position(x: frame.midX, y: frame.midY)
+                    }
+                }
+            })
             Spacer()
         }
     }
