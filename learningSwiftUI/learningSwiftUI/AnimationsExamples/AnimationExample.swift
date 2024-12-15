@@ -13,9 +13,11 @@ struct AnimationExample: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Image(systemName: "dot.radiowaves.forward")
-                .font(.largeTitle)
-                .symbolEffect(.scale.up, isActive: isActive)
+            if isActive {
+                Image(systemName: "dot.radiowaves.forward")
+                    .font(.largeTitle)
+                    .transition(.symbolEffect(.disappear))
+            }
             Button("Animate") {
                 isActive.toggle()
             }
