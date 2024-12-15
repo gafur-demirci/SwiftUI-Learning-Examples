@@ -9,23 +9,34 @@ import SwiftUI
 
 struct GesturesExample: View {
     
-    @State private var expanded: Bool = false
-    @State private var allowExpansion: Bool = false
+    @State private var selected: Bool = false
     
     var body: some View {
-        Image("book1")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 160, height: 200)
+        VStack {
+            HStack(alignment: .top) {
+                Image("book1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 100)
+                    .border(selected ? Color.red : Color.blue, width: 5)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Steeve Jobs").bold()
+                    Text("Apple Inc")
+                    Text("San Francisco, CA")
+                        .font(.caption)
+                    Spacer()
+                }
+                Spacer()
+            }
+            .frame(height: 100)
+            .padding(5)
+            .border(.gray, width: 1)
+            .contentShape(Rectangle())
             .onTapGesture {
-                expanded = true
+                selected.toggle()
             }
-            .allowsHitTesting(allowExpansion)
-            .sheet(isPresented: $expanded) {
-                ShowImage()
-            }
-        Toggle("", isOn: $allowExpansion)
-            .labelsHidden()
+            Spacer()
+        }
     }
 }
 
