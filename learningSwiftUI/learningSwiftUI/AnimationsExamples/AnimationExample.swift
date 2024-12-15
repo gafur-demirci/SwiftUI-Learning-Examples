@@ -29,7 +29,8 @@ struct AnimationExample: View {
 extension AnyTransition {
     static var myTransition: AnyTransition {
         let animation = Animation.easeInOut(duration: 2)
-        let transiton = AnyTransition.scale.animation(animation)
+        let transiton = AnyTransition.asymmetric(insertion: .opacity, removal: .scale)
+            .animation(animation)
         return transiton
     }
 }
