@@ -14,15 +14,21 @@ struct AnimationExample: View {
     var body: some View {
         VStack {
             Button("Show Information") {
-                withAnimation {
-                    showInfo.toggle()
+                showInfo.toggle()
+            }
+            .padding()
+            HStack {
+                if !showInfo {
+                    Text("Left")
+                        .transition(.scale.animation(.default))
+                }
+                Spacer()
+                if showInfo {
+                    Text("Right")
+                        .transition(.scale.animation(.default))
                 }
             }
             .padding()
-            if showInfo {
-                Text("This is the information")
-                    .transition(.offset(x: 400, y: 0))
-            }
             Spacer()
         }
     }
