@@ -19,12 +19,19 @@ struct AnimationExample: View {
             .padding()
             if showInfo {
                 Text("This is the information")
-                    .transition(.scale.animation(.default))
+                    .transition(.myTransition)
             }
             Spacer()
         }
     }
+}
 
+extension AnyTransition {
+    static var myTransition: AnyTransition {
+        let animation = Animation.easeInOut(duration: 2)
+        let transiton = AnyTransition.scale.animation(animation)
+        return transiton
+    }
 }
 
 #Preview {
