@@ -9,23 +9,26 @@ import SwiftUI
 
 struct AnimationExample: View {
     
+    @Namespace private var myAnimations
     @State private var showInfo: Bool = false
     
     var body: some View {
         VStack {
             Button("Show Information") {
-                showInfo.toggle()
+                withAnimation(.easeInOut) {
+                    showInfo.toggle()
+                }
             }
             .padding()
             HStack {
                 if !showInfo {
                     Text("Left")
-                        .transition(.scale.animation(.default))
+                        .matchedGeometryEffect(id: "TextAnimation", in: myAnimations)
                 }
                 Spacer()
                 if showInfo {
                     Text("Right")
-                        .transition(.scale.animation(.default))
+                        .matchedGeometryEffect(id: "TextAnimation", in: myAnimations)
                 }
             }
             .padding()
