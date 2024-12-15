@@ -9,20 +9,15 @@ import SwiftUI
 
 struct AnimationExample: View {
     
-    @State private var smiling: Bool = false
-    
     var body: some View {
-        VStack {
-            Face(smile: smiling ? 1 : 0)
-                .stroke(Color.blue, lineWidth: 5)
-                .frame(width: 100, height: 120)
-            Button("Change") {
-                withAnimation(.default) {
-                    smiling.toggle()
-                }
+        TimelineView(.periodic(from: Date(), by: 3)) { time in
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.second], from: time.date)
+            HStack {
+                Text("Time: \(components.second ?? 0)")
+                    .font(.largeTitle.bold())
             }
         }
-        .padding()
     }
 }
 
