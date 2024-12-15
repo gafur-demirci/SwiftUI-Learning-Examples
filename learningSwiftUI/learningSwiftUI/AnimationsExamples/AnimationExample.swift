@@ -23,9 +23,11 @@ struct AnimationExample: View {
             }
             .frame(width: 250, height: 120)
             Button("Animate") {
-                withAnimation(.easeInOut(duration: 2)) {
-                    boxScale = boxScale == 1 ? 2 : 1
+                withAnimation(.easeOut) {
                     roundCorners = !roundCorners
+                }
+                withAnimation(.linear) {
+                    boxScale = boxScale == 1 ? 2 : 1
                 }
             }
         }
