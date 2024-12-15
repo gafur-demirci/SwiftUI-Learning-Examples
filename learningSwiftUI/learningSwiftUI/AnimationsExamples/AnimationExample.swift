@@ -18,14 +18,14 @@ struct AnimationExample: View {
                     .fill(Color.red)
                     .frame(width: 50, height: 50)
                     .scaleEffect(boxScale)
-                Triangle()
-                    .fill(Color.blue)
-                    .frame(width: 50, height: 50)
-                    .scaleEffect(boxScale)
             }
             .frame(width: 250, height: 120)
             Button("Animate") {
-                withAnimation(.linear) {
+                let animation = Animation.bouncy
+                    .delay(1)
+                    .speed(2)
+                    .repeatCount(3)
+                withAnimation(animation) {
                     boxScale = boxScale == 1 ? 2 : 1
                 }
             }
