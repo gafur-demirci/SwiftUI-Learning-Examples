@@ -8,10 +8,10 @@
 import SwiftUI
 
 class animationViewData {
-    var posX: CGFloat = 0
-    var posY: CGFloat = 0
+    var radius: CGFloat = 0
+    var step: CGFloat = 5
     var lastTime: Double = 0
-    var maxTime: Double = 0.5
+    var maxTime: Double = 0.02
 }
 
 struct AnimationExample: View {
@@ -25,14 +25,25 @@ struct AnimationExample: View {
             
             Canvas { context, size in
                 if delta > viewData.maxTime {
-                    viewData.posX = CGFloat.random(in: 0..<size.width - 20)
-                    viewData.posY = CGFloat.random(in: 0..<size.height - 20)
+                    calculateRadius()
                     viewData.lastTime = interval
                 }
-                let circleFrame = CGRect(x: viewData.posX, y: viewData.posY, width: 20, height: 20)
+                let rad = viewData.radius
+                let circleFrame = CGRect(x: size.width / 2 - rad, y: size.height / 2 - rad, width: rad * 2, height: rad * 2)
                 context.fill(Circle().path(in: circleFrame), with: .color(.red))
             }
             .ignoresSafeArea()
+        }
+    }
+    func calculateRadius() {
+        viewData.radius = viewData.radius + viewData.step
+        if viewData.step < 0 && viewData.radius < 0 {
+            viewData.radius = 0
+            viewData.step = 5
+        }
+        if viewData.step > 0 && viewData.radius > 150 {
+            viewData.radius = 150
+            viewData.step = -5
         }
     }
 }
