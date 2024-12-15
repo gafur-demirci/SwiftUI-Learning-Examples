@@ -9,25 +9,16 @@ import SwiftUI
 
 struct AnimationExample: View {
     
-    @State private var boxScale: CGFloat = 1
-    @State private var roundCorners: Bool = false
+    @State private var smiling: Bool = false
     
     var body: some View {
         VStack {
-            HStack {
-                Rectangle()
-                    .fill(Color.red)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(roundCorners ? 15 : 0)
-                    .scaleEffect(boxScale)
-            }
-            .frame(width: 250, height: 120)
-            Button("Animate") {
-                withAnimation(.easeOut) {
-                    roundCorners = !roundCorners
-                }
-                withAnimation(.linear) {
-                    boxScale = boxScale == 1 ? 2 : 1
+            Face(smile: smiling ? 1 : 0)
+                .stroke(Color.blue, lineWidth: 5)
+                .frame(width: 100, height: 120)
+            Button("Change") {
+                withAnimation(.default) {
+                    smiling.toggle()
                 }
             }
         }
