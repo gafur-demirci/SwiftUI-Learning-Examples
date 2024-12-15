@@ -15,7 +15,7 @@ struct AnimationExample: View {
         VStack(spacing: 10) {
             Image(systemName: "dot.radiowaves.forward")
                 .font(.largeTitle)
-                .symbolEffect(.variableColor.iterative, options: .nonRepeating, isActive: isActive)
+                .symbolEffect(.bounce, options: .repeat(2), isActive: isActive)
             Button("Animate") {
                 isActive.toggle()
             }
