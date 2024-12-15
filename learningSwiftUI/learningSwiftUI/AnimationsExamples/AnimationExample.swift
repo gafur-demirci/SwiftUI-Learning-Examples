@@ -10,6 +10,7 @@ import SwiftUI
 struct AnimationExample: View {
     
     @State private var boxScale: CGFloat = 1
+    @State private var roundCorners: Bool = false
     
     var body: some View {
         VStack {
@@ -17,20 +18,14 @@ struct AnimationExample: View {
                 Rectangle()
                     .fill(Color.red)
                     .frame(width: 50, height: 50)
+                    .cornerRadius(roundCorners ? 15 : 0)
                     .scaleEffect(boxScale)
             }
             .frame(width: 250, height: 120)
             Button("Animate") {
-                let animation = Animation.interpolatingSpring(
-                    mass: 0.15,
-                    stiffness: 0.8,
-                    damping: 0.5,
-                    initialVelocity: 5
-                )
-                    .speed(5)
-                    .repeatForever()
-                withAnimation(animation) {
+                withAnimation(.easeInOut(duration: 2)) {
                     boxScale = boxScale == 1 ? 2 : 1
+                    roundCorners = !roundCorners
                 }
             }
         }
