@@ -14,24 +14,17 @@ struct AnimationExample: View {
     var body: some View {
         VStack {
             Button("Show Information") {
-                showInfo.toggle()
+                withAnimation {
+                    showInfo.toggle()
+                }
             }
             .padding()
             if showInfo {
                 Text("This is the information")
-                    .transition(.myTransition)
+                    .transition(.offset(x: 400, y: 0))
             }
             Spacer()
         }
-    }
-}
-
-extension AnyTransition {
-    static var myTransition: AnyTransition {
-        let animation = Animation.easeInOut(duration: 2)
-        let transiton = AnyTransition.scale.combined(with: .opacity)
-            .animation(animation)
-        return transiton
     }
 }
 
