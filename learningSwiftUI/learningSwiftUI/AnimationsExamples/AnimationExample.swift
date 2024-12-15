@@ -21,10 +21,14 @@ struct AnimationExample: View {
             }
             .frame(width: 250, height: 120)
             Button("Animate") {
-                let animation = Animation.bouncy
-                    .delay(1)
-                    .speed(2)
-                    .repeatCount(3)
+                let animation = Animation.interpolatingSpring(
+                    mass: 0.15,
+                    stiffness: 0.8,
+                    damping: 0.5,
+                    initialVelocity: 5
+                )
+                    .speed(5)
+                    .repeatForever()
                 withAnimation(animation) {
                     boxScale = boxScale == 1 ? 2 : 1
                 }
