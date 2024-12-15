@@ -8,31 +8,17 @@
 import SwiftUI
 
 struct AnimationExample: View {
-    
-    @Namespace private var myAnimations
-    @State private var showInfo: Bool = false
+
+    @State private var isActive: Bool = false
     
     var body: some View {
-        VStack {
-            Button("Show Information") {
-                withAnimation(.easeInOut) {
-                    showInfo.toggle()
-                }
+        VStack(spacing: 10) {
+            Image(systemName: "dot.radiowaves.forward")
+                .font(.largeTitle)
+                .symbolEffect(.variableColor.iterative, options: .nonRepeating, isActive: isActive)
+            Button("Animate") {
+                isActive.toggle()
             }
-            .padding()
-            HStack {
-                if !showInfo {
-                    Text("Left")
-                        .matchedGeometryEffect(id: "TextAnimation", in: myAnimations)
-                }
-                Spacer()
-                if showInfo {
-                    Text("Right")
-                        .matchedGeometryEffect(id: "TextAnimation", in: myAnimations)
-                }
-            }
-            .padding()
-            Spacer()
         }
     }
 }
