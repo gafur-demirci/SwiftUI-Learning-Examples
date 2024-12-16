@@ -9,8 +9,8 @@ import SwiftUI
 
 struct GesturesExample: View {
     
-    @GestureState private var magnification: CGFloat = 1
-    @State private var zoom: CGFloat = 1
+    @GestureState private var rotationAngle: Angle = .zero
+    @State private var rotation: Angle = .zero
     
     var body: some View {
         
@@ -18,26 +18,16 @@ struct GesturesExample: View {
             .resizable()
             .scaledToFit()
             .frame(width: 160, height: 200)
-            .scaleEffect(getCurrentZoom(magnification: magnification))
+            .rotationEffect(rotation + rotationAngle)
             .gesture(
-                MagnificationGesture()
-                    .updating($magnification) { value, state, transaction in
-                        state = value
+                RotateGesture()
+                    .updating($rotationAngle) { value, state, transaction in
+                        state = value.rotation
                     }
                     .onEnded({ value in
-                        zoom = getCurrentZoom(magnification: value)
+                        rotation = rotation + value.rotation
                     })
             )
-    }
-    
-    func getCurrentZoom(magnification: CGFloat) -> CGFloat {
-        let minZoom: CGFloat = 1
-        let maxZoom: CGFloat = 2
-        
-        var current = zoom * magnification
-        current = max(min(current, maxZoom), minZoom)
-        
-        return current
     }
 }
 
