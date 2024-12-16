@@ -7,28 +7,36 @@
 
 import SwiftUI
 
+struct ImageRepresentation: Transferable {
+    let name: String
+    let image: UIImage
+    
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(exportedContentType: .png, exporting: { value in
+            return value.image.pngData()!
+        })
+    }
+}
+
 struct GesturesExample: View {
     
-    @State private var picture: Image = Image("nocover")
-    @State private var didEnter: Bool = false
+    @State private var picture: UIImage = UIImage(named: "nocover")!
     
     var body: some View {
         
-        picture
-            .resizable()
-            .scaledToFit()
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .frame(height: 400)
-            .overlay(didEnter ? Color.green.opacity(0.2) : Color.clear)
-            .dropDestination(for: Image.self, action: { elements, location in
-                if let image = elements.first {
-                    picture = image
-                    return true
-                }
-                return false
-            }, isTargeted: { value in
-                didEnter = value
-            })
+        VStack {
+            Image(uiImage: picture)
+                .resizable()
+                .scaledToFit()
+                .draggable(ImageRepresentation(name: "book1", image: picture))
+                .dropDestination(for: Data.self, action: { elements, location in
+                    if let data = elements.first, let image = UIImage(data: data) {
+                        picture = image
+                        return true
+                    }
+                    return false
+                })
+        }
         Spacer()
     }
 }
