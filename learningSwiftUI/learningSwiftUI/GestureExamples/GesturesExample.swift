@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-struct ImageRepresentation: Transferable {
-    let name: String
-    let image: UIImage
-    
-    static var transferRepresentation: some TransferRepresentation {
-        DataRepresentation(exportedContentType: .png, exporting: { value in
-            return value.image.pngData()!
-        })
-    }
-}
-
 struct GesturesExample: View {
     
-    @State private var picture: UIImage = UIImage(named: "nocover")!
+    @Environment(GestureData.self) private var gestureData
+    @State private var currentPicture: UIImage = UIImage(named: "nocover")!
     
     var body: some View {
         
         VStack {
-            Image(uiImage: picture)
+            HStack {
+                ForEach(gestureData.listPictures) { picture in
+                    Image(uiImage: UIImage(data: picture.image) ?? UIImage(named: "nocover")!)
+                        .resizable()
+                        .frame(width: 80, height: 100)
+                        .draggable(picture)
+                }
+            }
+            .frame(height: 120)
+            Image(uiImage: currentPicture)
                 .resizable()
                 .scaledToFit()
-                .draggable(ImageRepresentation(name: "book1", image: picture))
-                .dropDestination(for: Data.self, action: { elements, location in
-                    if let data = elements.first, let image = UIImage(data: data) {
-                        picture = image
+                .padding(10)
+                .dropDestination(for: PictureRepresentation.self, action: { elements, location in
+                    if let picture = elements.first {
+                        currentPicture = UIImage(data: picture.image) ?? UIImage(named: "nocover")!
+                        gestureData.listPictures.removeAll(where: { $0.id == picture.id })
                         return true
                     }
                     return false
@@ -43,4 +43,5 @@ struct GesturesExample: View {
 
 #Preview {
     GesturesExample()
+        .environment(GestureData())
 }
