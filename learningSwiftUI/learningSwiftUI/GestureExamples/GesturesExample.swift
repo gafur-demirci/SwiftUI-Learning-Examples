@@ -14,8 +14,11 @@ struct GesturesExample: View {
         Image("book1")
             .resizable()
             .scaledToFit()
-            .frame(width: 160, height: 200)
-            .draggable(Image("book1"))
+            .frame(width: 300, height: 400)
+            .draggable(Image("book1"), preview: {
+                Image(systemName: "scope")
+                    .font(.system(size: 50))
+            })
         Spacer()
     }
 }
