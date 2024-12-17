@@ -11,6 +11,7 @@ import MapKit
 struct MapViewExample: View {
     var body: some View {
         Map()
+            .mapStyle(.hybrid)
             .ignoresSafeArea()
     }
 }
