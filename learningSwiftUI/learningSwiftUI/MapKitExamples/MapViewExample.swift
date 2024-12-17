@@ -12,12 +12,12 @@ struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
     let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
+    let secondCoordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.980)
     
     var body: some View {
         Map(position: Bindable(mapData).cameraPos) {
-            MapCircle(center: coordinates, radius: 100)
-                .foregroundStyle(Color.red)
-                .mapOverlayLevel(level: .aboveRoads) // if you want to under the labels for MapCircle, you dont use it modifier
+            MapPolyline(coordinates: [coordinates, secondCoordinates])
+                .stroke(.red, lineWidth: 5)
         }
     }
 }
