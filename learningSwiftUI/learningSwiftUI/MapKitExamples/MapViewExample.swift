@@ -15,8 +15,12 @@ struct MapViewExample: View {
     
     var body: some View {
         Map(position: Bindable(mapData).cameraPos) {
-            Marker("Dikili Taş", coordinate: coordinates)
-                .tint(.blue)
+            Annotation("Dikili Taş", coordinate: coordinates, content: {
+                Image(.book2)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+            })
         }
     }
 }
