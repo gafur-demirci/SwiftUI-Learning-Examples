@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import Observation
+import MapKit
 
-struct MapData: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+@Observable class MapData {
+    var cameraPos: MapCameraPosition
+    
+    init() {
+        let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        cameraPos = MapCameraPosition.region(region)
     }
-}
-
-#Preview {
-    MapData()
 }
