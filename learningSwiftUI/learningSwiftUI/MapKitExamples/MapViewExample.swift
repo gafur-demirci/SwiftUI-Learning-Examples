@@ -9,13 +9,15 @@ import SwiftUI
 import MapKit
 
 struct MapViewExample: View {
+    
+    @Environment(MapData.self ) private var mapData
+    
     var body: some View {
-        Map()
-            .mapStyle(.standard(pointsOfInterest: .including([.cafe])))
-            .ignoresSafeArea()
+        Map(position: Bindable(mapData).cameraPos)
     }
 }
 
 #Preview {
     MapViewExample()
+        .environment(MapData())
 }
