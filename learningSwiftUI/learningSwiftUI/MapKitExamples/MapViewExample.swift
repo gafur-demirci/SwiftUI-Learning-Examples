@@ -11,9 +11,13 @@ import MapKit
 struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
+    let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
     
     var body: some View {
-        Map(position: Bindable(mapData).cameraPos, bounds: mapData.cameraBounds) // min and max value areas can move to camera
+        Map(position: Bindable(mapData).cameraPos) {
+            Marker("Dikili Taş", coordinate: coordinates)
+                .tint(.blue)
+        }
     }
 }
 
