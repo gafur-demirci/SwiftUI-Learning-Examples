@@ -11,10 +11,12 @@ import MapKit
 
 @Observable class MapData {
     var cameraPos: MapCameraPosition
+    var cameraBounds: MapCameraBounds
     
     init() {
         let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
         cameraPos = MapCameraPosition.region(region)
+        cameraBounds = MapCameraBounds(centerCoordinateBounds: region, minimumDistance: 200, maximumDistance: 1000)
     }
 }

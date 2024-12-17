@@ -13,7 +13,7 @@ struct MapViewExample: View {
     @Environment(MapData.self ) private var mapData
     
     var body: some View {
-        Map(position: Bindable(mapData).cameraPos, interactionModes: .zoom) // only zoom in / out not other usage
+        Map(position: Bindable(mapData).cameraPos, bounds: mapData.cameraBounds) // min and max value areas can move to camera
     }
 }
 
