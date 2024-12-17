@@ -15,12 +15,9 @@ struct MapViewExample: View {
     
     var body: some View {
         Map(position: Bindable(mapData).cameraPos) {
-            Annotation("Dikili Taş", coordinate: coordinates, content: {
-                Image(.book2)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-            })
+            MapCircle(center: coordinates, radius: 100)
+                .foregroundStyle(Color.red)
+                .mapOverlayLevel(level: .aboveRoads) // if you want to under the labels for MapCircle, you dont use it modifier
         }
     }
 }
