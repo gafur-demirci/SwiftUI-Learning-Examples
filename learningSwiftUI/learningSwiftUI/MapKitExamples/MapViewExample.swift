@@ -11,9 +11,10 @@ import MapKit
 struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
+    @State private var selectedPlace: UUID?
     
     var body: some View {
-        Map(position: Bindable(mapData).cameraPos) {
+        Map(position: Bindable(mapData).cameraPos, selection: $selectedPlace) {
             ForEach(mapData.listLocations) { place in
                 Marker(place.name, coordinate: place.location)
             }
@@ -22,6 +23,11 @@ struct MapViewExample: View {
             mapData.cameraPos = .region(context.region)
             Task(priority: .background) {
                 await findPlaces()
+            }
+        }
+        .onChange(of: selectedPlace) { old, value in
+            if let item = mapData.listLocations.first(where: { $0.id == selectedPlace }) {
+                print("Selected \(item.name), Location is: \(item.location)")
             }
         }
     }
@@ -46,7 +52,6 @@ struct MapViewExample: View {
                         }
                     }
                 }
-                
             }
         }
     }
