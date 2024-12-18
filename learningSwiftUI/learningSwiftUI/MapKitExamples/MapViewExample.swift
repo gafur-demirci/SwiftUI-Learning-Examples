@@ -30,6 +30,12 @@ struct MapViewExample: View {
                 print("Selected \(item.name), Location is: \(item.location)")
             }
         }
+        .mapControls {
+            MapCompass()
+            MapScaleView()
+            MapPitchToggle()
+        }
+        .mapControlVisibility(.visible)
     }
     
     func findPlaces() async {
