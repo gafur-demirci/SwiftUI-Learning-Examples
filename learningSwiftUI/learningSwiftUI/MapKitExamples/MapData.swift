@@ -27,7 +27,7 @@ struct PlaceMarker: Identifiable {
     var listLocations: [PlaceMarker] = []
     
     init() {
-        let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
+        let coordinates = CLLocationCoordinate2D(latitude: 40.7637825011971, longitude: -73.9731328627541)
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
         cameraPos = MapCameraPosition.region(region)
 //        cameraBounds = MapCameraBounds(centerCoordinateBounds: region, minimumDistance: 200, maximumDistance: 1000)
