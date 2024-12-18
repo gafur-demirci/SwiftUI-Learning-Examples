@@ -17,30 +17,21 @@ struct MapViewExample: View {
     var body: some View {
         Map(position: Bindable(mapData).cameraPos)
             .safeAreaInset(edge: .bottom) {
-                if openView {
-                    VStack {
-                        LookAroundPreview(initialScene: lookScene)
-                            .frame(height: 200)
-                        Button("Hide Street") {
-                            openView = false
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                } else {
-                    Button("Show Street") {
-                        if let region = mapData.cameraPos.region {
-                            Task {
-                                let request = MKLookAroundSceneRequest(coordinate: region.center)
-                                if let scene = try? await request.scene {
-                                    lookScene = scene
-                                    openView = true
-                                }
+                
+                Button("Show Street") {
+                    if let region = mapData.cameraPos.region {
+                        Task {
+                            let request = MKLookAroundSceneRequest(coordinate: region.center)
+                            if let scene = try? await request.scene {
+                                lookScene = scene
+                                openView = true
                             }
                         }
                     }
-                    .buttonStyle(.borderedProminent)
                 }
+                .buttonStyle(.borderedProminent)
             }
+            .lookAroundViewer(isPresented: $openView, initialScene: lookScene)
     }
 }
 
