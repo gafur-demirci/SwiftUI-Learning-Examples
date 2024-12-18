@@ -12,9 +12,10 @@ struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
     @State private var selectedPlace: UUID?
+    @Namespace private var mapSpace
     
     var body: some View {
-        Map(position: Bindable(mapData).cameraPos, selection: $selectedPlace) {
+        Map(position: Bindable(mapData).cameraPos, selection: $selectedPlace, scope: mapSpace) {
             ForEach(mapData.listLocations) { place in
                 Marker(place.name, coordinate: place.location)
             }
@@ -30,12 +31,28 @@ struct MapViewExample: View {
                 print("Selected \(item.name), Location is: \(item.location)")
             }
         }
-        .mapControls {
-            MapCompass()
-            MapScaleView()
-            MapPitchToggle()
+        .mapControlVisibility(.hidden)
+        .safeAreaInset(edge: .top) {
+            HStack {
+                MapCompass(scope: mapSpace)
+                    .padding(5)
+                    .background {
+                        Circle()
+                            .fill(.thinMaterial)
+                            .stroke(.red, lineWidth: 3)
+                    }
+                Spacer()
+                MapPitchToggle(scope: mapSpace)
+                    .padding(5)
+                    .background {
+                        Circle()
+                            .fill(.thinMaterial)
+                            .stroke(.red, lineWidth: 3)
+                    }
+            }
+            .frame(minWidth: 0, maxWidth: .infinity)
         }
-        .mapControlVisibility(.visible)
+        .mapScope(mapSpace)
     }
     
     func findPlaces() async {
