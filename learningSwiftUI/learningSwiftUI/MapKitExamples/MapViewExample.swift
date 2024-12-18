@@ -11,13 +11,43 @@ import MapKit
 struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
-    let coordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.978)
-    let secondCoordinates = CLLocationCoordinate2D(latitude: 41.008, longitude: 28.980)
     
     var body: some View {
         Map(position: Bindable(mapData).cameraPos) {
-            MapPolyline(coordinates: [coordinates, secondCoordinates])
-                .stroke(.red, lineWidth: 5)
+            ForEach(mapData.listLocations) { place in
+                Marker(place.name, coordinate: place.location)
+            }
+        }
+        .onMapCameraChange(frequency: .onEnd) { context in
+            mapData.cameraPos = .region(context.region)
+            Task(priority: .background) {
+                await findPlaces()
+            }
+        }
+    }
+    
+    func findPlaces() async {
+        if let region = mapData.cameraPos.region {
+            let request = MKLocalSearch.Request()
+            request.naturalLanguageQuery = "Pizza"
+            request.region = region
+            
+            let search = MKLocalSearch(request: request)
+            if let results = try? await search.start() {
+                
+                let items = results.mapItems
+                
+                await MainActor.run {
+                    mapData.listLocations = []
+                    for item in items {
+                        if let location = item.placemark.location?.coordinate {
+                            let place = PlaceMarker(id: UUID(), name: item.name!, location: location)
+                            mapData.listLocations.append(place)
+                        }
+                    }
+                }
+                
+            }
         }
     }
 }
