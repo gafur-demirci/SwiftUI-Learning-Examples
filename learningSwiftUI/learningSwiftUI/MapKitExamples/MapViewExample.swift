@@ -11,31 +11,45 @@ import MapKit
 struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
-    @State private var openView: Bool = false
-    @State private var lookScene: MKLookAroundScene?
+    @State private var route: MKRoute?
     
     var body: some View {
-        Map(position: Bindable(mapData).cameraPos)
-            .safeAreaInset(edge: .bottom) {
-                
-                Button("Show Street") {
-                    if let region = mapData.cameraPos.region {
-                        Task {
-                            let request = MKLookAroundSceneRequest(coordinate: region.center)
-                            if let scene = try? await request.scene {
-                                lookScene = scene
-                                openView = true
-                            }
-                        }
-                    }
-                }
-                .buttonStyle(.borderedProminent)
+        Map(position: Bindable(mapData).cameraPos) {
+            if let route {
+                MapPolyline(route)
+                    .stroke(.red, lineWidth: 5)
             }
-            .lookAroundViewer(isPresented: $openView, initialScene: lookScene)
+        }
+        .onAppear {
+            calculateRoute()
+        }
+    }
+    
+    func calculateRoute() {
+        let coordOrigin = CLLocationCoordinate2D(latitude: mapData.origin.latitude, longitude: mapData.origin.longitude)
+        let placeOrigin = MKPlacemark(coordinate: coordOrigin)
+        let origin = MKMapItem(placemark: placeOrigin)
+        
+        let coordDestination = CLLocationCoordinate2D(latitude: mapData.destination.latitude, longitude: mapData.destination.longitude)
+        let placeDestination = MKPlacemark(coordinate: coordDestination)
+        let destination = MKMapItem(placemark: placeDestination)
+        
+        let request = MKDirections.Request()
+        request.source = origin
+        request.destination = destination
+        request.requestsAlternateRoutes = false
+        
+        Task {
+            let directions = MKDirections(request: request)
+            let results = try await directions.calculate()
+            let routes = results.routes
+            
+            route = routes.first!
+        }
     }
 }
 
 #Preview {
     MapViewExample()
-        .environment(MapData())
+        .environment(MapData(origin: Coordinate.init(latitude: 40.7637825011971, longitude: -73.9731328627541), destination: Coordinate.init(latitude: 40.7523809365088, longitude: -73.9778321046893)))
 }

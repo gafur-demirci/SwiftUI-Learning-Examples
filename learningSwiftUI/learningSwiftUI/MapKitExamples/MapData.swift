@@ -21,13 +21,28 @@ struct PlaceMarker: Identifiable {
     }
 }
 
+class Coordinate {
+    var latitude: Double
+    var longitude: Double
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+}
+
 @Observable class MapData {
     var cameraPos: MapCameraPosition
 //    var cameraBounds: MapCameraBounds
     var listLocations: [PlaceMarker] = []
+    var origin: Coordinate
+    var destination: Coordinate
     
-    init() {
-        let coordinates = CLLocationCoordinate2D(latitude: 40.7637825011971, longitude: -73.9731328627541)
+    init(origin: Coordinate, destination: Coordinate) {
+        self.origin = origin
+        self.destination = destination
+        
+        let coordinates = CLLocationCoordinate2D(latitude: origin.latitude, longitude: origin.longitude)
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
         cameraPos = MapCameraPosition.region(region)
 //        cameraBounds = MapCameraBounds(centerCoordinateBounds: region, minimumDistance: 200, maximumDistance: 1000)
