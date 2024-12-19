@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct NotificationExample: View {
+    
+    @EnvironmentObject var notificationData: NotificationData
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                HStack {
+                    Text("Total Books:")
+                    Text("\(notificationData.total)")
+                        .font(.largeTitle)
+                }
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Books")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink("Add Book", destination: {
+                            AddBookInNoti()
+                    })
+                }
+            }
+        }
     }
 }
 
 #Preview {
     NotificationExample()
+        .environmentObject(NotificationData())
 }
