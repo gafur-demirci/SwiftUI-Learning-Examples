@@ -11,13 +11,16 @@ import MapKit
 struct MapViewExample: View {
     
     @Environment(MapData.self ) private var mapData
-    @State private var route: MKRoute?
+    @State private var routes: [MKRoute]?
     
     var body: some View {
         Map(position: Bindable(mapData).cameraPos) {
-            if let route {
-                MapPolyline(route)
-                    .stroke(.red, lineWidth: 5)
+            if let routes: [MKRoute] {
+                ForEach(routes, id: \.self) { route in
+                    MapPolyline(route)
+                        .stroke(.red, lineWidth: 5)
+                }
+                
             }
         }
         .onAppear {
@@ -37,15 +40,20 @@ struct MapViewExample: View {
         let request = MKDirections.Request()
         request.source = origin
         request.destination = destination
-        request.requestsAlternateRoutes = false
+        request.requestsAlternateRoutes = true
         
         Task {
             let directions = MKDirections(request: request)
             let results = try await directions.calculate()
-            let routes = results.routes
+            let routeResults = results.routes
             
-            route = routes.first!
+            routes = routeResults
         }
+    }
+}
+extension MKRoute: @retroactive Identifiable {
+    public var id: UUID {
+        return UUID()
     }
 }
 
