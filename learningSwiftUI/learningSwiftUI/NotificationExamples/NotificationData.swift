@@ -7,12 +7,25 @@
 
 import SwiftUI
 
-struct NotificationData: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class NotificationData: ObservableObject {
+    
+    @Published var total: Int = 0
+    var titles: [String] = []
+    
+    init() {
+        Task(priority: .background, operation: {
+            await readNotifications()
+        })
     }
-}
-
-#Preview {
-    NotificationData()
+    
+    func readNotifications() async {
+        let center = NotificationCenter.default
+        let name = Notification.Name("Update Data")
+        
+        for await _ in center.notifications(named: name, object: nil) {
+            await MainActor.run {
+                total = titles.count
+            }
+        }
+    }
 }
