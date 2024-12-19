@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocationUI
 
 struct MapViewExample: View {
     
@@ -23,9 +24,12 @@ struct MapViewExample: View {
                 MapUserLocationButton()
             }
         }
-        .onAppear {
-            mapData.manager.requestWhenInUseAuthorization()
-        }
+        .safeAreaInset(edge: .bottom, content: {
+            LocationButton(.currentLocation) {
+                mapData.cameraPos = .userLocation(fallback: .automatic)
+            }
+            .padding()
+        })
     }
 }
 
