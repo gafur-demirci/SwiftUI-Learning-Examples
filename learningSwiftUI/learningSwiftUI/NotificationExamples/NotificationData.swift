@@ -13,9 +13,12 @@ class NotificationData: ObservableObject {
     var titles: [String] = []
     
     init() {
-        Task(priority: .background, operation: {
+        let myTask = Task(priority: .background, operation: {
             await readNotifications()
         })
+        Timer.scheduledTimer(withTimeInterval: 20, repeats: false) { timer in
+            myTask.cancel()
+        }
     }
     
     func readNotifications() async {

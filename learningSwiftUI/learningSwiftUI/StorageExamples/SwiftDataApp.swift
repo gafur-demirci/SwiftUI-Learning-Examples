@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-@main
+//@main
 struct SwiftDataApp: App {
     @State private var appData = ApplicationData()
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//@main
+@main
 struct learningSwiftUIApp: App {
     
     @State private var appData = ApplicationData()
@@ -37,9 +37,11 @@ struct learningSwiftUIApp: App {
 //                .environment(appData)
 //            UserDefaultsExample()
 //                .environment(ApplicationData())
-            SwiftDataExample()
-                .environment(ApplicationData())
-                .modelContainer(for: [MineBook.self], inMemory: true)
+//            SwiftDataExample()
+//                .environment(ApplicationData())
+//                .modelContainer(for: [MineBook.self], inMemory: true)
+            NotificationExample()
+                .environmentObject(NotificationData())
         }
     }
 }
