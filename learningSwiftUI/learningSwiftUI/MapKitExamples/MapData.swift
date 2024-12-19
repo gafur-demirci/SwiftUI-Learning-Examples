@@ -31,20 +31,52 @@ class Coordinate {
     }
 }
 
-@Observable class MapData {
+@Observable class MapData: NSObject, CLLocationManagerDelegate {
     var cameraPos: MapCameraPosition
 //    var cameraBounds: MapCameraBounds
     var listLocations: [PlaceMarker] = []
-    var origin: Coordinate
-    var destination: Coordinate
+//    var origin: Coordinate
+//    var destination: Coordinate
+    var isAuthorized: Bool = false
+    @ObservationIgnored let manager = CLLocationManager()
     
-    init(origin: Coordinate, destination: Coordinate) {
-        self.origin = origin
-        self.destination = destination
-        
-        let coordinates = CLLocationCoordinate2D(latitude: origin.latitude, longitude: origin.longitude)
+//    init(origin: Coordinate, destination: Coordinate) {
+//        self.origin = origin
+//        self.destination = destination
+//        
+//        let coordinates = CLLocationCoordinate2D(latitude: origin.latitude, longitude: origin.longitude)
+//        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//        cameraPos = MapCameraPosition.region(region)
+////        cameraBounds = MapCameraBounds(centerCoordinateBounds: region, minimumDistance: 200, maximumDistance: 1000)
+//    }
+    
+    override init() {
+
+        let coordinates = CLLocationCoordinate2D(latitude: 40.7637825011971, longitude: -73.9731328627541)
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 1000, longitudinalMeters: 1000)
         cameraPos = MapCameraPosition.region(region)
-//        cameraBounds = MapCameraBounds(centerCoordinateBounds: region, minimumDistance: 200, maximumDistance: 1000)
+        
+        super.init()
+        manager.delegate = self
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkStatus()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        checkStatus()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error)")
+    }
+    
+    func checkStatus() {
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            isAuthorized = true
+        } else if manager.authorizationStatus == .denied {
+            isAuthorized = false
+        }
     }
 }
