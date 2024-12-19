@@ -22,7 +22,13 @@ class NotificationData: ObservableObject {
         let center = NotificationCenter.default
         let name = Notification.Name("Update Data")
         
-        for await _ in center.notifications(named: name, object: nil) {
+        for await notification in center.notifications(named: name, object: nil) {
+            if let info = notification.userInfo {
+                let type = info["type"] as? String
+                if type == "Miracle" {
+                    print("Miracle title was inserted")                    
+                }
+            }
             await MainActor.run {
                 total = titles.count
             }

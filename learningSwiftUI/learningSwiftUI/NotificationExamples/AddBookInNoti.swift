@@ -41,7 +41,8 @@ struct AddBookInNoti: View {
         
         let center = NotificationCenter.default
         let namme = Notification.Name("Update Data")
-        center.post(name: namme, object: nil, userInfo: nil)
+        let info = ["type": title]
+        center.post(name: namme, object: nil, userInfo: info)
     }
 }
 
