@@ -6,57 +6,73 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct NotificationExample: View {
     
-    @Environment(NotificationData.self) private var notificationData
+    @State private var inputMessage: String = ""
+    @State private var isButtonDisabled: Bool = false
     
     var body: some View {
-        Group {
-            if notificationData.isLandscape {
-                VStack(spacing: 0) {
-                    HeaderViewNotification(isCompact: true)
-                    BodyViewNotification()
+        VStack(spacing: 12) {
+            HStack {
+                Text("Message:")
+                TextField("Insert message", text: $inputMessage)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            HStack {
+                Spacer()
+                Button("Post Notification") {
+                    let message = inputMessage.trimmingCharacters(in: .whitespaces)
+                    if !message.isEmpty {
+                        Task(priority: .background) {
+                            let center = UNUserNotificationCenter.current()
+                            let authrorization = await center.notificationSettings()
+                            if authrorization.authorizationStatus == .authorized {
+                                await sendNotificaiton()
+                            }
+                        }
+                    }
                 }
-            } else {
-                HStack(spacing: 0) {
-                    HeaderViewNotification(isCompact: false)
-                    BodyViewNotification()
+                .disabled(isButtonDisabled)
+            }
+            Spacer()
+        }
+        .padding()
+        .task(priority: .background) {
+            do {
+                let center = UNUserNotificationCenter.current()
+                let authrorized = try await center.requestAuthorization(options: [.alert, .sound])
+                await MainActor.run {
+                    isButtonDisabled = !authrorized
                 }
+            } catch {
+                print("Error: \(error)")
             }
         }
-        .ignoresSafeArea()
-        .onAppear {
-            let device = UIDevice.current
-            device.beginGeneratingDeviceOrientationNotifications()
-        }
-        .onDisappear {
-            let device = UIDevice.current
-            device.endGeneratingDeviceOrientationNotifications()
-        }
     }
-}
-
-struct HeaderViewNotification: View {
-    let isCompact: Bool
     
-    var body: some View {
-        Text("Food Menu")
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: isCompact ? 150 : .infinity)
-            .background(Color.yellow)
-    }
-}
-
-struct BodyViewNotification: View {
-    
-    var body: some View {
-        Text("Content Title")
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color.blue)
+    func sendNotificaiton() async {
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = inputMessage
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
+        let id = "reminder-\(UUID())"
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        
+        do {
+            let center = UNUserNotificationCenter.current()
+            try await center.add(request)
+            await MainActor.run {
+                inputMessage = ""
+            }
+        } catch {
+            print("Error: \(error)")
+        }
     }
 }
 
 #Preview {
     NotificationExample()
-        .environment(NotificationData())
 }
