@@ -56,6 +56,7 @@ struct NotificationExample: View {
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = inputMessage
+        content.sound = .default
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
         let id = "reminder-\(UUID())"
