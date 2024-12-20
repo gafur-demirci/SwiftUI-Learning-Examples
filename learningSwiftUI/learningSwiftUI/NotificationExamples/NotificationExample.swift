@@ -10,27 +10,49 @@ import SwiftUI
 struct NotificationExample: View {
     
     @Environment(NotificationData.self) private var notificationData
-    @FocusState var focusTitle: Bool
-    @State var inputTitle: String = ""
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Image("book1")
-                    .resizable()
-                    .scaledToFit()
-                HStack {
-                    TextField("Insert Title", text: $inputTitle)
-                        .textFieldStyle(.roundedBorder)
-                        .focused($focusTitle)
-                    Button("Save") {
-                        focusTitle = false
-                    }
+        Group {
+            if notificationData.isLandscape {
+                VStack(spacing: 0) {
+                    HeaderViewNotification(isCompact: true)
+                    BodyViewNotification()
                 }
-                Spacer()
+            } else {
+                HStack(spacing: 0) {
+                    HeaderViewNotification(isCompact: false)
+                    BodyViewNotification()
+                }
             }
-            .padding()
         }
+        .ignoresSafeArea()
+        .onAppear {
+            let device = UIDevice.current
+            device.beginGeneratingDeviceOrientationNotifications()
+        }
+        .onDisappear {
+            let device = UIDevice.current
+            device.endGeneratingDeviceOrientationNotifications()
+        }
+    }
+}
+
+struct HeaderViewNotification: View {
+    let isCompact: Bool
+    
+    var body: some View {
+        Text("Food Menu")
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: isCompact ? 150 : .infinity)
+            .background(Color.yellow)
+    }
+}
+
+struct BodyViewNotification: View {
+    
+    var body: some View {
+        Text("Content Title")
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .background(Color.blue)
     }
 }
 
