@@ -13,21 +13,23 @@ struct NotificationExample: View {
     @State var inputTitle: String = ""
     
     var body: some View {
-        VStack {
-            Image("book1")
-                .resizable()
-                .scaledToFit()
-            HStack {
-                TextField("Insert Title", text: $inputTitle)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($focusTitle)
-                Button("Save") {
-                    focusTitle = false
+        ScrollView {
+            VStack {
+                Image("book1")
+                    .resizable()
+                    .scaledToFit()
+                HStack {
+                    TextField("Insert Title", text: $inputTitle)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($focusTitle)
+                    Button("Save") {
+                        focusTitle = false
+                    }
                 }
+                Spacer()
             }
-            Spacer()
+            .padding()
         }
-        .padding()
     }
 }
 
