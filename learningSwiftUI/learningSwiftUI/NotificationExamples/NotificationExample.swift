@@ -9,32 +9,28 @@ import SwiftUI
 
 struct NotificationExample: View {
     
-    @EnvironmentObject var notificationData: NotificationData
+    @FocusState var focusTitle: Bool
+    @State var inputTitle: String = ""
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
-                    Text("Total Books:")
-                    Text("\(notificationData.total)")
-                        .font(.largeTitle)
-                }
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("Books")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink("Add Book", destination: {
-                            AddBookInNoti()
-                    })
+        VStack {
+            Image("book1")
+                .resizable()
+                .scaledToFit()
+            HStack {
+                TextField("Insert Title", text: $inputTitle)
+                    .textFieldStyle(.roundedBorder)
+                    .focused($focusTitle)
+                Button("Save") {
+                    focusTitle = false
                 }
             }
+            Spacer()
         }
+        .padding()
     }
 }
 
 #Preview {
     NotificationExample()
-        .environmentObject(NotificationData())
 }
