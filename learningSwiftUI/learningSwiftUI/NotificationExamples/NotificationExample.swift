@@ -58,7 +58,14 @@ struct NotificationExample: View {
         content.body = inputMessage
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "soundNoti.mp3"))
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
+        let imageId = "attach-\(UUID())"
+        if let urlImage = await getThumbnail(id: imageId) {
+            if let attachment = try? UNNotificationAttachment(identifier: imageId, url: urlImage, options: nil) {
+                content.attachments = [attachment] as [UNNotificationAttachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
         let id = "reminder-\(UUID())"
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         
@@ -71,6 +78,23 @@ struct NotificationExample: View {
         } catch {
             print("Error: \(error)")
         }
+    }
+    
+    func getThumbnail(id: String) async -> URL? {
+        let manager = FileManager.default
+        if let docUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let url = docUrl.appendingPathComponent("\(id).png")
+            if let image = UIImage(named: "book1") {
+                if let thumbnail = await image.byPreparingThumbnail(ofSize: CGSize(width: 100, height: 100)) {
+                    if let imageData = thumbnail.pngData() {
+                        if let _ = try? imageData.write(to: url) {
+                            return url
+                        }
+                    }
+                }
+            }
+        }
+        return nil
     }
 }
 
