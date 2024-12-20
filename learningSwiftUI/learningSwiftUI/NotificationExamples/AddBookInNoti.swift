@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddBookInNoti: View {
     
-    @EnvironmentObject var notificationData: NotificationData
+    @Environment(NotificationData.self) private var notificationData
     @Environment(\.dismiss) var dismiss
     @State private var titleInput: String = ""
     
@@ -48,5 +48,5 @@ struct AddBookInNoti: View {
 
 #Preview {
     AddBookInNoti()
-        .environmentObject(NotificationData())
+        .environment(NotificationData())
 }

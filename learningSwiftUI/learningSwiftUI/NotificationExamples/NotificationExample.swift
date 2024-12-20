@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NotificationExample: View {
     
+    @Environment(NotificationData.self) private var notificationData
     @FocusState var focusTitle: Bool
     @State var inputTitle: String = ""
     
@@ -35,4 +36,5 @@ struct NotificationExample: View {
 
 #Preview {
     NotificationExample()
+        .environment(NotificationData())
 }

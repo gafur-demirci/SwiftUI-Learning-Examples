@@ -7,34 +7,35 @@
 
 import SwiftUI
 
-class NotificationData: ObservableObject {
+@Observable class NotificationData {
     
-    @Published var total: Int = 0
+    var total: Int = 0
     var titles: [String] = []
+    let center = NotificationCenter.default
+    var scrollOffset: CGFloat = 0
     
     init() {
-        let myTask = Task(priority: .background, operation: {
-            await readNotifications()
+        Task(priority: .background, operation: {
+            await receiveNotificationOpen()
         })
-        Timer.scheduledTimer(withTimeInterval: 20, repeats: false) { timer in
-            myTask.cancel()
+        Task(priority: .background, operation: {
+            await receiveNotificationClose()
+        })
+    }
+    
+    @MainActor
+    func receiveNotificationOpen() async {
+        let name = UIWindow.keyboardDidShowNotification
+        for await _ in center.notifications(named: name, object: nil) {
+            scrollOffset = 20
         }
     }
     
-    func readNotifications() async {
-        let center = NotificationCenter.default
-        let name = Notification.Name("Update Data")
-        
-        for await notification in center.notifications(named: name, object: nil) {
-            if let info = notification.userInfo {
-                let type = info["type"] as? String
-                if type == "Miracle" {
-                    print("Miracle title was inserted")                    
-                }
-            }
-            await MainActor.run {
-                total = titles.count
-            }
+    @MainActor
+    func receiveNotificationClose() async {
+        let name = UIWindow.keyboardDidHideNotification
+        for await _ in center.notifications(named: name, object: nil) {
+            scrollOffset = 0
         }
     }
 }
