@@ -54,34 +54,29 @@ struct NotificationExample: View {
     
     func sendNotificaiton() async {
         let center = UNUserNotificationCenter.current()
-        let groupId = "Group One"
-        let totalMessages = 4
-        
-        let summaryFormat = "\(totalMessages) messages sent"
-        let category = UNNotificationCategory(identifier: groupId, actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: nil, categorySummaryFormat: summaryFormat, options: [])
+        let groupId = "listActions"
+        let actionDelete = UNNotificationAction(identifier: "deleteButton", title: "Delete", options: .destructive)
+
+        let category = UNNotificationCategory(identifier: groupId, actions: [actionDelete], intentIdentifiers: [], options: [])
         center.setNotificationCategories([category])
         
-        for index in 1...totalMessages {
-            let content = UNMutableNotificationContent()
-            content.title = "Reminder"
-            content.body = "\(index) - \(inputMessage)"
-            content.threadIdentifier = groupId
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-            
-            let id = "reminder-\(UUID())"
-            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-            
-            do {
-                let center = UNUserNotificationCenter.current()
-                try await center.add(request)
-            } catch {
-                print("Error: \(error)")
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = inputMessage
+        content.categoryIdentifier = groupId
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        let id = "reminder-\(UUID())"
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        
+        do {
+            try await center.add(request)
+            await MainActor.run {
+                inputMessage = ""
             }
-        }
-
-        await MainActor.run {
-            inputMessage = ""
+        } catch {
+            print("Error: \(error)")
         }
     }
 }

@@ -14,9 +14,13 @@ import SwiftUI
         let center = UNUserNotificationCenter.current()
         center.delegate = self
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        return [.banner]
+    @MainActor
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        let identifier = response.actionIdentifier
+        print("Notification Response: \(identifier)")
+        if identifier == "deleteButton" {
+            print("Delete Message")
+        }
     }
 //    var total: Int = 0
     var titles: [String] = []
