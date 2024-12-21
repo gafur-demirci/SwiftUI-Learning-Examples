@@ -11,8 +11,9 @@ import SwiftUI
 struct learningSwiftUIApp: App {
     
     @UIApplicationDelegateAdaptor(CustomAppDelegate.self) var delegate
-    @State private var appData = ApplicationData()
-    @Environment(\.scenePhase) var scenePhase
+    @State var appData = SingletonData.shared
+//    @State private var appData = ApplicationData()
+//    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -42,17 +43,20 @@ struct learningSwiftUIApp: App {
 //            SwiftDataExample()
 //                .environment(ApplicationData())
 //                .modelContainer(for: [MineBook.self], inMemory: true)
-            NotificationExample()
-                .environment(NotificationData())
-                .onChange(of: scenePhase){ oldValue, newValue in
-                    if newValue == .active {
-                        print("Scene is active")
-                    } else if newValue == .inactive {
-                        print("Scene is inactive")
-                    } else if newValue == .background {
-                        print("Scene is background")
-                    }
-                }
+//            NotificationExample()
+//                .environment(NotificationData())
+//                .onChange(of: scenePhase){ oldValue, newValue in
+//                    if newValue == .active {
+//                        print("Scene is active")
+//                    } else if newValue == .inactive {
+//                        print("Scene is inactive")
+//                    } else if newValue == .background {
+//                        print("Scene is background")
+//                    }
+//                }
+            SingletonView()
+                .environment(appData)
+                
         }
     }
 }
