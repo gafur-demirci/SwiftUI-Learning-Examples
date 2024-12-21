@@ -9,10 +9,19 @@ import SwiftUI
 
 @Observable class NotificationData: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     
+    var showValue: String = ""
+    @ObservationIgnored var myObject = MyObj()
+    @ObservationIgnored var myObserver: NSKeyValueObservation?
+    
     override init() {
         super.init()
         let center = UNUserNotificationCenter.current()
         center.delegate = self
+        myObserver = myObject.observe(\.text, options: [.new], changeHandler: { obj, value in
+            if let newValue = value.newValue {
+                self.showValue = "Value: \(newValue)"
+            }
+        })
     }
     @MainActor
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {

@@ -11,10 +11,22 @@ import UserNotifications
 struct NotificationExample: View {
     
     @Environment(NotificationData.self) private var notificationData
-    @State private var inputMessage: String = ""
-    @State private var isButtonDisabled: Bool = false
+//    @State private var inputMessage: String = ""
+//    @State private var isButtonDisabled: Bool = false
     
     var body: some View {
+        VStack {
+            Text(notificationData.showValue)
+            Button("Add Value") {
+                notificationData.myObject.text += 100
+            }
+            Spacer()
+        }
+        .padding()
+        .onDisappear {
+            notificationData.myObserver = nil
+        }
+        /*
         VStack(spacing: 12) {
             HStack {
                 Text("Message:")
@@ -51,8 +63,9 @@ struct NotificationExample: View {
                 print("Error: \(error)")
             }
         }
+        */
     }
-    
+    /*
     func sendNotificaiton() async {
         let center = UNUserNotificationCenter.current()
         let groupId = "listActions"
@@ -81,6 +94,7 @@ struct NotificationExample: View {
             print("Error: \(error)")
         }
     }
+    */
 }
 
 #Preview {
