@@ -53,28 +53,33 @@ struct NotificationExample: View {
     }
     
     func sendNotificaiton() async {
-        let listGroups = ["Group One", "Group Two", "Group Three"]
+        let center = UNUserNotificationCenter.current()
+        let groupId = "Group One"
+        let totalMessages = 4
         
-        for group in listGroups {
-            for index in 0...3 {
-                let content = UNMutableNotificationContent()
-                content.title = "Reminder \(group)"
-                content.body = "\(index) - \(inputMessage)"
-                content.threadIdentifier = group
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-                
-                let id = "reminder-\(UUID())"
-                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-                
-                do {
-                    let center = UNUserNotificationCenter.current()
-                    try await center.add(request)
-                } catch {
-                    print("Error: \(error)")
-                }
+        let summaryFormat = "\(totalMessages) messages sent"
+        let category = UNNotificationCategory(identifier: groupId, actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: nil, categorySummaryFormat: summaryFormat, options: [])
+        center.setNotificationCategories([category])
+        
+        for index in 1...totalMessages {
+            let content = UNMutableNotificationContent()
+            content.title = "Reminder"
+            content.body = "\(index) - \(inputMessage)"
+            content.threadIdentifier = groupId
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            
+            let id = "reminder-\(UUID())"
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+            
+            do {
+                let center = UNUserNotificationCenter.current()
+                try await center.add(request)
+            } catch {
+                print("Error: \(error)")
             }
         }
+
         await MainActor.run {
             inputMessage = ""
         }
