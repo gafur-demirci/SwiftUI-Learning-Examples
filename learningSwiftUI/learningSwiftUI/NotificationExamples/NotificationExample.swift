@@ -85,4 +85,5 @@ struct NotificationExample: View {
 
 #Preview {
     NotificationExample()
+        .environment(NotificationData())
 }
