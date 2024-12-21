@@ -11,6 +11,7 @@ import SwiftUI
 struct learningSwiftUIApp: App {
     
     @State private var appData = ApplicationData()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -42,6 +43,15 @@ struct learningSwiftUIApp: App {
 //                .modelContainer(for: [MineBook.self], inMemory: true)
             NotificationExample()
                 .environment(NotificationData())
+                .onChange(of: scenePhase){ oldValue, newValue in
+                    if newValue == .active {
+                        print("Scene is active")
+                    } else if newValue == .inactive {
+                        print("Scene is inactive")
+                    } else if newValue == .background {
+                        print("Scene is background")
+                    }
+                }
         }
     }
 }
