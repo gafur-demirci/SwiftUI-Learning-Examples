@@ -20,6 +20,8 @@ import SwiftUI
         print("Notification Response: \(identifier)")
         if identifier == "deleteButton" {
             print("Delete Message")
+        } else if identifier == "inputField" {
+            print("Send: \((response as! UNTextInputNotificationResponse).userText)")
         }
     }
 //    var total: Int = 0

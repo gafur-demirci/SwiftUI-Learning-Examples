@@ -10,6 +10,7 @@ import UserNotifications
 
 struct NotificationExample: View {
     
+    @Environment(NotificationData.self) private var notificationData
     @State private var inputMessage: String = ""
     @State private var isButtonDisabled: Bool = false
     
@@ -56,8 +57,9 @@ struct NotificationExample: View {
         let center = UNUserNotificationCenter.current()
         let groupId = "listActions"
         let actionDelete = UNNotificationAction(identifier: "deleteButton", title: "Delete", options: .destructive)
+        let actionInput = UNTextInputNotificationAction(identifier: "inputField", title: "Message", options: [])
 
-        let category = UNNotificationCategory(identifier: groupId, actions: [actionDelete], intentIdentifiers: [], options: [])
+        let category = UNNotificationCategory(identifier: groupId, actions: [actionDelete, actionInput], intentIdentifiers: [], options: [])
         center.setNotificationCategories([category])
         
         let content = UNMutableNotificationContent()
