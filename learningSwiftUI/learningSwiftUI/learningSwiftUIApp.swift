@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct learningSwiftUIApp: App {
     
+    @UIApplicationDelegateAdaptor(CustomAppDelegate.self) var delegate
     @State private var appData = ApplicationData()
     @Environment(\.scenePhase) var scenePhase
     
