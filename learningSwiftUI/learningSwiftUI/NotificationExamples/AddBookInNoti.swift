@@ -48,5 +48,4 @@ struct AddBookInNoti: View {
 
 #Preview {
     AddBookInNoti()
-        .environment(NotificationData())
 }

@@ -7,14 +7,23 @@
 
 import SwiftUI
 
-@Observable class NotificationData {
+@Observable class NotificationData: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     
-    var total: Int = 0
+    override init() {
+        super.init()
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        return [.banner]
+    }
+//    var total: Int = 0
     var titles: [String] = []
-    let center = NotificationCenter.default
-    var scrollOffset: CGFloat = 0
-    var isLandscape: Bool = false
-    
+//    let center = NotificationCenter.default
+//    var scrollOffset: CGFloat = 0
+//    var isLandscape: Bool = false
+    /*
     init() {
         Task(priority: .background, operation: {
             await receiveNotificationOpen()
@@ -52,4 +61,5 @@ import SwiftUI
             scrollOffset = 0
         }
     }
+    */
 }

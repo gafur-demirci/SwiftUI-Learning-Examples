@@ -41,7 +41,6 @@ struct learningSwiftUIApp: App {
 //                .environment(ApplicationData())
 //                .modelContainer(for: [MineBook.self], inMemory: true)
             NotificationExample()
-                .environment(NotificationData())
         }
     }
 }
