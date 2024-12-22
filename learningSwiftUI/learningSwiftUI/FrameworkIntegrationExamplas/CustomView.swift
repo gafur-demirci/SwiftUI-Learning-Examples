@@ -9,9 +9,20 @@ import SwiftUI
 
 struct CustomView: View {
     
-    @State private var inputText: String = "Initial Text"
+//    @State private var inputText: String = "Initial Text"
     
     var body: some View {
+        NavigationStack {
+            VStack {
+                NavigationLink("Open UIKit View",
+                               destination: {
+                    MyViewController()
+                })
+                .buttonStyle(.borderedProminent)
+                Spacer()
+            }
+        }
+        /*
         VStack {
             HStack {
                 Text(inputText)
@@ -21,11 +32,12 @@ struct CustomView: View {
                 }
             }
             MyTextView(input: $inputText)
+            */
 //            MyCustomView()
 //                .frame(width: 200, height: 200)
 //                .padding()
 //            Spacer()
-        }
+//        }
         .padding()
     }
 }
