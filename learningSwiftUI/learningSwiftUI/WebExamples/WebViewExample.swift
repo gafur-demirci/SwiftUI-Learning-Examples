@@ -9,12 +9,17 @@ import SwiftUI
 
 struct WebViewExample: View {
     
-    @State private var url: URL? = URL(string: "https://softtech.com.tr")
+    @Environment(\.openURL) var openURL
+    @State private var url = "https://www.softtech.com.tr"
     
     var body: some View {
         VStack {
-            Link("Open Link", destination: url!)
-                .buttonStyle(.borderedProminent)
+            Button("Open URL") {
+                if let url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                    openURL(URL(string: url)!)
+                }
+            }
+            .buttonStyle(.borderedProminent)
             Spacer()
         }
         .padding()
