@@ -11,6 +11,7 @@ struct WebViewExample: View {
     
     @State private var searchURL: URL = URL(string: "https://www.softtech.com.tr")!
     @State private var openSheet: Bool = false
+    @State private var disableButton: Bool = false
     
     var body: some View {
         VStack {
@@ -18,11 +19,12 @@ struct WebViewExample: View {
                 openSheet = true
             }
             .buttonStyle(.borderedProminent)
+            .disabled(disableButton)
             Spacer()
         }
         .padding()
         .sheet(isPresented: $openSheet, content: {
-            SafariBrowser(url: $searchURL)
+            SafariBrowser(disable: $disableButton ,url: $searchURL)
         })
     }
 }
