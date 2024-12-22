@@ -9,30 +9,21 @@ import SwiftUI
 
 struct WebViewExample: View {
     
-    @Environment(\.openURL) var openURL
-    @State private var url = ""
+    @State private var searchURL: URL = URL(string: "https://www.softtech.com.tr")!
+    @State private var openSheet: Bool = false
     
     var body: some View {
         VStack {
-            TextField("Insert URL", text: $url)
-                .textFieldStyle(.roundedBorder)
-                .autocapitalization(.none)
-                .autocorrectionDisabled(true)
-            Button("Open URL") {
-                if !url.isEmpty {
-                    var components = URLComponents(string: url)
-                    components?.scheme = "https"
-                    if let newURL = components?.string {
-                        if let isValidURL = newURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                            openURL(URL(string: isValidURL)!)
-                        }
-                    }
-                }
+            Button("Open Browser") {
+                openSheet = true
             }
             .buttonStyle(.borderedProminent)
             Spacer()
         }
         .padding()
+        .sheet(isPresented: $openSheet, content: {
+            SafariBrowser(url: $searchURL)
+        })
     }
 }
 
