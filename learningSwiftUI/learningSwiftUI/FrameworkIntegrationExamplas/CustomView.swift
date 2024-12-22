@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct CustomView: View {
+    
+    @State private var inputText: String = "Initial Text"
+    
     var body: some View {
         VStack {
-            MyCustomView()
-                .frame(width: 200, height: 200)
-                .padding()
-            Spacer()
+            HStack {
+                Text(inputText)
+                Spacer()
+                Button("Clear") {
+                    inputText = "" // change the state property, representable view (MyTextView) binding this update the MyTextView UI
+                }
+            }
+            MyTextView(input: $inputText)
+//            MyCustomView()
+//                .frame(width: 200, height: 200)
+//                .padding()
+//            Spacer()
         }
+        .padding()
     }
 }
 
