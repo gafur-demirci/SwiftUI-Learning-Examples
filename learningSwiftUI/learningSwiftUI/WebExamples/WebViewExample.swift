@@ -10,13 +10,23 @@ import SwiftUI
 struct WebViewExample: View {
     
     @Environment(\.openURL) var openURL
-    @State private var url = "https://www.softtech.com.tr"
+    @State private var url = ""
     
     var body: some View {
         VStack {
+            TextField("Insert URL", text: $url)
+                .textFieldStyle(.roundedBorder)
+                .autocapitalization(.none)
+                .autocorrectionDisabled(true)
             Button("Open URL") {
-                if let url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                    openURL(URL(string: url)!)
+                if !url.isEmpty {
+                    var components = URLComponents(string: url)
+                    components?.scheme = "https"
+                    if let newURL = components?.string {
+                        if let isValidURL = newURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                            openURL(URL(string: isValidURL)!)
+                        }
+                    }
                 }
             }
             .buttonStyle(.borderedProminent)
