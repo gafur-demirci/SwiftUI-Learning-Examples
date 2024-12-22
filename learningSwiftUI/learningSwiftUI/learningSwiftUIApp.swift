@@ -54,8 +54,9 @@ struct learningSwiftUIApp: App {
 //                        print("Scene is background")
 //                    }
 //                }
-            SingletonView()
-                .environment(appData)
+//            SingletonView()
+//                .environment(appData)
+            WebViewExample()
                 
         }
     }
