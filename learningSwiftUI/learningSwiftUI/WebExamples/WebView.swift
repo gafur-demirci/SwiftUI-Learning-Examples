@@ -10,6 +10,9 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     @Binding var url: String
+    @Binding var back: Bool
+    @Binding var forward: Bool
+    
     let view: WKWebView = WKWebView()
     
     func makeUIView(context: Context) -> WKWebView {
@@ -34,21 +37,39 @@ struct WebView: UIViewRepresentable {
         }
     }
     
+    func goBack() {
+        view.goBack()
+    }
+    
+    func goForward() {
+        view.goForward()
+    }
+    
+    func refresh() {
+        view.reload()
+    }
+    
     func makeCoordinator() -> CoordinatorWebView {
-        return CoordinatorWebView(input: $url)
+        return CoordinatorWebView(url: $url, back: $back, forward: $forward)
     }
 }
 
 class CoordinatorWebView: NSObject, WKNavigationDelegate {
-    @Binding var input: String
+    @Binding var url: String
+    @Binding var backDisabled: Bool
+    @Binding var forwordDisabled: Bool
     
-    init(input: Binding<String>) {
-        self._input = input
+    init(url: Binding<String>, back: Binding<Bool>, forward: Binding<Bool>) {
+        self._url = url
+        self._backDisabled = back
+        self._forwordDisabled = forward
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let webURL = webView.url {
-            input = webURL.absoluteString
+            url = webURL.absoluteString
+            backDisabled = !webView.canGoBack
+            forwordDisabled = !webView.canGoForward
         }
     }
 }
