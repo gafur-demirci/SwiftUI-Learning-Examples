@@ -23,8 +23,9 @@ struct MediaViewExample: View {
                 PhotosPicker(selection: $selected, matching: .images, photoLibrary: .shared()) {
                     Text("Select a photo")
                 }
-                .padding()
                 .buttonStyle(.borderedProminent)
+                .photosPickerStyle(.inline)
+                .frame(height: 300)
             }
             .onChange(of: selected, initial: false) { old, item in
                 Task(priority: .background) {
