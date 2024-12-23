@@ -10,10 +10,12 @@ import SwiftUI
 struct WebViewExample: View {
     
     @State private var searchURL: URL = URL(string: "https://www.softtech.com.tr")!
-    @State private var openSheet: Bool = false
-    @State private var disableButton: Bool = false
+//    @State private var openSheet: Bool = false
+//    @State private var disableButton: Bool = false
     
     var body: some View {
+        WebView(url: searchURL)
+        /*
         VStack {
             Button("Open Browser") {
                 openSheet = true
@@ -26,6 +28,7 @@ struct WebViewExample: View {
         .sheet(isPresented: $openSheet, content: {
             SafariBrowser(disable: $disableButton ,url: $searchURL)
         })
+         */
     }
 }
 
