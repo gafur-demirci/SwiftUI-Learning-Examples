@@ -26,6 +26,7 @@ struct MediaViewExample: View {
                 .buttonStyle(.borderedProminent)
                 .photosPickerStyle(.inline)
                 .frame(height: 300)
+                .photosPickerDisabledCapabilities([.collectionNavigation])
             }
             .onChange(of: selected, initial: false) { old, item in
                 Task(priority: .background) {
