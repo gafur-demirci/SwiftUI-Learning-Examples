@@ -57,7 +57,7 @@ struct learningSwiftUIApp: App {
 //            SingletonView()
 //                .environment(appData)
             WebViewExample()
-                
+                .environment(WebData())                
         }
     }
 }
