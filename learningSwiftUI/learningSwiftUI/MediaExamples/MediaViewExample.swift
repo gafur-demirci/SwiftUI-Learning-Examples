@@ -10,35 +10,41 @@ import PhotosUI
 
 struct MediaViewExample: View {
     
-    @State private var selected: PhotosPickerItem?
-    @State private var picture: UIImage?
+    @Environment(MediaData.self) private var mediaData
+    
+    let guides = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Image(uiImage: picture ?? UIImage(named: "nocover")!)
-                    .resizable()
-                    .scaledToFill()
-                Spacer()
-                PhotosPicker(selection: $selected, matching: .images, photoLibrary: .shared()) {
-                    Text("Select a photo")
-                }
-                .buttonStyle(.borderedProminent)
-                .photosPickerStyle(.inline)
-                .frame(height: 300)
-                .photosPickerDisabledCapabilities([.collectionNavigation])
-            }
-            .onChange(of: selected, initial: false) { old, item in
-                Task(priority: .background) {
-                    if let data = try? await item?.loadTransferable(type: Data.self) {
-                        picture = UIImage(data: data)
+        VStack {
+            ScrollView {
+                LazyVGrid(columns: guides) {
+                    ForEach(mediaData.listPictures) { image in
+                        Image(uiImage: image.image)
+                            .resizable()
+                            .scaledToFit()
                     }
                 }
             }
+            .padding()
+            Spacer()
+            PhotosPicker(selection: Bindable(mediaData).selected, maxSelectionCount: 4, selectionBehavior: .continuous, matching: .images, photoLibrary: .shared(), label: {
+                Text("Select Photos")
+            })
+            .photosPickerStyle(.inline)
+            .photosPickerDisabledCapabilities(.selectionActions)
+        }
+        .onChange(of: mediaData.selected, initial: false) { old, items in
+                mediaData.removeDeselectedItems()
+                mediaData.addSelectedItems()
         }
     }
 }
 
 #Preview {
     MediaViewExample()
+        .environment(MediaData())
 }
