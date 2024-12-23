@@ -8,7 +8,7 @@
 import SwiftUI
 import Observation
 
-@Observable class WebData {
+@Observable class WebData: NSObject, URLSessionTaskDelegate {
     var webContent: String = ""
     var buttonDisabled: Bool = false
     
@@ -19,7 +19,7 @@ import Observation
         let webURL = URL(string: "https://www.yahoo.com")
         
         do {
-            let (data, response) = try await session.data(from: webURL!)
+            let (data, response) = try await session.data(from: webURL!, delegate: self)
             if let resp = response as? HTTPURLResponse {
                 let statusCode = resp.statusCode
                 if statusCode == 200 {
@@ -28,7 +28,6 @@ import Observation
                             webContent = content
                             buttonDisabled = false
                         }
-                        print(content)
                     } else {
                         print("Error: Couldn't decode data \(statusCode)")
                     }
@@ -37,5 +36,10 @@ import Observation
         } catch {
             print("Error: \(error)")
         }
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest) async -> URLRequest? {
+        print(request.url?.absoluteString ?? "No URL")
+        return request
     }
 }
