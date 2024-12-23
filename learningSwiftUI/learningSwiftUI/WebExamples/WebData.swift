@@ -8,38 +8,43 @@
 import SwiftUI
 import Observation
 
-@Observable class WebData: NSObject, URLSessionTaskDelegate {
-    var webContent: String = ""
-    var buttonDisabled: Bool = false
+struct Post: Codable, Identifiable {
+    let id: Int
+    let userId: Int
+    let title: String
+    let body: String
+}
+
+@Observable class WebData {
+    var listOfPosts: [Post] = []
     
-    func loadWeb() async {
-        buttonDisabled = true
-        
+    init() {
+        Task(priority: .high) {
+            await loadJSON()
+        }
+    }
+    
+    func loadJSON() async {
         let session = URLSession.shared
-        let webURL = URL(string: "https://www.yahoo.com")
+        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")
         
         do {
-            let (data, response) = try await session.data(from: webURL!, delegate: self)
+            let (data, response) = try await session.data(from: url!)
             if let resp = response as? HTTPURLResponse {
-                let statusCode = resp.statusCode
-                if statusCode == 200 {
-                    if let content = String(data: data, encoding: String.Encoding.utf8) {
+                let status = resp.statusCode
+                if status == 200 {
+                    let decoder = JSONDecoder()
+                    if let posts = try? decoder.decode([Post].self, from: data) {
                         await MainActor.run {
-                            webContent = content
-                            buttonDisabled = false
+                            listOfPosts = posts
                         }
                     } else {
-                        print("Error: Couldn't decode data \(statusCode)")
+                        print("Error: \(status)")
                     }
                 }
             }
         } catch {
             print("Error: \(error)")
         }
-    }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest) async -> URLRequest? {
-        print(request.url?.absoluteString ?? "No URL")
-        return request
     }
 }

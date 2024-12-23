@@ -13,15 +13,17 @@ struct WebViewExample: View {
     
     var body: some View {
         VStack {
-            Button("Load Web") {
-                Task(priority: .high) {
-                    await webData.loadWeb()
+            List {
+                ForEach(webData.listOfPosts) { post in
+                    VStack(alignment: .leading) {
+                        Text(post.title)
+                            .bold()
+                        Text(post.body)
+                    }
+                    .padding(5)
                 }
             }
-            .disabled(webData.buttonDisabled)
-            Text("Total Characters: \(webData.webContent.count)")
-                .padding()
-            Spacer()
+            .listStyle(.plain)
         }
         .padding()
     }
