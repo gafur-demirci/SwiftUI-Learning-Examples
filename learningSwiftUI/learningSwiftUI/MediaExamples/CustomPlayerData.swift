@@ -53,6 +53,10 @@ class PlayerViewData: NSObject {
                 self.progress = CGFloat(position)
             }
         })
+        
+        Task(priority: .background) {
+            await rewindVideo()
+        }
     }
     
     func playVideo() {
@@ -63,6 +67,19 @@ class PlayerViewData: NSObject {
             } else {
                 viewData.player?.play()
                 playing = true
+            }
+        }
+    }
+    
+    func rewindVideo() async {
+        let center = NotificationCenter.default
+        let name = NSNotification.Name.AVPlayerItemDidPlayToEndTime
+        for await _ in center.notifications(named: name, object: nil) {
+            if let finished = await viewData.playerItem?.seek(to: CMTime.zero), finished {
+                await MainActor.run {
+                    playing = false
+                    progress = 0
+                }
             }
         }
     }
