@@ -15,7 +15,6 @@ class ImageData: NSObject, ObservableObject {
 struct MediaViewExample: View {
     
     @ObservedObject var imageData: ImageData = ImageData()
-    @State private var showAlert: Bool = false
     var ImagePickerView: ImagePicker!
     
     init() {
@@ -26,27 +25,15 @@ struct MediaViewExample: View {
         NavigationStack(path: $imageData.path) {
             VStack {
                 HStack {
-                    Button("Share Picture"){
-                        showAlert = true
+                    if let picture = imageData.picture {
+                        let photo = Image(uiImage: picture)
+                        ShareLink("Share Picture", item: photo, preview: SharePreview("Photo", image: photo))
                     }
-                    .disabled(imageData.picture == nil ? true : false)
                     Spacer()
                     NavigationLink("Get Picture", value: "Open Picker")
                 }
                 .navigationDestination(for: String.self, destination: { _ in
                     ImagePickerView
-                })
-                .alert("Save Picture", isPresented: $showAlert, actions: {
-                    Button("Cancel", role: .cancel, action: {
-                        showAlert = false
-                    })
-                    Button("Yes", role: .none, action: {
-                        if let picture = imageData.picture {
-                            UIImageWriteToSavedPhotosAlbum(picture, nil, nil, nil)
-                        }
-                    })
-                }, message: {
-                    Text("Do you want to store the picture in the Photos Library?")
                 })
                 Image(uiImage: imageData.picture ?? UIImage(named: "nocover")!)
                     .resizable()
