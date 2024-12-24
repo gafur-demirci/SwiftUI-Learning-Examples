@@ -15,6 +15,9 @@ struct VideoViewExample: View {
     var body: some View {
         if videoData.player != nil {
             VideoPlayer(player: videoData.player!)
+                .onAppear {
+                    videoData.player?.play()
+                }
                 .ignoresSafeArea()
         } else {
             Text("Video not available")
