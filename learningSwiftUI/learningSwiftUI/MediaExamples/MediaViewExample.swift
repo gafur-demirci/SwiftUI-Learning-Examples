@@ -6,45 +6,32 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct MediaViewExample: View {
     
-    @Environment(MediaData.self) private var mediaData
-    
-    let guides = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
+    @State private var path = NavigationPath()
+    @State private var picture: UIImage?
+
     var body: some View {
-        VStack {
-            ScrollView {
-                LazyVGrid(columns: guides) {
-                    ForEach(mediaData.listPictures) { image in
-                        Image(uiImage: image.image)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                }
-            }
-            .padding()
-            Spacer()
-            PhotosPicker(selection: Bindable(mediaData).selected, maxSelectionCount: 4, selectionBehavior: .continuous, matching: .images, photoLibrary: .shared(), label: {
-                Text("Select Photos")
-            })
-            .photosPickerStyle(.inline)
-            .photosPickerDisabledCapabilities(.selectionActions)
-        }
-        .onChange(of: mediaData.selected, initial: false) { old, items in
-                mediaData.removeDeselectedItems()
-                mediaData.addSelectedItems()
-        }
+       NavigationStack(path: $path) {
+          VStack {
+             HStack {
+                Spacer()
+                NavigationLink("Get Picture", value: "Open Picker")
+             }.navigationDestination(for: String.self, destination: { _ in
+                ImagePicker(path: $path, picture: $picture)
+             })
+             Image(uiImage: picture ?? UIImage(named: "nocover")!)
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .clipped()
+             Spacer()
+          }.padding()
+       }.statusBarHidden()
     }
 }
 
 #Preview {
     MediaViewExample()
-        .environment(MediaData())
 }
