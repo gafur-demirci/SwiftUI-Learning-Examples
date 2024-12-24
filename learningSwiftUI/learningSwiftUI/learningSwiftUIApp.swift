@@ -62,8 +62,10 @@ struct learningSwiftUIApp: App {
 //                .environment(MediaData())
 //            CustomCameraView()
 //                .environment(CustomCameraData())
-            VideoViewExample()
-                .environment(VideoData())
+//            VideoViewExample()
+//                .environment(VideoData())
+            CustomVideoView()
+                .environment(CustomPlayerData())
         }
     }
 }

@@ -10,18 +10,19 @@ import Observation
 import AVFoundation
 
 class PlayerViewData: NSObject {
-    @Published var player: AVPlayer?
-    @Published var playerItem: AVPlayerItem?
+    @Published var player: AVQueuePlayer?
+    @Published var playerItem: AVPlayerItem!
+    @Published var playerItemSecond: AVPlayerItem!
     @Published var playerObservation: NSKeyValueObservation?
     @Published var playerLayer: AVPlayerLayer?
     
-    //    func setObserver() {
-    //        playerObservation = playerItem?.observe(\.status, options: [.new], changeHandler: { item, value in
-    //                if item.status == .readyToPlay {
-    //                    self.player?.play()
-    //            }
-    //        })
-    //    }
+    func setObserver() {
+        playerObservation = playerItem?.observe(\.status, options: [.new], changeHandler: { item, value in
+            if item.status == .readyToPlay {
+                self.player?.play()
+            }
+        })
+    }
 }
 
 @Observable class CustomPlayerData {
@@ -38,25 +39,32 @@ class PlayerViewData: NSObject {
         
         let bundle = Bundle.main
         let url = bundle.url(forResource: "videotrees", withExtension: "mp4")
+        let secondUrl = bundle.url(forResource: "videobeaches", withExtension: "mp4")
         
         let asset = AVURLAsset(url: url!)
+        let secondAsset = AVURLAsset(url: secondUrl!)
+        
         viewData.playerItem = AVPlayerItem(asset: asset)
-        viewData.player = AVPlayer(playerItem: viewData.playerItem)
+        viewData.playerItemSecond = AVPlayerItem(asset: secondAsset)
+        viewData.player = AVQueuePlayer(items: [viewData.playerItem, viewData.playerItemSecond])
+//        viewData.player = AVPlayer(playerItem: viewData.playerItem)
         
         viewData.playerLayer = customVideoView.view.layer as? AVPlayerLayer
         viewData.playerLayer?.player = viewData.player
         
-        let interval = CMTime(value: 1, timescale: 2)
-        viewData.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { time in
-            if let duration = self.viewData.playerItem?.duration {
-                let position = time.seconds / duration.seconds
-                self.progress = CGFloat(position)
-            }
-        })
+        viewData.setObserver()
         
-        Task(priority: .background) {
-            await rewindVideo()
-        }
+//        let interval = CMTime(value: 1, timescale: 2)
+//        viewData.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { time in
+//            if let duration = self.viewData.playerItem?.duration {
+//                let position = time.seconds / duration.seconds
+//                self.progress = CGFloat(position)
+//            }
+//        })
+//        
+//        Task(priority: .background) {
+//            await rewindVideo()
+//        }
     }
     
     func playVideo() {
