@@ -73,7 +73,12 @@ struct learningSwiftUIApp: App {
         }
         #if os(macOS)
         .commands {
-            ImportFromDevicesCommands()
+            CommandGroup(after: .newItem, addition: {
+                Button("Option 1") {
+                    print("This is option 1")
+                }
+                .disabled(appData.inputMessage.isEmpty)
+            })
         }
         #endif
     }

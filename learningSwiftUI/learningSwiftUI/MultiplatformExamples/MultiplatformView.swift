@@ -7,45 +7,21 @@
 
 import SwiftUI
 
-#if os(macOS)
-struct ImageRepresentation: Transferable {
-    let image: NSImage
-    
-    static var transferRepresentation: some TransferRepresentation {
-        DataRepresentation(importedContentType: .jpeg, importing: { data in
-            if let newImage = NSImage(data: data) {
-                return ImageRepresentation(image: newImage)
-            } else {
-                return ImageRepresentation(image: NSImage(named: "nocover")!)
-            }
-        })
-    }
-}
-#endif
-
 struct MultiplatformView: View {
     
-    @State private var MyPicture = Image("nocover")
+    @Environment(MacData.self) private var appData
     
     var body: some View {
         VStack {
-            MyPicture
-                .resizable()
-                .scaledToFit()
+            TextField("Insert your name", text: Bindable(appData).inputMessage)
+            Spacer()
         }
+        .padding()
         .frame(width: 500, height: 350)
-        #if os(macOS)
-        .importableFromServices(for: ImageRepresentation.self, action: {elements in
-            if let value = elements.first {
-                MyPicture = Image(nsImage: value.image)
-                return true
-            }
-            return false
-        })
-        #endif
     }
 }
 
 #Preview {
     MultiplatformView()
+        .environment(MacData())
 }

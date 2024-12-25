@@ -10,4 +10,5 @@ import Observation
 
 @Observable class MacData {
     var selectedOption: Int = 1
+    var inputMessage: String = ""
 }
