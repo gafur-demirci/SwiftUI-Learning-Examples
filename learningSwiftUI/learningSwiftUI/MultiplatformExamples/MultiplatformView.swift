@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct MultiplatformView: View {
+    
+    @State private var visibility: NavigationSplitViewVisibility = .automatic
+    /** Bir file'ın sadece belli platformlarda build olması isteniyorsa Build Phases'ta Compile Sources içerisinde ilgili file için düzenleme yapılmalıdır.*/
     var body: some View {
-        VStack {
-            Text("Mac App!")
-            #if os(macOS)
-                .foregroundStyle(.red)
-            #else
-                .foregroundStyle(.green)
-            #endif
-        }
-        .frame(width: 500, height: 350)
+        NavigationSplitView(columnVisibility: $visibility, sidebar: {
+           MenuView()
+        }, detail: {
+           #if os(macOS)
+              MacDetailView()
+           #else
+              MobileDetailView()
+           #endif
+        })
     }
 }
 
