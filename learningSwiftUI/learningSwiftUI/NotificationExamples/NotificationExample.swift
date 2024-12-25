@@ -8,6 +8,7 @@
 import SwiftUI
 import UserNotifications
 
+#if os(iOS)
 struct NotificationExample: View {
     
     @Environment(NotificationData.self) private var notificationData
@@ -101,3 +102,4 @@ struct NotificationExample: View {
     NotificationExample()
         .environment(NotificationData())
 }
+#endif
