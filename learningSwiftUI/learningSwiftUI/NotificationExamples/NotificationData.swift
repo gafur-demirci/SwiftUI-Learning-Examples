@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 @Observable class NotificationData: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     
     var showValue: String = ""
@@ -78,3 +79,4 @@ import SwiftUI
     }
     */
 }
+#endif
