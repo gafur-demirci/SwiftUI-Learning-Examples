@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct BookDetailView: View {
     
     @Environment(ApplicationData.self) private var appData
@@ -50,3 +51,4 @@ struct BookDetailView: View {
     }
     
 }
+#endif
