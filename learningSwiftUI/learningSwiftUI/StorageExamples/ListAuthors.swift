@@ -22,11 +22,13 @@ struct ListAuthors: View {
           appData.viewPath.removeLast()
        }
        .toolbar {
+           #if os(iOS)
           ToolbarItem(placement: .navigationBarTrailing) {
              NavigationLink(value: "Add Author", label: {
                 Image(systemName: "plus")
              })
           }
+           #endif
        }
     }
 }
