@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct MyViewController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> DetailViewController {
         let controller = DetailViewController()
@@ -15,3 +15,4 @@ struct MyViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
 }
+#endif
