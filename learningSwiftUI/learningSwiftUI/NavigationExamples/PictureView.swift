@@ -20,6 +20,7 @@ struct PictureView: View {
         .navigationTitle(Text("Cover"))
         .navigationBarBackButtonHidden()
         .toolbar {
+            #if os(iOS)
             ToolbarItem(placement: .topBarLeading, content: {
                 Button("Go Back") {
                     appData.viewPath.removeLast()
@@ -30,6 +31,7 @@ struct PictureView: View {
                     appData.viewPath = NavigationPath()
                 }
             })
+            #endif
         }
     }
 }
