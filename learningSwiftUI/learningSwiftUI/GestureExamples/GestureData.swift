@@ -8,7 +8,7 @@
 import SwiftUI
 import Observation
 import UniformTypeIdentifiers
-
+#if os(iOS)
 struct PictureRepresentation: Identifiable, Codable, Transferable {
     var id = UUID()
     var image: Data
@@ -33,3 +33,4 @@ extension UTType {
         ]
     }
 }
+#endif
