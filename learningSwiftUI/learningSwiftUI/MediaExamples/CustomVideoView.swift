@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct CustomVideoView: View {
     
     @Environment(CustomPlayerData.self ) private var playerData
@@ -45,3 +45,4 @@ struct CustomVideoView: View {
     CustomVideoView()
         .environment(CustomPlayerData())
 }
+#endif
