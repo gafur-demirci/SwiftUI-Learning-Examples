@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SafariServices
-
+#if os(iOS)
 struct SafariBrowser: UIViewControllerRepresentable {
     @Binding var disable: Bool
     @Binding var url: URL
@@ -40,3 +40,4 @@ class SafariBrowserCoordinator: NSObject, SFSafariViewControllerDelegate {
         disableCoordinator = true
     }
 }
+#endif
