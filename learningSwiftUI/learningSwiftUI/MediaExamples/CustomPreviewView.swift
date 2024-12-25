@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AVFoundation
-
+#if os(iOS)
 class CustomPreviewView: UIView {
     // return video layer
     override class var layerClass: AnyClass {
@@ -24,3 +24,4 @@ struct CustomPreview: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: Context) { }
 }
+#endif
