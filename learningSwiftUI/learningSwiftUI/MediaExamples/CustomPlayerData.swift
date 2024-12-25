@@ -29,7 +29,7 @@ class PlayerViewData: NSObject {
     
     var playing: Bool = false
     var progress: CGFloat = 0
-    
+    #if os(iOS)
     @ObservationIgnored var customVideoView: PlayerView!
     @ObservationIgnored var viewData: PlayerViewData
     
@@ -66,7 +66,7 @@ class PlayerViewData: NSObject {
 //            await rewindVideo()
 //        }
     }
-    
+
     func playVideo() {
         if viewData.playerItem?.status == .readyToPlay {
             if playing {
@@ -91,4 +91,5 @@ class PlayerViewData: NSObject {
             }
         }
     }
+#endif
 }
