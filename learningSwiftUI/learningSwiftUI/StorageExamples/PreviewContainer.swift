@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-
+#if os(iOS)
 class PreviewContainer {
     @MainActor
     static let container: ModelContainer = {
@@ -41,4 +41,4 @@ class PreviewContainer {
         }
     }
 }
-
+#endif
