@@ -14,10 +14,12 @@ struct SwiftDataApp: App {
 
     var body: some Scene {
         WindowGroup {
+            #if os(iOS)
             SwiftDataExample()
                 .environment(appData)
                 .modelContainer(
                     for: [MineBook.self, Author.self], inMemory: true)
+            #endif
         }
     }
 }
