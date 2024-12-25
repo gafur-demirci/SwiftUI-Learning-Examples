@@ -15,6 +15,7 @@ struct learningSwiftUIApp: App {
 //    @State private var appData = ApplicationData()
 //    @Environment(\.scenePhase) var scenePhase
     @State private var appData = MacData()
+    @FocusedValue(\.address) var addressValue: String?
     
     var body: some Scene {
         WindowGroup {
@@ -77,7 +78,7 @@ struct learningSwiftUIApp: App {
                 Button("Option 1") {
                     print("This is option 1")
                 }
-                .disabled(appData.inputMessage.isEmpty)
+                .disabled(addressValue == nil)
             })
         }
         #endif

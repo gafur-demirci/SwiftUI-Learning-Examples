@@ -14,6 +14,10 @@ struct MultiplatformView: View {
     var body: some View {
         VStack {
             TextField("Insert your name", text: Bindable(appData).inputMessage)
+                .padding()
+            TextField("Insert Address", text: Bindable(appData).inputAddress)
+                .padding([.leading, .trailing])
+                .focusedValue(\.address, appData.inputAddress)
             Spacer()
         }
         .padding()

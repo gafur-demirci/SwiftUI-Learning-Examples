@@ -8,7 +8,19 @@
 import SwiftUI
 import Observation
 
+struct AddressKey: FocusedValueKey {
+    typealias Value = String
+}
+
+extension FocusedValues {
+    var address: AddressKey.Value? {
+        get { self[AddressKey.self] }
+        set { self[AddressKey.self] = newValue }
+    }
+}
+
 @Observable class MacData {
     var selectedOption: Int = 1
     var inputMessage: String = ""
+    var inputAddress: String = ""
 }
