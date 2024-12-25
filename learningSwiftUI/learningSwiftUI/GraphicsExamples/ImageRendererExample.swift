@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct ImageRendererExample: View {
     
     @State private var pattern: UIImage?
@@ -44,3 +44,4 @@ struct NewPictureView: View {
 #Preview {
     ImageRendererExample()
 }
+#endif
