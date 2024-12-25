@@ -33,11 +33,13 @@ struct DetailView: View {
         .navigationTitle(Text("Book"))
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            #if os(iOS)
             ToolbarItem(placement: .topBarLeading, content: {
                 Button("Go Back") {
                     appData.viewPath.removeLast()
                 }
             })
+            #endif
         }
     }
 }
