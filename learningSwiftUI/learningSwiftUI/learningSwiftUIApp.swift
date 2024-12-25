@@ -71,15 +71,11 @@ struct learningSwiftUIApp: App {
         }
         #if os(macOS)
         .commands {
-            CommandMenu("Options") {
-                Button("Open Settings") {
-                    print("This is settings option")
+            CommandGroup(after: .newItem, addition: {
+                Button("Option 1") {
+                    print("This is option 1")
                 }
-                Button("Option 2") {
-                    print("This is settings option 2")
-                }
-                .keyboardShortcut("A", modifiers: [.shift])
-            }
+            })
         }
         #endif
     }
