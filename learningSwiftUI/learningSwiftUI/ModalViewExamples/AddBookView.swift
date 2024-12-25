@@ -31,9 +31,11 @@ struct AddBookView: View {
                 .textFieldStyle(.roundedBorder)
             TextField("Insert Author", text: $authorInput)
                 .textFieldStyle(.roundedBorder)
+            #if os(iOS)
             TextField("Insert Year", text: $yearInput)
                 .textFieldStyle(.roundedBorder)
                 .keyboardType(.numbersAndPunctuation)
+            #endif
             Button("Save") {
                 storeBook()
                 dismiss()
