@@ -14,6 +14,7 @@ struct learningSwiftUIApp: App {
 //    @State var appData = SingletonData.shared
 //    @State private var appData = ApplicationData()
 //    @Environment(\.scenePhase) var scenePhase
+    @State private var appData = MacData()
     
     var body: some Scene {
         WindowGroup {
@@ -68,13 +69,15 @@ struct learningSwiftUIApp: App {
 //                .environment(CustomPlayerData())
 //            ColorPickerView()
             MultiplatformView()
+                .environment(appData)
         }
         #if os(macOS)
         .commands {
-            CommandGroup(replacing: .newItem, addition: { })
             CommandGroup(after: .newItem, addition: {
-                Button("Option 1") {
-                    print("This is option 1")
+                Picker("Options", selection: $appData.selectedOption) {
+                    Text("iOS").tag(1)
+                    Text("macOS").tag(2)
+                    Text("tvOS").tag(3)
                 }
             })
         }
