@@ -4,7 +4,7 @@
 //
 //  Created by Abdulgafur Demirci on 21.12.2024.
 //
-
+#if os(iOS)
 import UIKit
 
 class CustomSceneDelegate: NSObject, UIWindowSceneDelegate {
@@ -13,3 +13,4 @@ class CustomSceneDelegate: NSObject, UIWindowSceneDelegate {
        print("Scene was created")
     }
 }
+#endif
