@@ -10,10 +10,11 @@ import SwiftUI
 struct MultiplatformView: View {
     var body: some View {
         VStack {
-            #if os(macOS)
             Text("Mac App!")
+            #if os(macOS)
+                .foregroundStyle(.red)
             #else
-            Text("Mobile App!")
+                .foregroundStyle(.green)
             #endif
         }
         .frame(width: 500, height: 350)
