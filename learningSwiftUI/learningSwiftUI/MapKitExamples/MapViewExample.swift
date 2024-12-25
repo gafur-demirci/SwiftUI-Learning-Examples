@@ -7,7 +7,9 @@
 
 import SwiftUI
 import MapKit
+#if os(iOS)
 import CoreLocationUI
+#endif
 
 struct MapViewExample: View {
     
@@ -25,10 +27,12 @@ struct MapViewExample: View {
             }
         }
         .safeAreaInset(edge: .bottom, content: {
+            #if os(iOS)
             LocationButton(.currentLocation) {
                 mapData.cameraPos = .userLocation(fallback: .automatic)
             }
             .padding()
+            #endif
         })
     }
 }
