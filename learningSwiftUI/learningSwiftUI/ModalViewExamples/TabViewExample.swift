@@ -20,8 +20,10 @@ struct TabViewExample: View {
                 .scaledToFit()
             }
         }
+        #if os(iOS)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
+        #endif
         /*
         TabView(selection: $selectedView) {
             MultipleViewsExample()
