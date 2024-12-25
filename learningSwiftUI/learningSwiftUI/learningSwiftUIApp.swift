@@ -78,6 +78,7 @@ struct learningSwiftUIApp: App {
                 Button("Option 2") {
                     print("This is settings option 2")
                 }
+                .keyboardShortcut("A", modifiers: [.shift])
             }
         }
         #endif
