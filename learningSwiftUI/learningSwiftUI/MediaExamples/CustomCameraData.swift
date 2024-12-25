@@ -18,6 +18,7 @@ class CustomViewData {
 }
 
 @Observable class CustomCameraData: NSObject, AVCapturePhotoCaptureDelegate {
+    #if os(iOS)
     var path = NavigationPath()
     var picture: UIImage?
     @ObservationIgnored var cameraView: CustomPreview!
@@ -115,4 +116,5 @@ class CustomViewData {
             path = NavigationPath()
         }
     }
+    #endif
 }
