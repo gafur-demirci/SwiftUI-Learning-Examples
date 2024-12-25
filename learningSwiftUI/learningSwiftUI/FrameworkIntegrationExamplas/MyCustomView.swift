@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct MyCustomView: UIViewRepresentable {
     // mandatory implemented func for UIViewRepresentable protocol
     func makeUIView(context: Context) -> some UIView {
@@ -19,3 +19,4 @@ struct MyCustomView: UIViewRepresentable {
         
     }
 }
+#endif
