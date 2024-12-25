@@ -30,7 +30,7 @@ class MineBook: Identifiable {
             return value
         }
     }
-    
+    #if os(iOS)
     var displayCover: UIImage {
         if let data = cover, let image = UIImage(data: data) {
             return image
@@ -38,4 +38,5 @@ class MineBook: Identifiable {
             return UIImage(named: "nocover")!
         }
     }
+    #endif
 }
