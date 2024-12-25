@@ -24,7 +24,9 @@ struct ModalViewExample: View {
 //                    }
             }
             .navigationTitle(Text("Books"))
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .inspector(isPresented: $presentInspector) {
                 InspectorViewExample()
                     .inspectorColumnWidth(min: 200, ideal: 250, max: 300)
