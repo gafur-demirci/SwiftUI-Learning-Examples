@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct ImagePicker: UIViewControllerRepresentable {
    @Binding var path: NavigationPath
    @Binding var picture: UIImage?
@@ -48,3 +48,4 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
       path = NavigationPath()
    }
 }
+#endif
