@@ -25,9 +25,11 @@ struct BooksView: View {
                 Text(book.title)
             })
         }
+        #if os(iOS)
         .listStyle(.grouped)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(selectedAuthor ?? "Undefined")
+        #endif
         /*
         List(appData.userData, selection: $selectedBook) { book in
             NavigationLink(value: book, label: {
