@@ -16,7 +16,9 @@ struct CustomView: View {
             VStack {
                 NavigationLink("Open UIKit View",
                                destination: {
+                    #if os(iOS)
                     MyViewController()
+                    #endif
                 })
                 .buttonStyle(.borderedProminent)
                 Spacer()
