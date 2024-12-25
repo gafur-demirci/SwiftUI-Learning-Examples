@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct GesturesExample: View {
     
     @Environment(GestureData.self) private var gestureData
@@ -45,3 +45,4 @@ struct GesturesExample: View {
     GesturesExample()
         .environment(GestureData())
 }
+#endif
