@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct MyTextView: UIViewRepresentable {
     @Binding var input: String
     
@@ -38,4 +39,4 @@ class CoordinatorTextView: NSObject, UITextViewDelegate {
         inputCoordinator = textView.text
     }
 }
-
+#endif
