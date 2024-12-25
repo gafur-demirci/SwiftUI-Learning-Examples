@@ -47,12 +47,14 @@ struct UserDefaultsExample: View {
             }
             .navigationTitle("Books")
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink("Settings", destination: {
                         UserSettingsView()
                     }
                 )
                 }
+                #endif
             }
         }
         /*
