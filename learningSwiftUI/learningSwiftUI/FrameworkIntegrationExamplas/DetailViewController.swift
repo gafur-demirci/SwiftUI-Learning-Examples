@@ -4,7 +4,7 @@
 //
 //  Created by Abdulgafur Demirci on 22.12.2024.
 //
-
+#if os(iOS)
 import UIKit
 
 class DetailViewController: UIViewController {
@@ -19,3 +19,4 @@ class DetailViewController: UIViewController {
         
         }
 }
+#endif
