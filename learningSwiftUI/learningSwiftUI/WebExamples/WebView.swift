@@ -7,7 +7,7 @@
 
 import SwiftUI
 import WebKit
-
+#if os(iOS)
 struct WebView: UIViewRepresentable {
     @Binding var url: String
     @Binding var back: Bool
@@ -73,3 +73,4 @@ class CoordinatorWebView: NSObject, WKNavigationDelegate {
         }
     }
 }
+#endif
