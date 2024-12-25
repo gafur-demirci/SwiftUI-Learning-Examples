@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct CustomCameraView: View {
     
     @Environment(CustomCameraData.self) private var cameraData
@@ -44,3 +45,4 @@ struct CustomCameraView: View {
     CustomCameraView()
         .environment(CustomCameraData())
 }
+#endif
