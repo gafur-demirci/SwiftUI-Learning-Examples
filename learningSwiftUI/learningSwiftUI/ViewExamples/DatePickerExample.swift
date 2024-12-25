@@ -15,7 +15,9 @@ struct DatePickerExample: View {
     
     var body: some View {
         VStack {
+            #if os(iOS)
             MultiDatePicker("Dates:", selection: $selectedDates)
+            #endif
             Spacer()
             Text(myDates)
 //            Text("Date: \(selectedDate.formatted(.dateTime.day().month()))")
