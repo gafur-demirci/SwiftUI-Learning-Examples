@@ -32,7 +32,9 @@ struct MultipleViewsExample: View {
                 })
             }
             .navigationTitle(Text("Books"))
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .navigationDestination(for: Book.self, destination: { book in
                 DetailView(book: book)
             })
