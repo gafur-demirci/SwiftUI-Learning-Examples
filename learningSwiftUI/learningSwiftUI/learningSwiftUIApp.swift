@@ -69,6 +69,18 @@ struct learningSwiftUIApp: App {
 //            ColorPickerView()
             MultiplatformView()
         }
+        #if os(macOS)
+        .commands {
+            CommandMenu("Options") {
+                Button("Open Settings") {
+                    print("This is settings option")
+                }
+                Button("Option 2") {
+                    print("This is settings option 2")
+                }
+            }
+        }
+        #endif
     }
 }
 
