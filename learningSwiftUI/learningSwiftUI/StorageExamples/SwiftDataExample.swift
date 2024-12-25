@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+#if os(iOS)
 struct SwiftDataExample: View {
     
     @Environment(ApplicationData.self) private var appData
@@ -202,3 +203,4 @@ struct MyBook: View {
         .environment(ApplicationData())
         .modelContainer(PreviewContainer.container)  // get previewCont data
 }
+#endif
