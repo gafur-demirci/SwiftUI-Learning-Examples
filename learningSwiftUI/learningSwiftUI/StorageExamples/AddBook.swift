@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+#if os(iOS)
 struct AddBook: View {
     @Environment(ApplicationData.self) private var appData
     @Environment(\.modelContext) var dbContext
@@ -85,3 +86,4 @@ struct AddBook: View {
         .environment(ApplicationData())
         .modelContainer(for: [MineBook.self], inMemory: true)
 }
+#endif
