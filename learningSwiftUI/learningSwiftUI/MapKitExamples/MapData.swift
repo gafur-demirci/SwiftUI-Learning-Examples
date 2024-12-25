@@ -59,7 +59,7 @@ class Coordinate {
         super.init()
         manager.delegate = self
     }
-    
+    #if os(iOS)
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkStatus()
     }
@@ -79,4 +79,5 @@ class Coordinate {
             isAuthorized = false
         }
     }
+    #endif
 }
