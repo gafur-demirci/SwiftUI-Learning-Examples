@@ -9,6 +9,7 @@ import SwiftUI
 import Observation
 import PhotosUI
 
+#if os(iOS)
 struct ItemsData: Identifiable {
     var id: String
     var image: UIImage
@@ -45,3 +46,4 @@ struct ItemsData: Identifiable {
         }
     }
 }
+#endif
