@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 
+#if os(iOS)
 class CustomPlayerView: UIView {
     override class var layerClass: AnyClass {
         return AVPlayerLayer.self
@@ -23,3 +24,4 @@ struct PlayerView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CustomPlayerView, context: Context) { }
 }
+#endif
