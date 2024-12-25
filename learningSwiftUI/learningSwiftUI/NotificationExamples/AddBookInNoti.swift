@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 struct AddBookInNoti: View {
     
     @Environment(NotificationData.self) private var notificationData
@@ -49,3 +49,4 @@ struct AddBookInNoti: View {
 #Preview {
     AddBookInNoti()
 }
+#endif
