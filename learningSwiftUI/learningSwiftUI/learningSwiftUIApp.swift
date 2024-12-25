@@ -73,13 +73,7 @@ struct learningSwiftUIApp: App {
         }
         #if os(macOS)
         .commands {
-            CommandGroup(after: .newItem, addition: {
-                Picker("Options", selection: $appData.selectedOption) {
-                    Text("iOS").tag(1)
-                    Text("macOS").tag(2)
-                    Text("tvOS").tag(3)
-                }
-            })
+            ImportFromDevicesCommands()
         }
         #endif
     }
