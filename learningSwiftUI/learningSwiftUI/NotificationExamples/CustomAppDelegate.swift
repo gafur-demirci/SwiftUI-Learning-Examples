@@ -4,8 +4,9 @@
 //
 //  Created by Abdulgafur Demirci on 21.12.2024.
 //
-
+#if os(iOS)
 import UIKit
+
 
 class CustomAppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,3 +23,4 @@ class CustomAppDelegate: NSObject, UIApplicationDelegate {
         return config
     }
 }
+#endif
