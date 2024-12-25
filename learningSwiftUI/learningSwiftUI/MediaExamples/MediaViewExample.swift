@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#if os(iOS)
 class ImageData: NSObject, ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
     @Published var picture: UIImage?
@@ -51,3 +51,4 @@ struct MediaViewExample: View {
 #Preview {
     MediaViewExample()
 }
+#endif
