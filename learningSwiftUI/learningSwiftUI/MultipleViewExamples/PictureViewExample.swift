@@ -27,7 +27,9 @@ struct PictureViewExample: View {
             }
             Spacer()
         }
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 
