@@ -9,7 +9,22 @@ import SwiftUI
 
 struct MacDetailView: View {
     var body: some View {
-       Text("Mac Detail View")
+        VStack {
+            Text("Mac Detail View")
+        }
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Button(action: {
+                    print("Adding Mac")
+                }, label: {
+                    Label("Add Mac", systemImage: "plus")
+                })
+            }
+        }
+        .navigationTitle("Mac Title")
+        #if os(macOS)
+        .navigationSubtitle("Mac Subtitle")
+        #endif
     }
 }
 
