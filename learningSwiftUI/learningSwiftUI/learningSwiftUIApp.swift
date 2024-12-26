@@ -76,6 +76,9 @@ struct learningSwiftUIApp: App {
         Window("My Window", id: "mywindow") {
             AuxiliaryView()
         }
+        .defaultSize(CGSize(width: 200, height: 200))
+        .defaultPosition(.bottomTrailing)
+        .commandsRemoved()
 //        .commands {
 //            CommandGroup(after: .newItem, addition: {
 //                Button("Option 1") {
