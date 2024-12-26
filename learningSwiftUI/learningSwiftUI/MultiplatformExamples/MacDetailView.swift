@@ -19,6 +19,7 @@ struct MacDetailView: View {
                 }, label: {
                     Label("Add Mac", systemImage: "plus")
                 })
+                .help("Add a new Mac")
             }
         }
         .navigationTitle("Mac Title")
