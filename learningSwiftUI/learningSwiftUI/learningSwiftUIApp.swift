@@ -16,6 +16,7 @@ struct learningSwiftUIApp: App {
 //    @Environment(\.scenePhase) var scenePhase
     @State private var appData = MacData()
     @FocusedValue(\.address) var addressValue: String?
+    @AppStorage("totalItems") var totalItems: Int = 0
     
     var body: some Scene {
         WindowGroup {
@@ -72,22 +73,30 @@ struct learningSwiftUIApp: App {
             MultiplatformView()
                 .environment(appData)
         }
-        #if os(macOS)
-        Window("My Window", id: "mywindow") {
-            AuxiliaryView()
+        Settings {
+            HStack {
+                Stepper("Total Items", value: $totalItems)
+                Text(String(totalItems))
+                    .font(.title.bold())
+            }
+            .frame(width: 200, height: 150)
         }
-        .defaultSize(CGSize(width: 200, height: 200))
-        .defaultPosition(.bottomTrailing)
-        .commandsRemoved()
-//        .commands {
-//            CommandGroup(after: .newItem, addition: {
-//                Button("Option 1") {
-//                    print("This is option 1")
-//                }
-//                .disabled(addressValue == nil)
-//            })
+//        #if os(macOS)
+//        Window("My Window", id: "mywindow") {
+//            AuxiliaryView()
 //        }
-        #endif
+//        .defaultSize(CGSize(width: 200, height: 200))
+//        .defaultPosition(.bottomTrailing)
+//        .commandsRemoved()
+////        .commands {
+////            CommandGroup(after: .newItem, addition: {
+////                Button("Option 1") {
+////                    print("This is option 1")
+////                }
+////                .disabled(addressValue == nil)
+////            })
+////        }
+//        #endif
     }
 }
 
