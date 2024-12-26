@@ -23,4 +23,9 @@ extension FocusedValues {
     var selectedOption: Int = 1
     var inputMessage: String = ""
     var inputAddress: String = ""
+    var foodList: [String]
+    
+    init() {
+        foodList = ["Pizza", "Pasta", "Salad","Steak","Chicken","Fish","Bread","Dessert","Snacks","Fruits","Vegetables","Beverages","Coffee","Tea","Juice"]
+    }
 }

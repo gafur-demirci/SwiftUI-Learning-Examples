@@ -8,27 +8,23 @@
 import SwiftUI
 
 struct MacDetailView: View {
+    
+    @Environment(MacData.self ) private var macData
+    
     var body: some View {
-        VStack {
-            Text("Mac Detail View")
-        }
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Button(action: {
-                    print("Adding Mac")
-                }, label: {
-                    Label("Add Mac", systemImage: "plus")
-                })
-                .help("Add a new Mac")
+        List {
+            ForEach(macData.foodList, id: \.self) { food in
+                Text(food)
             }
         }
-        .navigationTitle("Mac Title")
+        .navigationTitle("Food List")
         #if os(macOS)
-        .navigationSubtitle("Mac Subtitle")
+        .alternatingRowBackgrounds()
         #endif
     }
 }
 
 #Preview {
     MacDetailView()
+        .environment(MacData())
 }
