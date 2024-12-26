@@ -9,12 +9,21 @@ import SwiftUI
 
 struct MultiplatformView: View {
     
+    @Environment(\.openWindow) var openWindow
+    
     var body: some View {
-        NavigationSplitView(sidebar: {
-            MenuView()
-        }, detail: {
-            MacDetailView()
-        })
+        VStack {
+            Text("Hello, World!")
+            Button("Open Auxiliary Window") {
+                openWindow(id: "mywindow")
+            }
+        }
+        .frame(width: 500, height: 300)
+//        NavigationSplitView(sidebar: {
+//            MenuView()
+//        }, detail: {
+//            MacDetailView()
+//        })
     }
 }
 

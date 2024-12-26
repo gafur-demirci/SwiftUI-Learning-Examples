@@ -73,14 +73,17 @@ struct learningSwiftUIApp: App {
                 .environment(appData)
         }
         #if os(macOS)
-        .commands {
-            CommandGroup(after: .newItem, addition: {
-                Button("Option 1") {
-                    print("This is option 1")
-                }
-                .disabled(addressValue == nil)
-            })
+        Window("My Window", id: "mywindow") {
+            AuxiliaryView()
         }
+//        .commands {
+//            CommandGroup(after: .newItem, addition: {
+//                Button("Option 1") {
+//                    print("This is option 1")
+//                }
+//                .disabled(addressValue == nil)
+//            })
+//        }
         #endif
     }
 }
