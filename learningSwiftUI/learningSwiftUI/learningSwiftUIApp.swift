@@ -81,22 +81,46 @@ struct learningSwiftUIApp: App {
             }
             .frame(width: 200, height: 150)
         }
-//        #if os(macOS)
-//        Window("My Window", id: "mywindow") {
-//            AuxiliaryView()
-//        }
-//        .defaultSize(CGSize(width: 200, height: 200))
-//        .defaultPosition(.bottomTrailing)
-//        .commandsRemoved()
-////        .commands {
-////            CommandGroup(after: .newItem, addition: {
-////                Button("Option 1") {
-////                    print("This is option 1")
-////                }
-////                .disabled(addressValue == nil)
-////            })
-////        }
-//        #endif
+        #if os(macOS)
+        MenuBarExtra("My Control", systemImage: "phone") {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        NSApplication.shared.terminate(nil)
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                }
+                .padding()
+                Button("Option 1") {
+                    print("This is option 1")
+                }
+                .buttonStyle(.borderedProminent)
+                Button("Option 2") {
+                    print("This is option 2")
+                }
+                .buttonStyle(.borderedProminent)
+                Spacer()
+            }
+            .frame(width: 200, height: 180)
+        }
+        .menuBarExtraStyle(.window)
+        Window("My Window", id: "mywindow") {
+            AuxiliaryView()
+        }
+        .defaultSize(CGSize(width: 200, height: 200))
+        .defaultPosition(.bottomTrailing)
+        .commandsRemoved()
+        .commands {
+            CommandGroup(after: .newItem, addition: {
+                Button("Option 1") {
+                    print("This is option 1")
+                }
+                .disabled(addressValue == nil)
+            })
+        }
+        #endif
     }
 }
 
