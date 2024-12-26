@@ -26,6 +26,6 @@ extension FocusedValues {
     var foodList: [String]
     
     init() {
-        foodList = ["Pizza", "Pasta", "Salad","Steak","Chicken","Fish","Bread","Dessert","Snacks","Fruits","Vegetables","Beverages","Coffee","Tea","Juice"]
+        foodList = ["bagels", "brownies", "butter", "cheese", "coffee", "cookies", "donuts", "granola", "juice", "lemonade", "lettuce", "milk", "oatmeal", "potato", "tomato", "yogurt"]
     }
 }
