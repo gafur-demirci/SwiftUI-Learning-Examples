@@ -70,9 +70,12 @@ struct learningSwiftUIApp: App {
 //            CustomVideoView()
 //                .environment(CustomPlayerData())
 //            ColorPickerView()
-            MultiplatformView()
-                .environment(appData)
+//            MultiplatformView()
+//                .environment(appData)
+            LocalizedView()
+                .environment(\.locale,  Locale(identifier: "es"))
         }
+        #if os(macOS)
         Settings {
             HStack {
                 Stepper("Total Items", value: $totalItems)
@@ -81,7 +84,6 @@ struct learningSwiftUIApp: App {
             }
             .frame(width: 200, height: 150)
         }
-        #if os(macOS)
         MenuBarExtra("My Control", systemImage: "phone") {
             VStack {
                 HStack {

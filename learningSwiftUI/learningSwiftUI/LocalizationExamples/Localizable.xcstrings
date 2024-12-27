@@ -1,0 +1,270 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%lld x %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld x %2$lld"
+          }
+        }
+      }
+    },
+    "Active" : {
+
+    },
+    "Add Book" : {
+
+    },
+    "Add Value" : {
+
+    },
+    "Animate" : {
+
+    },
+    "Author" : {
+
+    },
+    "Authors" : {
+
+    },
+    "Back to List" : {
+
+    },
+    "Birthday" : {
+
+    },
+    "Book" : {
+
+    },
+    "Books" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Change Color" : {
+
+    },
+    "Cities" : {
+
+    },
+    "Close" : {
+
+    },
+    "Content Title" : {
+
+    },
+    "Controls" : {
+
+    },
+    "Corner Radius" : {
+
+    },
+    "Cover" : {
+
+    },
+    "Current value: %@" : {
+
+    },
+    "Dates:" : {
+
+    },
+    "Default Title" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Disabled" : {
+
+    },
+    "Edit Book" : {
+
+    },
+    "Email" : {
+
+    },
+    "Enabled" : {
+
+    },
+    "Error" : {
+
+    },
+    "Export Image" : {
+
+    },
+    "Food List" : {
+
+    },
+    "Food Menu" : {
+
+    },
+    "Get Picture" : {
+
+    },
+    "Go Back" : {
+
+    },
+    "Hello World!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hola Mundo!"
+          }
+        }
+      }
+    },
+    "Hello, World!" : {
+
+    },
+    "Information" : {
+
+    },
+    "Insert Address" : {
+
+    },
+    "Insert Author" : {
+
+    },
+    "Insert Name" : {
+
+    },
+    "Insert Title" : {
+
+    },
+    "Insert Year" : {
+
+    },
+    "Insert your name" : {
+
+    },
+    "Insert your Name" : {
+
+    },
+    "Inspector" : {
+
+    },
+    "Menu" : {
+
+    },
+    "Mobile Detail View" : {
+
+    },
+    "Move to Inbox" : {
+
+    },
+    "Name" : {
+
+    },
+    "OK" : {
+
+    },
+    "Open Confirmation Dialog" : {
+
+    },
+    "Open UIKit View" : {
+
+    },
+    "Option 1" : {
+
+    },
+    "Option 2" : {
+
+    },
+    "Option 3" : {
+
+    },
+    "Pause" : {
+
+    },
+    "Photo" : {
+
+    },
+    "Play" : {
+
+    },
+    "Position" : {
+
+    },
+    "Press this button when you need help" : {
+
+    },
+    "Products" : {
+
+    },
+    "Sales" : {
+
+    },
+    "Save" : {
+
+    },
+    "Save Anyway" : {
+
+    },
+    "Select" : {
+
+    },
+    "Select a Book" : {
+
+    },
+    "Select a Color" : {
+
+    },
+    "Select what you want to see" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Share Picture" : {
+
+    },
+    "Show Cover" : {
+
+    },
+    "Show Pictures" : {
+
+    },
+    "Show Popover" : {
+
+    },
+    "Show Year" : {
+
+    },
+    "Take Picture" : {
+
+    },
+    "The Author already exist" : {
+
+    },
+    "Title" : {
+
+    },
+    "Title: Trees at the park" : {
+
+    },
+    "Total" : {
+
+    },
+    "Values" : {
+
+    },
+    "Video not available" : {
+
+    },
+    "What do you wnat to do with the message?" : {
+
+    },
+    "X" : {
+
+    }
+  },
+  "version" : "1.0"
+}
