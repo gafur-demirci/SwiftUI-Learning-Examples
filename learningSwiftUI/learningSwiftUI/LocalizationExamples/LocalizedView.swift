@@ -9,14 +9,14 @@ import SwiftUI
 
 struct LocalizedView: View {
     
-    @State private var myText = String(localized: "Hello, World!")
+    @State private var counter: Int = 1
     
     var body: some View {
         VStack {
-            Text(myText)
+            Text("\(counter) Item")
                 .padding()
-            Button("Change Text") {
-                myText = String(localized: "Goodbye World!")
+            Button("Add Unit") {
+                counter += 1
             }
             Spacer()
         }
