@@ -50,6 +50,17 @@
     "Change Color" : {
 
     },
+    "Change Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar Texto"
+          }
+        }
+      }
+    },
     "Cities" : {
 
     },
@@ -110,7 +121,19 @@
     "Go Back" : {
 
     },
+    "Goodbye World!" : {
+      "comment" : "goodBye",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasta Luego Mundo!"
+          }
+        }
+      }
+    },
     "Hello World!" : {
+      "comment" : "hello",
       "extractionState" : "manual",
       "localizations" : {
         "es" : {
@@ -122,7 +145,14 @@
       }
     },
     "Hello, World!" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hola Mundo!"
+          }
+        }
+      }
     },
     "Information" : {
 

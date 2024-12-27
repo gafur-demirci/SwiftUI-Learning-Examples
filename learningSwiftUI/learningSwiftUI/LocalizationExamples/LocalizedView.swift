@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct LocalizedView: View {
+    
+    @State private var myText = String(localized: "Hello, World!")
+    
     var body: some View {
         VStack {
-            Text("Hello World!")
+            Text(myText)
                 .padding()
+            Button("Change Text") {
+                myText = String(localized: "Goodbye World!")
+            }
             Spacer()
         }
     }
@@ -19,9 +25,4 @@ struct LocalizedView: View {
 
 #Preview {
     LocalizedView()
-}
-
-#Preview {
-    LocalizedView()
-        .environment(\.locale,  Locale(identifier: "es"))
 }
