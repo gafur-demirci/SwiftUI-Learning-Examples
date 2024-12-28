@@ -43,6 +43,9 @@
     "Add Book" : {
 
     },
+    "Add Unit" : {
+
+    },
     "Add Value" : {
 
     },
@@ -129,7 +132,13 @@
     "Error" : {
 
     },
+    "Error Occured" : {
+
+    },
     "Export Image" : {
+
+    },
+    "First Item" : {
 
     },
     "Food List" : {
@@ -146,6 +155,7 @@
     },
     "Goodbye World!" : {
       "comment" : "goodBye",
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -261,6 +271,9 @@
     "Save Anyway" : {
 
     },
+    "Second Item" : {
+
+    },
     "Select" : {
 
     },
@@ -295,6 +308,9 @@
 
     },
     "The Author already exist" : {
+
+    },
+    "Third Item" : {
 
     },
     "Title" : {

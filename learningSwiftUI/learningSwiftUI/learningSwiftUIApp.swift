@@ -72,8 +72,9 @@ struct learningSwiftUIApp: App {
 //            ColorPickerView()
 //            MultiplatformView()
 //                .environment(appData)
-            LocalizedView()
-                .environment(\.locale,  Locale(identifier: "es"))
+//            LocalizedView()
+//                .environment(\.locale,  Locale(identifier: "es"))
+            CustomContainersView()
         }
         #if os(macOS)
         Settings {

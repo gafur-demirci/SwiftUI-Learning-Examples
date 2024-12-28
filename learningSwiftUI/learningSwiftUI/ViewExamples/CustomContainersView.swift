@@ -12,6 +12,7 @@ struct CustomContainersView: View {
         BoxListView {
             Text("First Item")
             Text("Second Item")
+                .showBorder(false)
             Text("Third Item")
         }
     }
