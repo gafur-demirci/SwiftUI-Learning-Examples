@@ -16,6 +16,7 @@ struct TipViewExamples: View {
         VStack {
             Button("Save") {
                 print("Action Performed")
+                tipButton.invalidate(reason: .actionPerformed)
             }
 //            TipView(tipButton)
             .popoverTip(tipButton)
@@ -23,9 +24,8 @@ struct TipViewExamples: View {
         .padding()
         .task {
             try? Tips.configure([
-                .displayFrequency(.immediate),
+                .displayFrequency(.daily),
             ])
-            Tips.showAllTipsForTesting()
         }
         Spacer()
     }
