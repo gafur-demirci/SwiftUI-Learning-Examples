@@ -200,5 +200,5 @@ struct CellBook: View {
 
 #Preview {
     ListViewExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

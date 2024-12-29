@@ -89,7 +89,7 @@ struct TabViewExample: View {
 #Preview {
     if #available(iOS 18.0, *) {
         TabViewExample()
-            .environment(ApplicationMyData())
+            .environment(ApplicationMyData.shared)
     } else {
         // Fallback on earlier versions
     }

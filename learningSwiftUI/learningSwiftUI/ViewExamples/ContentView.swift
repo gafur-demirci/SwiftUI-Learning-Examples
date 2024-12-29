@@ -48,5 +48,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

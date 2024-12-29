@@ -45,11 +45,12 @@ struct Employees: Identifiable {
 }
 
 
-@Observable class ApplicationMyData {
+@Observable class ApplicationMyData: @unchecked Sendable {
     
     @ObservationIgnored var userData: [Book] {
         didSet {
-            updateAuthors()
+//            updateAuthors()
+            filterValues(search: "")
         }
     }
     
@@ -78,6 +79,19 @@ struct Employees: Identifiable {
     
     var viewPath = NavigationPath()
     var selectedBook: Book? = nil
+    
+    func filterValues(search: String) {
+        if search.isEmpty {
+            filteredItems = []
+        } else {
+            let list = userData.filter({ item in
+                return item.title.localizedStandardContains(search)
+            })
+            filteredItems = list.sorted(by: { $0.title < $1.title })
+        }
+    }
+    
+    static let shared: ApplicationMyData = ApplicationMyData()
     /*
     func filterValues(search: String, scope: Scopes = .title) {
         if search.isEmpty {
@@ -91,7 +105,7 @@ struct Employees: Identifiable {
         }
     }
     */
-    
+    /*
     func filterValues(search: String, author: String = "") {
         if search.isEmpty && author.isEmpty {
             filteredItems = userData.sorted(by: { $0.title < $1.title })
@@ -109,8 +123,8 @@ struct Employees: Identifiable {
             filteredItems = list.sorted(by: { $0.title < $1.title })
         }
     }
-    
-    init() {
+    */
+    private init() {
         userData = [
             Book(title: "Steve Jobs", author: "Walter Isaacson", cover: "book1", year: 2011, selected: false),
             Book(title: "HTML5 for Masterminds", author: "J.D Gauchat", cover: "book2", year: 2017, selected: false),

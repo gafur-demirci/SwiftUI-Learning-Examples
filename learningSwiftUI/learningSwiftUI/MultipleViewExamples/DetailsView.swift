@@ -88,6 +88,6 @@ struct DetailSmall: View {
 
 
 #Preview {
-    DetailsView(book: ApplicationMyData().userData[2])
+    DetailsView(book: ApplicationMyData.shared.userData[2])
 //    DetailsView(path: .constant(NavigationPath()), book: ApplicationData().userData[2])
 }

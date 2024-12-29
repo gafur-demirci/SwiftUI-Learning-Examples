@@ -83,5 +83,5 @@ struct UserDefaultsExample: View {
 
 #Preview {
     UserDefaultsExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

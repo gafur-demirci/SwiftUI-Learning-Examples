@@ -45,5 +45,5 @@ struct ListOfViewsExample: View {
 
 #Preview {
     ListOfViewsExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

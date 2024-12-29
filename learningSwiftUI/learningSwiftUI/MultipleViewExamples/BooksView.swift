@@ -55,5 +55,5 @@ struct BooksView: View {
 
 #Preview {
     BooksView(selectedBook: .constant(nil), selectedAuthor: nil)
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

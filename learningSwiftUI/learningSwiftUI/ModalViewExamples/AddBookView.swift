@@ -69,6 +69,6 @@ struct AddBookView: View {
 #Preview {
     NavigationStack {
         AddBookView()
-            .environment(ApplicationMyData())
+            .environment(ApplicationMyData.shared)
     }
 }

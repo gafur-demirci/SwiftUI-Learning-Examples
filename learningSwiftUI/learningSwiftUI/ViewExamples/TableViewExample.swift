@@ -98,5 +98,5 @@ struct TableViewExample: View {
 
 #Preview {
     TableViewExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

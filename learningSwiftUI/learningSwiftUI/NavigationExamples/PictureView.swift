@@ -39,7 +39,7 @@ struct PictureView: View {
 #Preview {
     NavigationStack {
         PictureView()
-            .environment(ApplicationMyData())
+            .environment(ApplicationMyData.shared)
     }
     
 }

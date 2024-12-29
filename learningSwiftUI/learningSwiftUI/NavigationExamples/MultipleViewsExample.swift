@@ -303,5 +303,5 @@ struct BookView: View {
 @available(iOS 18.0, *)
 #Preview {
     MultipleViewsExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }

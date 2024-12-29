@@ -38,7 +38,7 @@ struct SettingsView: View {
 #Preview {
     NavigationStack {
         SettingsView()
-            .environment(ApplicationData())
+            .environment(ApplicationMyData.shared)
 //        SettingsView(viewPath: .constant(NavigationPath()))
     }
 }

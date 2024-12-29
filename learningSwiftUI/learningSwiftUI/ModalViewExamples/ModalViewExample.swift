@@ -71,5 +71,5 @@ struct ModalViewExample: View {
 
 #Preview {
     ModalViewExample()
-        .environment(ApplicationMyData())
+        .environment(ApplicationMyData.shared)
 }
