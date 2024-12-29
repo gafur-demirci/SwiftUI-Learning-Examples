@@ -28,6 +28,14 @@ struct TabViewExample: View {
                 Text("Settings")
                 Image(systemName: "gear")
             })
+            TabSection("More Info") {
+                Tab("Additional One", systemImage: "plus") {
+                    Text("Additional Tab One")
+                }
+                Tab("Additional Two", systemImage: "pencil") {
+                    Text("Additional Tab Two")
+                }
+            }
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewSidebarHeader {
