@@ -30,6 +30,10 @@ struct TabViewExample: View {
             })
         }
         .tabViewStyle(.sidebarAdaptable)
+        .tabViewSidebarHeader {
+            Text("Menu")
+                .padding()
+        }
 //        .indexViewStyle(.page(backgroundDisplayMode: .always))
 //        .ignoresSafeArea(.all)
         /*
