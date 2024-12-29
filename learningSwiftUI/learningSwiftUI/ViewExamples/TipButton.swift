@@ -15,4 +15,7 @@ struct TipButton: Tip {
     var message: Text? {
         Text("Press this button to save your changes")
     }
+    var options: [any TipOption] {
+        [MaxDisplayCount(1)]
+    }
 }
