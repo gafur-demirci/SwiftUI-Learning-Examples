@@ -16,19 +16,22 @@ struct TabViewExample: View {
     var body: some View {
         TabView {
             Tab(content: {
-                Text("Screen One")
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .background(.orange)
+                Text("Main Screen")
+                    
+            }, label: {
+                Text("Home")
+                Image(systemName: "book.circle")
             })
             Tab(content: {
-                Text("Screen Two")
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .background(.blue)
+                Text("Settings")
+            }, label: {
+                Text("Settings")
+                Image(systemName: "gear")
             })
         }
-        .tabViewStyle(.page)
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
-        .ignoresSafeArea(.all)
+        .tabViewStyle(.sidebarAdaptable)
+//        .indexViewStyle(.page(backgroundDisplayMode: .always))
+//        .ignoresSafeArea(.all)
         /*
         TabView {
             ForEach(appData.userData) { book in
