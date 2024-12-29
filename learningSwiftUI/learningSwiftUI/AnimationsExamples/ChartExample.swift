@@ -8,11 +8,19 @@
 import SwiftUI
 import Charts
 
+@available(iOS 18.0, *)
 struct ChartExample: View {
     @Environment(ChartData.self) private var chartData
     
     var body: some View {
         VStack {
+            Chart {
+                PointPlot(chartData.listOfItems, x: .value("Food", \.name), y: .value("Calories", \.calories))
+            }
+            .frame(height: 300)
+            .padding()
+            Spacer()
+            /*
             Chart {
                 ForEach(chartData.sales) { product in
                     ForEach(product.sales) { sale in
@@ -32,11 +40,12 @@ struct ChartExample: View {
             .frame(height: 300)
             .padding()
             Spacer()
+            */
         }
     }
 }
                          
-                         
+@available(iOS 18.0, *)
 #Preview {
     ChartExample()
         .environment(ChartData())

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 18.0, *)
 @main
 struct learningSwiftUIApp: App {
     
@@ -75,7 +76,9 @@ struct learningSwiftUIApp: App {
 //            LocalizedView()
 //                .environment(\.locale,  Locale(identifier: "es"))
 //            CustomContainersView()
-            TipViewExamples()
+//            TipViewExamples()
+            RealLifeTabViewExample()
+                .environment(ApplicationMyData.shared)
         }
         #if os(macOS)
         Settings {
