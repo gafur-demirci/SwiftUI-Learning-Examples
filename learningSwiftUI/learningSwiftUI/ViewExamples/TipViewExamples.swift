@@ -19,7 +19,12 @@ struct TipViewExamples: View {
                 tipButton.invalidate(reason: .actionPerformed)
             }
 //            TipView(tipButton)
-            .popoverTip(tipButton)
+            .popoverTip(tipButton, action: { action in
+                if action.id == "tipButton" {
+                    print("Help")
+                }
+                
+            })
         }
         .padding()
         .task {

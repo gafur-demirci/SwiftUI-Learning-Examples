@@ -18,4 +18,7 @@ struct TipButton: Tip {
     var options: [any TipOption] {
         [MaxDisplayCount(1)]
     }
+    var actions: [Action] {
+        [Action(id: "tipButton",title: "More Info")]
+    }
 }
