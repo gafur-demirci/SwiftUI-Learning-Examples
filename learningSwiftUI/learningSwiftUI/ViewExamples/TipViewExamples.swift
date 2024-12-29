@@ -14,7 +14,7 @@ struct TipViewExamples: View {
     
     var body: some View {
         VStack {
-            Button("Show Tip") {
+            Button("Save") {
                 print("Action Performed")
             }
 //            TipView(tipButton)
@@ -24,8 +24,8 @@ struct TipViewExamples: View {
         .task {
             try? Tips.configure([
                 .displayFrequency(.immediate),
-                .datastoreLocation(.applicationDefault),
             ])
+            Tips.showAllTipsForTesting()
         }
         Spacer()
     }
