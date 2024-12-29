@@ -12,6 +12,7 @@ struct TabViewExample: View {
     
     @Environment(ApplicationMyData.self) private var appData
     @State private var selectedView: Int = 1
+    @State private var configuration = TabViewCustomization()
     
     var body: some View {
         TabView {
@@ -32,16 +33,20 @@ struct TabViewExample: View {
                 Tab("Additional One", systemImage: "plus") {
                     Text("Additional Tab One")
                 }
+                .customizationID("additionalTabOne")
                 Tab("Additional Two", systemImage: "pencil") {
                     Text("Additional Tab Two")
                 }
+                .customizationID("additionalTabTwo")
             }
+            .customizationID("additionalTab")
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewSidebarHeader {
             Text("Menu")
                 .padding()
         }
+        .tabViewCustomization($configuration)
 //        .indexViewStyle(.page(backgroundDisplayMode: .always))
 //        .ignoresSafeArea(.all)
         /*
