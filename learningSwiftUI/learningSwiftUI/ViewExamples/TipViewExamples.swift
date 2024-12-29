@@ -17,7 +17,8 @@ struct TipViewExamples: View {
             Button("Show Tip") {
                 print("Action Performed")
             }
-            TipView(tipButton)
+//            TipView(tipButton)
+            .popoverTip(tipButton)
         }
         .padding()
         .task {

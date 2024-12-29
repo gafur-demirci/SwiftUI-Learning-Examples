@@ -74,7 +74,8 @@ struct learningSwiftUIApp: App {
 //                .environment(appData)
 //            LocalizedView()
 //                .environment(\.locale,  Locale(identifier: "es"))
-            CustomContainersView()
+//            CustomContainersView()
+            TipViewExamples()
         }
         #if os(macOS)
         Settings {
