@@ -7,12 +7,29 @@
 
 import SwiftUI
 
+@available(iOS 18.0, *)
 struct TabViewExample: View {
     
     @Environment(ApplicationMyData.self) private var appData
     @State private var selectedView: Int = 1
     
     var body: some View {
+        TabView {
+            Tab(content: {
+                Text("Screen One")
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .background(.orange)
+            })
+            Tab(content: {
+                Text("Screen Two")
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .background(.blue)
+            })
+        }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .ignoresSafeArea(.all)
+        /*
         TabView {
             ForEach(appData.userData) { book in
                 Image(book.cover)
@@ -24,6 +41,7 @@ struct TabViewExample: View {
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         #endif
+        */
         /*
         TabView(selection: $selectedView) {
             MultipleViewsExample()
@@ -49,6 +67,10 @@ struct TabViewExample: View {
 }
 
 #Preview {
-    TabViewExample()
-        .environment(ApplicationMyData())
+    if #available(iOS 18.0, *) {
+        TabViewExample()
+            .environment(ApplicationMyData())
+    } else {
+        // Fallback on earlier versions
+    }
 }
