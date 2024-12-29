@@ -15,9 +15,14 @@ struct ChartExample: View {
     var body: some View {
         VStack {
             Chart {
-                PointPlot(chartData.listOfItems, x: .value("Food", \.name), y: .value("Calories", \.calories))
+//                PointPlot(chartData.listOfItems, x: .value("Food", \.name), y: .value("Calories", \.calories))
+                LinePlot(x: "x", y: "y") { x in
+                    sin(x)
+                }
             }
-            .frame(height: 300)
+            .chartXScale(domain: -5...5)
+            .chartYScale(domain: -5...5)
+            .frame( width: 300, height: 300)
             .padding()
             Spacer()
             /*
