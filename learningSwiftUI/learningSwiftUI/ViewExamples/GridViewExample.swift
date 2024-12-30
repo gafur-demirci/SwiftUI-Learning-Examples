@@ -13,8 +13,6 @@ struct GridViewExample: View {
     
     let guides = [
         GridItem(.adaptive(minimum: 75)),
-//        GridItem(.flexible(minimum: 75), alignment: .top),
-//        GridItem(.fixed(75))
     ]
     
     var body: some View {
