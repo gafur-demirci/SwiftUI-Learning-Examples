@@ -24,22 +24,6 @@ struct CustomView: View {
                 Spacer()
             }
         }
-        /*
-        VStack {
-            HStack {
-                Text(inputText)
-                Spacer()
-                Button("Clear") {
-                    inputText = "" // change the state property, representable view (MyTextView) binding this update the MyTextView UI
-                }
-            }
-            MyTextView(input: $inputText)
-            */
-//            MyCustomView()
-//                .frame(width: 200, height: 200)
-//                .padding()
-//            Spacer()
-//        }
         .padding()
     }
 }
