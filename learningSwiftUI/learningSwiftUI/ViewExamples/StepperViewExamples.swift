@@ -26,7 +26,6 @@ struct StepperViewExamples: View {
                     goingUp = false
                 }).labelsHidden()
             }
-            
             Spacer()
         }.padding()
     }
