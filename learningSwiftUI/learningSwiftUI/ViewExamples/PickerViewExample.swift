@@ -25,9 +25,6 @@ struct PickerViewExample: View {
             Spacer()
         }
         .padding()
-//        .onAppear {
-//            selectedValue = listCities[2]
-//        }
     }
 }
 
