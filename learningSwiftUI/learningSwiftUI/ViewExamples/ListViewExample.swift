@@ -70,12 +70,6 @@ struct CellBook: View {
             })
             .padding(.top, 5)
             .buttonStyle(.plain)
-            
-            //            if book.selected {
-            //                Image(systemName: "checkmark")
-            //                    .foregroundColor(.green)
-            //                    .frame(width: 25, height: 25)
-            //            }
         }
     }
     
