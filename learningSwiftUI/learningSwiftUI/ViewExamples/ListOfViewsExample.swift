@@ -39,7 +39,6 @@ struct ListOfViewsExample: View {
                 Spacer()
             }
         }
-        
     }
 }
 
