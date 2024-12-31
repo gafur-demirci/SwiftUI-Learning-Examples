@@ -20,11 +20,6 @@ struct DatePickerExample: View {
             #endif
             Spacer()
             Text(myDates)
-//            Text("Date: \(selectedDate.formatted(.dateTime.day().month()))")
-//            DatePicker("Date:", selection: $selectedDate, in: Date()..., displayedComponents: .date)
-//                .labelsHidden()
-//                .datePickerStyle(.wheel)
-//            Spacer()
         }
         .padding()
         .onChange(of: selectedDates, initial: false, { old, values in
