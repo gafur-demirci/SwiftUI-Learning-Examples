@@ -53,18 +53,6 @@ class PlayerViewData: NSObject {
         viewData.playerLayer?.player = viewData.player
         
         viewData.setObserver()
-        
-//        let interval = CMTime(value: 1, timescale: 2)
-//        viewData.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { time in
-//            if let duration = self.viewData.playerItem?.duration {
-//                let position = time.seconds / duration.seconds
-//                self.progress = CGFloat(position)
-//            }
-//        })
-//        
-//        Task(priority: .background) {
-//            await rewindVideo()
-//        }
     }
 
     func playVideo() {
