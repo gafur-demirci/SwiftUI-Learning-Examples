@@ -29,18 +29,8 @@ struct MultiplatformView: View {
                     .scaledToFit()
                     .frame(width: 200, height: 150)
             }
-//            Text("Hello, World!")
-//            Button("Open Auxiliary Window") {
-//                openWindow(id: "mywindow")
-//            }
         }
         .padding(20)
-//        .frame(width: 500, height: 300)
-//        NavigationSplitView(sidebar: {
-//            MenuView()
-//        }, detail: {
-//            MacDetailView()
-//        })
     }
 }
 
