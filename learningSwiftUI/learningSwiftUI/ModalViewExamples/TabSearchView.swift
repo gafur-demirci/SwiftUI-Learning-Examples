@@ -27,7 +27,5 @@ struct TabSearchView: View {
 #Preview {
     if #available(iOS 18.0, *) {
         TabSearchView()
-    } else {
-        // Fallback on earlier versions
     }
 }
