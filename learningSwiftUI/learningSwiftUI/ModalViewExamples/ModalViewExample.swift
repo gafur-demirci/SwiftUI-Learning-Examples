@@ -37,34 +37,6 @@ struct ModalViewExample: View {
                     presentInspector.toggle()
                 }
             }
-            /*
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        showSheet = true
-                    }, label: {
-                        Image(systemName: "plus")
-                    })
-                }
-            }
-            .sheet(isPresented: $showSheet, content: {
-                AddBookView()
-            })
-            .sheet(item: $editItem, content: {item in
-                AddBookView(book: item)
-            })
-            */
-            /*
-            .sheet(isPresented: $showSheet, content: {
-                AddBookView()
-                // user interaction close sheet disabled
-                    .interactiveDismissDisabled(true)
-                // sheet background color sets
-                    .presentationBackground(.thinMaterial)
-                // sheet height sets -> default large for available space height
-                    .presentationDetents([.height(300)])
-            })
-            */
         }
     }
 }
