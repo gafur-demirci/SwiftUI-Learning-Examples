@@ -11,9 +11,6 @@ struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(ApplicationMyData.self) private var appData
-//    @Binding var viewPath: NavigationPath
-//    @State private var showPictures: Bool = true
-//    @State private var showYear: Bool = true
     
     var body: some View {
         Form {
@@ -22,16 +19,7 @@ struct SettingsView: View {
                 Toggle("Show Year", isOn: Bindable(appData).showYear)
             }
         }
-//        .navigationTitle("Settings")
         .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                Button("Go Back") {
-////                    dismiss()
-//                    viewPath.removeLast()
-//                }
-//            }
-//        }
     }
 }
 
