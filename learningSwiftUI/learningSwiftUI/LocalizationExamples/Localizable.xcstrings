@@ -4,6 +4,15 @@
     "" : {
 
     },
+    "-" : {
+
+    },
+    "*" : {
+
+    },
+    "/" : {
+
+    },
     "%lld Item" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -36,6 +45,9 @@
           }
         }
       }
+    },
+    "+" : {
+
     },
     "Active" : {
 
@@ -80,6 +92,9 @@
 
     },
     "Books" : {
+
+    },
+    "Calculated Result" : {
 
     },
     "Cancel" : {
@@ -211,7 +226,13 @@
     "Insert Author" : {
 
     },
+    "Insert First Number" : {
+
+    },
     "Insert Name" : {
+
+    },
+    "Insert Second Number" : {
 
     },
     "Insert Title" : {
@@ -286,12 +307,6 @@
     "Press to Save" : {
 
     },
-    "Products" : {
-
-    },
-    "Sales" : {
-
-    },
     "Save" : {
 
     },
@@ -361,7 +376,13 @@
     "What do you wnat to do with the message?" : {
 
     },
+    "x" : {
+
+    },
     "X" : {
+
+    },
+    "y" : {
 
     }
   },

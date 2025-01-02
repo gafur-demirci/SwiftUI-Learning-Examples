@@ -77,8 +77,9 @@ struct learningSwiftUIApp: App {
 //                .environment(\.locale,  Locale(identifier: "es"))
 //            CustomContainersView()
 //            TipViewExamples()
-            RealLifeTabViewExample()
-                .environment(ApplicationMyData.shared)
+//            RealLifeTabViewExample()
+//                .environment(ApplicationMyData.shared)
+            MyCalculator()
         }
         #if os(macOS)
         Settings {
