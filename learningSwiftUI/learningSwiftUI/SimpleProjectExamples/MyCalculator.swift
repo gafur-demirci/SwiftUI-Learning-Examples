@@ -50,6 +50,21 @@ struct MyCalculator: View {
             .padding()
             Text("Calculated Result")
             Text(String(result))
+            Button( action: {
+                firstNumber = ""
+                secondNumber = ""
+                result = 0
+            }, label: {
+                Text("Clear")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.black)
+            })
+            .disabled(result == 0)
+            .buttonStyle(.borderedProminent)
+            .font(.title)
+            .controlSize(.regular)
+            .padding()
         }
         .padding()
     }
