@@ -13,6 +13,16 @@
     "/" : {
 
     },
+    "%@'s Birthday is %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@'s Birthday is %2$@"
+          }
+        }
+      }
+    },
     "%lld Item" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -113,6 +123,9 @@
           }
         }
       }
+    },
+    "Choose Birthday" : {
+
     },
     "Cities" : {
 
@@ -239,6 +252,9 @@
 
     },
     "Insert Title" : {
+
+    },
+    "Insert User Name" : {
 
     },
     "Insert Year" : {

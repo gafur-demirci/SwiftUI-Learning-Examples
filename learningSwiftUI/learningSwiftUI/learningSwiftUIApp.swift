@@ -79,7 +79,8 @@ struct learningSwiftUIApp: App {
 //            TipViewExamples()
 //            RealLifeTabViewExample()
 //                .environment(ApplicationMyData.shared)
-            MyCalculator()
+//            MyCalculator()
+            BirthdayStore()
         }
         #if os(macOS)
         Settings {
