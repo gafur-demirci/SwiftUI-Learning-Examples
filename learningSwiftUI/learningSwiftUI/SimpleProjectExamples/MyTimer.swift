@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct MyTimer: View {
+    
+    @State var counter: Float = 100
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ProgressView(value: counter, total: 100)
+            .progressViewStyle(.linear)
+            .padding()
+        Text("Time: \(counter.formatted())")
+            .padding()
+        Button(counter >= 0 ? "Start Process" : "Re-Start Process") {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+                if counter >= 0 {
+                    counter = counter - 1
+                }
+            })
+        }
+
     }
 }
 
