@@ -172,6 +172,9 @@
     "Enabled" : {
 
     },
+    "Enter your password" : {
+
+    },
     "Error" : {
 
     },
@@ -287,6 +290,9 @@
     "Name" : {
 
     },
+    "Ok" : {
+
+    },
     "OK" : {
 
     },
@@ -303,6 +309,9 @@
 
     },
     "Option 3" : {
+
+    },
+    "Password Again" : {
 
     },
     "Pause" : {
@@ -368,6 +377,9 @@
     "Show Year" : {
 
     },
+    "Sign Up" : {
+
+    },
     "Take Picture" : {
 
     },
@@ -384,6 +396,12 @@
 
     },
     "Total" : {
+
+    },
+    "User Name" : {
+
+    },
+    "User Sign Up" : {
 
     },
     "Values" : {
