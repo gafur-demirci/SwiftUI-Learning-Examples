@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct BookStoreGallery: View {
+    
+    @State var index: Int = 0
+    @State var name: String = "nocover"
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(name)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .padding()
+                .onTapGesture {
+                    if index == 0 && name == "nocover" {
+                        index += 1
+                        name = "book\(index)"
+                    } else if name != "nocover" && index != 12 {
+                        index += 1
+                        name = "book\(index)"
+                    } else if index == 12 {
+                        index = 0
+                        name = "nocover"
+                    }
+                }
+            Text(name)
+                .font(.title.bold())
+                .padding()
+        }
     }
 }
 
