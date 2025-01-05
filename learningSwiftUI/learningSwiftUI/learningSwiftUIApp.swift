@@ -80,7 +80,8 @@ struct learningSwiftUIApp: App {
 //            RealLifeTabViewExample()
 //                .environment(ApplicationMyData.shared)
 //            MyCalculator()
-            BirthdayStore()
+//            BirthdayStore()
+            SignUpForm()
         }
         #if os(macOS)
         Settings {
