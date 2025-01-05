@@ -81,7 +81,8 @@ struct learningSwiftUIApp: App {
 //                .environment(ApplicationMyData.shared)
 //            MyCalculator()
 //            BirthdayStore()
-            SignUpForm()
+//            SignUpForm()
+            BookStoreGallery()
         }
         #if os(macOS)
         Settings {
