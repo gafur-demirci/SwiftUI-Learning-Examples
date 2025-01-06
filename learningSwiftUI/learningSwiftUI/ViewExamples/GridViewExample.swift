@@ -31,5 +31,5 @@ struct GridViewExample: View {
 
 #Preview {
     GridViewExample()
-        .environment(ApplicationData())
+        .environment(ApplicationMyData.shared)
 }
