@@ -83,7 +83,8 @@ struct learningSwiftUIApp: App {
 //            BirthdayStore()
 //            SignUpForm()
 //            BookStoreGallery()
-            MyTimer()
+//            MyTimer()
+            CatchTheMouse()
         }
         #if os(macOS)
         Settings {

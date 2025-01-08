@@ -193,6 +193,9 @@
     "Food Menu" : {
 
     },
+    "Game Over" : {
+
+    },
     "Get Picture" : {
 
     },
@@ -232,6 +235,9 @@
           }
         }
       }
+    },
+    "High Score: %lld" : {
+
     },
     "Home" : {
 
@@ -335,10 +341,19 @@
     "Press to Save" : {
 
     },
+    "Re-Start Process" : {
+
+    },
+    "RePlay" : {
+
+    },
     "Save" : {
 
     },
     "Save Anyway" : {
+
+    },
+    "Score: %lld" : {
 
     },
     "Search" : {
@@ -380,6 +395,9 @@
     "Sign Up" : {
 
     },
+    "Start Process" : {
+
+    },
     "Take Picture" : {
 
     },
@@ -387,6 +405,12 @@
 
     },
     "Third Item" : {
+
+    },
+    "Time: %@" : {
+
+    },
+    "Time's Up" : {
 
     },
     "Title" : {
