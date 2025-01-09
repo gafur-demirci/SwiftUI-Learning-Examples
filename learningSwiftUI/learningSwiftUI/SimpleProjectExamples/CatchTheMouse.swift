@@ -12,7 +12,7 @@ import SwiftUI
     var timer: Timer?
     
     func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             Task { @MainActor in
                 self.updateCountDown()
