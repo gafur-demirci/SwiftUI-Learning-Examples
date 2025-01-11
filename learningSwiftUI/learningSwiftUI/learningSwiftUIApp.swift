@@ -84,7 +84,9 @@ struct learningSwiftUIApp: App {
 //            SignUpForm()
 //            BookStoreGallery()
 //            MyTimer()
-            CatchTheMouse()
+//            CatchTheMouse()
+            LandMarks()
+                .environmentObject(LandMarkData())
         }
         #if os(macOS)
         Settings {
