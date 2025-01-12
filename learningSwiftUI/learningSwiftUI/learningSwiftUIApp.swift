@@ -86,7 +86,7 @@ struct learningSwiftUIApp: App {
 //            MyTimer()
 //            CatchTheMouse()
             LandMarks()
-                .environmentObject(LandMarkData())
+                .environment(LandMarkData())
         }
         #if os(macOS)
         Settings {
