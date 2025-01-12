@@ -11,18 +11,20 @@ import Observation
 struct Landmark: Identifiable {
     var id = UUID()
     var name: String
-    var picture: Data
+    var picture: String
 }
-class LandMarkData: ObservableObject {
+@Observable class LandMarkData {
     
-    @Published var landmarks: [Landmark] = [
-        Landmark(name: "London", picture: UIImage(named: "london")!.pngData()!),
-        Landmark(name: "Paris", picture: UIImage(named: "paris")!.pngData()!),
-        Landmark(name: "Tokyo", picture: UIImage(named: "tokyo")!.pngData()!),
-        Landmark(name: "New York", picture: UIImage(named: "newyork")!.pngData()!),
-        Landmark(name: "Berlin", picture: UIImage(named: "berlin")!.pngData()!),
-        Landmark(name: "Madrid", picture: UIImage(named: "madrid")!.pngData()!),
-        Landmark(name: "Rome", picture: UIImage(named: "rome")!.pngData()!),
-        Landmark(name: "Amsterdam", picture: UIImage(named: "amsterdam")!.pngData()!)
-    ]
+    var landmarks: [Landmark] = []
+    
+    init() {
+        landmarks.append(Landmark(name: "London", picture: "london"))
+        landmarks.append(Landmark(name: "Paris", picture: "paris"))
+        landmarks.append(Landmark(name: "Tokyo", picture: "tokyo"))
+        landmarks.append(Landmark(name: "New York", picture: "newyork"))
+        landmarks.append(Landmark(name: "Berlin", picture: "berlin"))
+        landmarks.append(Landmark(name: "Madrid", picture: "madrid"))
+        landmarks.append(Landmark(name: "Rome", picture: "rome"))
+        landmarks.append(Landmark(name: "Amsterdam", picture: "amsterdam"))
+    }
 }
