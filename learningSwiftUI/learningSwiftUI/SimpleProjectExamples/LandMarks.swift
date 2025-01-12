@@ -20,14 +20,27 @@ struct LandMarks: View {
 //                TableRow(landmark)
 //            }
 //        })
-        Table(landMarkData.landmarks, selection: $selectedLandmark) {
-                    TableColumn("Name", value: \.name)
-
+        NavigationView {
+            Table(landMarkData.landmarks, selection: $selectedLandmark) {
+                TableColumn("Name") { landmark in
+                    NavigationLink(destination: LandmarkDetail(selectedLandmark: landmark)) {
+                        Text(landmark.name)
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .padding(.bottom, 5)
+                    }
                 }
-        Text("\(selectedLandmark)")
-        Button("Mark") {
-            print(selectedLandmark)
+            }
         }
+
+        .navigationTitle("Landmarks")
+//        .navigationDestination(for: Landmark.self, destination: { landmark in
+//            LandmarkDetail(selectedLandmark: landmark)
+//        })
+//        Text("\(selectedLandmark)")
+//        Button("Mark") {
+//            print(selectedLandmark)
+//        }
 //        List {
 //            ForEach(landMarkData.landmarks) { landmark in
 //                VStack(alignment: .leading) {
