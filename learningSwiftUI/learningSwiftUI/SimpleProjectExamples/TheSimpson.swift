@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Simpson: View {
+struct TheSimpson: View {
     
     @Environment(SimpsonData.self ) private var simpsonData
     @State var simpson: Simpson
@@ -22,7 +22,7 @@ struct Simpson: View {
             Spacer()
             Text(simpson.name)
                 .font(.title.bold())
-            Text(simpson.job)
+            Text(simpson.job ?? "")
                 .font(.headline)
                 .padding()
             Spacer()
@@ -33,6 +33,6 @@ struct Simpson: View {
 }
 
 #Preview {
-    Simpson(simpson: simpsonData().simpsons.first)
+    TheSimpson(simpson: SimpsonData().simpsons.first!)
         .environment(SimpsonData())
 }
