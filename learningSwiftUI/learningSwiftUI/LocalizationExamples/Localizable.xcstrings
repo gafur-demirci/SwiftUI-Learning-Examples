@@ -62,6 +62,9 @@
     "Active" : {
 
     },
+    "Add" : {
+
+    },
     "Add Book" : {
 
     },
@@ -84,6 +87,9 @@
 
     },
     "Animate" : {
+
+    },
+    "Artist" : {
 
     },
     "Author" : {
@@ -199,6 +205,9 @@
     "Get Picture" : {
 
     },
+    "Go Art Book" : {
+
+    },
     "Go Back" : {
 
     },
@@ -278,6 +287,12 @@
     "Inspector" : {
 
     },
+    "Landmark" : {
+
+    },
+    "Landmarks" : {
+
+    },
     "Main Screen" : {
 
     },
@@ -293,7 +308,13 @@
     "Move to Inbox" : {
 
     },
+    "My Art Gallery" : {
+
+    },
     "Name" : {
+
+    },
+    "Name of Art" : {
 
     },
     "Ok" : {
@@ -395,6 +416,12 @@
     "Sign Up" : {
 
     },
+    "Simpson" : {
+
+    },
+    "Simpsons" : {
+
+    },
     "Start Process" : {
 
     },
@@ -444,6 +471,9 @@
 
     },
     "y" : {
+
+    },
+    "Year" : {
 
     }
   },

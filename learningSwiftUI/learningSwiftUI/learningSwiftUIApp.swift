@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 18.0, *)
 @main
 struct learningSwiftUIApp: App {
-    
+    @UIApplicationDelegateAdaptor(ArtAppDelegate.self) var delegate
 //    @UIApplicationDelegateAdaptor(CustomAppDelegate.self) var delegate
 //    @State var appData = SingletonData.shared
 //    @State private var appData = ApplicationData()
@@ -85,8 +85,9 @@ struct learningSwiftUIApp: App {
 //            BookStoreGallery()
 //            MyTimer()
 //            CatchTheMouse()
-            LandMarks()
-                .environment(LandMarkData())
+//            LandMarks()
+//                .environment(LandMarkData())
+            ArtBook()
         }
         #if os(macOS)
         Settings {
