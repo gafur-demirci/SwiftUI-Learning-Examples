@@ -24,8 +24,9 @@ struct TheSimpsons: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Simpsons")
         }
-        .navigationTitle("Simpsons")
     }
 }
 
