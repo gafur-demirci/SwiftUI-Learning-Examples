@@ -26,7 +26,7 @@ class ArtAppDelegate: UIResponder, UIApplicationDelegate {
     }
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Art")
+        let container = NSPersistentContainer(name: "ArtBookModel")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

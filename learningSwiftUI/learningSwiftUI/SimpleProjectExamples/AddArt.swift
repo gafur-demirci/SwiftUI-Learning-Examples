@@ -85,20 +85,22 @@ struct AddArt: View {
     }
     
     func addNewArt() {
-        print("Add new art")
         let appDelegate = ArtAppDelegate()
-//        guard let appDelegate = UIApplication.shared.delegate as? ArtAppDelegate else { return }
 
         let context = appDelegate.persistentContainer.viewContext
         
         let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paints", into: context)
         
         newPainting.setValue(UUID(), forKey: "id")
+        
         newPainting.setValue(name, forKey: "name")
+        
         newPainting.setValue(artist, forKey: "artist")
+        
         if let intYear = Int(year) {
             newPainting.setValue(intYear, forKey: "year")
         }
+        
         if let imageData = image!.jpegData(compressionQuality: 0.5) {
             newPainting.setValue(imageData, forKey: "image")
         }
