@@ -15,9 +15,9 @@ struct learningSwiftUIApp: App {
 //    @State var appData = SingletonData.shared
 //    @State private var appData = ApplicationData()
 //    @Environment(\.scenePhase) var scenePhase
-    @State private var appData = MacData()
-    @FocusedValue(\.address) var addressValue: String?
-    @AppStorage("totalItems") var totalItems: Int = 0
+//    @State private var appData = MacData()
+//    @FocusedValue(\.address) var addressValue: String?
+//    @AppStorage("totalItems") var totalItems: Int = 0
     
     var body: some Scene {
         WindowGroup {

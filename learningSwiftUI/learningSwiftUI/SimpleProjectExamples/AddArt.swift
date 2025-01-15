@@ -60,9 +60,7 @@ struct AddArt: View {
                     print(artist)
                     print(year)
                     print(image!)
-                    
                     addNewArt()
-//                    clearInput()
                 }
                 .disabled(name.isEmpty || artist.isEmpty || year.isEmpty || image == nil)
                 .buttonStyle(.borderedProminent)
@@ -88,13 +86,12 @@ struct AddArt: View {
     
     func addNewArt() {
         print("Add new art")
-        let appDelegate = UIApplication.shared.delegate as! ArtAppDelegate
-        print(appDelegate)
+        let appDelegate = ArtAppDelegate()
+//        guard let appDelegate = UIApplication.shared.delegate as? ArtAppDelegate else { return }
+
         let context = appDelegate.persistentContainer.viewContext
-        print(context)
         
-        let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paintings", into: context)
-        print(newPainting)
+        let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paints", into: context)
         
         newPainting.setValue(UUID(), forKey: "id")
         newPainting.setValue(name, forKey: "name")
