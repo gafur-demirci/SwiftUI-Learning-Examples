@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct ArtDetail: View {
+    
+    @Environment(ArtData.self ) private var artData
+    @State var art: Art
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            Image(uiImage: art.image)
+                .resizable()
+                .scaledToFit()
+                .padding()
+            Spacer()
+            Text(art.name)
+                .font(.title.bold())
+            Text(art.artist)
+                .font(.headline)
+                .padding()
+            Text(String(art.year))
+                .font(.headline)
+                .padding()
+            Spacer()
+            
+        }
+        .navigationTitle("Art")
     }
 }
 
 #Preview {
-    ArtDetail()
+    ArtDetail(art: ArtData().arts.first!)
+        .environment(ArtData())
 }
