@@ -10,11 +10,22 @@ import CoreData
 
 struct ArtBook: View {
     
+    @Environment(ArtData.self) private var artData: ArtData
+    @State private var selectedArt = Set<Paints.ID>()
+    @State private var artArray: [Paints] = []
+    
     var body: some View {
         NavigationStack {
-//            Table() {
-//
-//            }
+            Table(artArray, selection: $selectedArt) {
+                TableColumn("Name") { art in
+                    NavigationLink(destination: ArtDetail(art: art)) {
+                        Text(art.name)
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .padding(.bottom, 5)
+                    }
+                }
+            }
             VStack {
                 
             }
@@ -51,6 +62,7 @@ struct ArtBook: View {
             
             for result in results as! [NSManagedObject] {
                 print(result.value(forKey: "name") as! String)
+                artArray.append(result as! Paints)
             }
         } catch {
             print("Error while fetching")
@@ -60,4 +72,5 @@ struct ArtBook: View {
 
 #Preview {
     ArtBook()
+        .environment(ArtData())
 }
