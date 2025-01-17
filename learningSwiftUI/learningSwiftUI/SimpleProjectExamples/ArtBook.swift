@@ -10,24 +10,26 @@ import CoreData
 
 struct ArtBook: View {
     
-    @Environment(ArtData.self) private var artData: ArtData
+//    @Environment(ArtData.self) private var artData: ArtData
     @State private var selectedArt = Set<Paints.ID>()
     @State private var artArray: [Paints] = []
     
     var body: some View {
         NavigationStack {
-            Table(artArray, selection: $selectedArt) {
-                TableColumn("Name") { art in
-                    NavigationLink(destination: ArtDetail(art: art)) {
-                        Text(art.name)
-                            .font(.headline)
-                            .foregroundStyle(.black)
-                            .padding(.bottom, 5)
+            VStack {
+                Table(artArray) {
+                    TableColumn("Name") { art in
+                        VStack(alignment: .leading) {
+                            Text(art.name!)
+                                .font(.headline)
+                                .foregroundStyle(.black)
+                                .padding(.bottom, 5)
+                            Text(art.artist!)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
-            }
-            VStack {
-                
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("My Art Gallery")
@@ -72,5 +74,5 @@ struct ArtBook: View {
 
 #Preview {
     ArtBook()
-        .environment(ArtData())
+//        .environment(ArtData())
 }
