@@ -88,7 +88,7 @@ struct learningSwiftUIApp: App {
 //            LandMarks()
 //                .environment(LandMarkData())
             ArtBook()
-                .environment(ArtData())
+//                .environment(ArtData())
         }
         #if os(macOS)
         Settings {
