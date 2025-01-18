@@ -10,7 +10,6 @@ import CoreData
 
 struct ArtBook: View {
     
-//    @Environment(ArtData.self) private var artData: ArtData
     @State private var selectedArt = Set<Paints.ID>()
     @State private var artArray: [Paints] = []
     
@@ -74,5 +73,4 @@ struct ArtBook: View {
 
 #Preview {
     ArtBook()
-//        .environment(ArtData())
 }
