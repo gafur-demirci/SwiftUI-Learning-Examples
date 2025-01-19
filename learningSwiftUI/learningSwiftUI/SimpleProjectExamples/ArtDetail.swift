@@ -9,20 +9,25 @@ import SwiftUI
 
 struct ArtDetail: View {
     
-    @Environment(ArtData.self ) private var artData
-    @State var art: Art
+//    let persistenceController = PersistenceController.shared
+//    @FetchRequest(
+//        entity: Paints.entity(),
+//        sortDescriptors: [NSSortDescriptor(keyPath: \Paints.name, ascending: true)]
+//    )
+//    var paints: FetchedResults<Paints>
+    @State var art: Paints
     
     var body: some View {
         VStack {
             Spacer()
-            Image(uiImage: art.image)
+            Image(uiImage: UIImage(data: art.image! as Data)!)
                 .resizable()
                 .scaledToFit()
                 .padding()
             Spacer()
-            Text(art.name)
+            Text(art.name!)
                 .font(.title.bold())
-            Text(art.artist)
+            Text(art.artist!)
                 .font(.headline)
                 .padding()
             Text(String(art.year))
@@ -35,7 +40,7 @@ struct ArtDetail: View {
     }
 }
 
-#Preview {
-    ArtDetail(art: ArtData().arts.first!)
-        .environment(ArtData())
-}
+//#Preview {
+//    ArtDetail(art: paints.first!)
+//        .environment(\.managedObjectContext, persistenceController.context)
+//}
