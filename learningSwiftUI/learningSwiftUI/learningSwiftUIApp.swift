@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct learningSwiftUIApp: App {
     @UIApplicationDelegateAdaptor(ArtAppDelegate.self) var delegate
+    let persistenceController = PersistenceController.shared
 //    @UIApplicationDelegateAdaptor(CustomAppDelegate.self) var delegate
 //    @State var appData = SingletonData.shared
 //    @State private var appData = ApplicationData()
@@ -88,6 +89,7 @@ struct learningSwiftUIApp: App {
 //            LandMarks()
 //                .environment(LandMarkData())
             ArtBook()
+                .environment(\.managedObjectContext, persistenceController.context)
         }
         #if os(macOS)
         Settings {
