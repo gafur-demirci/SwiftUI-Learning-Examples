@@ -13,22 +13,34 @@ struct ArtBook: View {
     @State private var selectedArt = Set<Paints.ID>()
     @State private var artArray: [Paints] = []
     
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        entity: Paints.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Paints.name, ascending: true)]
+    )
+    var paints: FetchedResults<Paints>
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Table(artArray) {
+                Table(paints, selection: $selectedArt, columns: {
                     TableColumn("Name") { art in
-                        VStack(alignment: .leading) {
-                            Text(art.name!)
-                                .font(.headline)
-                                .foregroundStyle(.black)
-                                .padding(.bottom, 5)
-                            Text(art.artist!)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                        NavigationLink(destination: ArtDetail(art: art)) {
+                            VStack(alignment: .leading) {
+                                Text(art.name!)
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                                    .padding(.bottom, 5)
+                                Text(art.artist!)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
-                }
+                })
+//                if let selectedPaint = selectedArt {
+//                    print(selectedPaint)
+//                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("My Art Gallery")
@@ -45,8 +57,11 @@ struct ArtBook: View {
                 }
             })
         }
-        .onAppear() {
-            getArts()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.getArts()
+            })
+//            getArts()
         }
     }
     
