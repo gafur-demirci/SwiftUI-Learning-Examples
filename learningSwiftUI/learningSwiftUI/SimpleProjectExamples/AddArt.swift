@@ -24,57 +24,56 @@ struct AddArt: View {
     @FocusState var focus: FocusInput?
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .onTapGesture {
-                            isPresented = true
-                        }
-                } else {
-                    Image("nocover")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .onTapGesture {
-                            isPresented = true
-                        }
-                }
-                TextField("Name of Art", text: $name)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($focus, equals: .name)
-                    .padding()
-                TextField("Artist", text: $artist)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($focus, equals: .artist)
-                    .padding()
-                TextField("Year", text: $year)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($focus, equals: .year)
-                    .padding()
-                Button("Add") {
-                    print(name)
-                    print(artist)
-                    print(year)
-                    print(image!)
-                    addNewArt()
-                }
-                .disabled(name.isEmpty || artist.isEmpty || year.isEmpty || image == nil)
-                .buttonStyle(.borderedProminent)
-                NavigationLink(destination: ArtBook()) {
-                    Text("Go Art Book")
-                        .font(.headline)
-                        .foregroundStyle(.black)
-                        .padding(.bottom, 5)
-                }
+        VStack {
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .onTapGesture {
+                        isPresented = true
+                    }
+            } else {
+                Image("nocover")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .onTapGesture {
+                        isPresented = true
+                    }
             }
-            .sheet(isPresented: $isPresented) {
-                MyImagePicker(selectedImage: $image)
+            TextField("Name of Art", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .focused($focus, equals: .name)
+                .padding()
+            TextField("Artist", text: $artist)
+                .textFieldStyle(.roundedBorder)
+                .focused($focus, equals: .artist)
+                .padding()
+            TextField("Year", text: $year)
+                .textFieldStyle(.roundedBorder)
+                .focused($focus, equals: .year)
+                .padding()
+            Button("Save") {
+                print(name)
+                print(artist)
+                print(year)
+                print(image!)
+                addNewArt()
             }
+            .disabled(name.isEmpty || artist.isEmpty || year.isEmpty || image == nil)
+            .buttonStyle(.borderedProminent)
         }
+        .background(
+            NavigationLink(
+                destination: ArtBook(),
+                label: { EmptyView() }
+            )
+        )
+        .sheet(isPresented: $isPresented) {
+            MyImagePicker(selectedImage: $image)
+        }
+        
     }
     
     func clearInput() {
@@ -86,9 +85,7 @@ struct AddArt: View {
     
     func addNewArt() {
         let appDelegate = ArtAppDelegate()
-
         let context = appDelegate.persistentContainer.viewContext
-        
         let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paints", into: context)
         
         newPainting.setValue(UUID(), forKey: "id")
