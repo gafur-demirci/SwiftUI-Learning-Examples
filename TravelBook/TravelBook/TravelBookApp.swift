@@ -14,6 +14,7 @@ struct TravelBookApp: App {
     var body: some Scene {
         WindowGroup {
             mapView()
+                .environment(MapData())
         }
     }
 }
