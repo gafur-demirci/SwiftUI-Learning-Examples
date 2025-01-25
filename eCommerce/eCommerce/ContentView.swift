@@ -24,6 +24,7 @@ struct ContentView: View {
                     ForEach(items) { item in
                         NavigationLink {
                             Text("Product at \(item.name)")
+                            Text(String(item.price))
                         } label: {
                             Text(item.name)
                         }
