@@ -12,10 +12,8 @@ import SwiftData
 struct eCommerceApp: App {
     var body: some Scene {
         WindowGroup {
-//            ProductList()
             ContentView()
         }
         .modelContainer(for: [Product.self])
-//        .environment(ProductData())
     }
 }

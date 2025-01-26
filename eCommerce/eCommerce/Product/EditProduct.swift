@@ -63,5 +63,4 @@ struct EditProduct: View {
 
 #Preview {
     EditProduct(product: Product(name: "Test", price: 10, desc: "Test", imageUrl: ""))
-    //        .environment(ProductData())
 }
