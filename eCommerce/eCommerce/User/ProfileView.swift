@@ -6,19 +6,27 @@
 //
 
 import SwiftUI
-import SwiftUI
+import SwiftData
 
 struct ProfileView: View {
-    @State private var username = "Ahmet Yılmaz" // Örnek kullanıcı adı
-    @State private var profileImage: UIImage? = nil // Profil resmi, nil ise avatar gösterilecek
+//    @State private var username = "Ahmet Yılmaz" // Örnek kullanıcı adı
+//    @State private var profileImage: UIImage? = nil // Profil resmi, nil ise avatar gösterilecek
+//    @Environment(\.modelContainer) private var modelContainer
     @State private var showEditProfile = false
     @State private var showCallConfirmation = false
+    
+    @StateObject private var userManager: UserManager
+
+    // UserManager'ı dışarıdan başlatıyoruz
+    init() {
+        _userManager = StateObject(wrappedValue: UserManager()) // UserManager'ı başlatıyoruz
+    }
 
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 // Kullanıcı Bilgisi ve Avatar
-                UserProfileHeader(username: username, profileImage: profileImage)
+                UserProfileHeader(username: userManager.user?.username ?? "", profileImage: userManager.user?.profileImage)
                 
                 // Siparişlerim Listesi
                 OrderListSection()
@@ -34,7 +42,7 @@ struct ProfileView: View {
             .padding()
             .navigationTitle("Profil")
             .sheet(isPresented: $showEditProfile) {
-                EditProfile(username: $username, profileImage: $profileImage)
+                EditProfile(userManager: userManager)
             }
             .alert(isPresented: $showCallConfirmation) {
                 Alert(
@@ -175,7 +183,8 @@ struct LogoutButton: View {
 }
 
 
-
+/*
 #Preview {
     ProfileView()
 }
+*/

@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct EditProfile: View {
-    @Binding var username: String // Kullanıcı adı ana ekrandan bağlanıyor
-    @Binding var profileImage: UIImage? // Profil resmi ana ekrandan bağlanıyor
+    @Environment(\.modelContext) private var context
+    @ObservedObject var userManager: UserManager
 
-    @State private var newUsername = ""
+    @State private var newUsername: String = ""
     @State private var selectedImage: UIImage?
     @State private var showImagePicker = false
 
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                // Profil Fotoğrafı
+                // Profil Resmi
                 VStack {
                     if let image = selectedImage {
                         Image(uiImage: image)
@@ -29,8 +29,17 @@ struct EditProfile: View {
                             .onTapGesture {
                                 showImagePicker = true
                             }
+                    } else if let profileImage = userManager.user?.profileImage {
+                        Image(uiImage: profileImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                            .onTapGesture {
+                                showImagePicker = true
+                            }
                     } else {
-                        Text(initials(for: username))
+                        Text(initials(for: userManager.user?.username ?? ""))
                             .font(.largeTitle)
                             .foregroundColor(.white)
                             .frame(width: 100, height: 100)
@@ -71,15 +80,12 @@ struct EditProfile: View {
                         .background(Color.green)
                         .cornerRadius(12)
                 }
-                .padding(.top)
-
             }
             .padding()
             .navigationTitle("Profil Düzenle")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Vazgeç") {
-                        // Düzenleme ekranını kapatma
                         dismissView()
                     }
                 }
@@ -88,9 +94,8 @@ struct EditProfile: View {
                 ImagePicker(image: $selectedImage)
             }
             .onAppear {
-                // İlk değerleri ayarla
-                newUsername = username
-                selectedImage = profileImage
+                newUsername = userManager.user?.username ?? ""
+                selectedImage = userManager.user?.profileImage
             }
         }
     }
@@ -104,8 +109,7 @@ struct EditProfile: View {
 
     // Değişiklikleri kaydet
     private func saveChanges() {
-        username = newUsername
-        profileImage = selectedImage
+        userManager.updateUser(username: newUsername, profileImage: selectedImage)
         dismissView()
     }
 
