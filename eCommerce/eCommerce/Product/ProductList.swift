@@ -9,37 +9,88 @@ import SwiftUI
 import SwiftData
 
 struct ProductList: View {
-    @Environment(ProductData.self) private var productData
-    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var products: [Product]
+
     var body: some View {
         NavigationStack {
-            if(!productData.products.isEmpty) {
-                List {
-                    ForEach(productData.products, id: \.self) { product in
-                        VStack(alignment: .leading) {
-                            Text(product.name)
-                                .font(.headline)
-                            Text("$\(product.price, specifier: "%.2f")")
-                                .font(.subheadline)
-                            Text(product.desc)
-                                .font(.footnote)
-                                .foregroundColor(.gray)
+            if(products.isEmpty){
+                Text("Satın alınabilir ürün bulunmuyor.")
+                NavigationLink(destination: AddProduct()) {
+                    Text("Yeni Ürün Ekle")
+                }
+            } else {
+                NavigationView {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                            ForEach(products) { product in
+                                NavigationLink(destination: EditProduct(product: product)) {
+                                    ProductCard(product: product)
+                                }
+                                .buttonStyle(PlainButtonStyle()) // Kartın tasarımını bozmaz
+                            }
                         }
+                        .padding()
                     }
                     .navigationTitle("Ürünler")
                 }
-            } else {
-                Text("Ürün Listesi Boş")
-                Spacer()
-                NavigationLink (destination: ContentView()) {
-                    Text("Ürün Ekle")
+                .toolbar {
+                    ToolbarItem {
+                        NavigationLink(destination: AddProduct()) {
+                            Label("Add Product", systemImage: "plus")
+                        }
+                    }
                 }
             }
         }
     }
 }
 
+struct ProductCard: View {
+    let product: Product
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Ürün Resmi
+            AsyncImage(url: URL(string: product.imageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 150) // Sabit boyut
+                    .clipped()
+            } placeholder: {
+                Color.gray
+                    .frame(width: 150, height: 150) // Sabit boyut
+                    .overlay(Text("Yükleniyor...").foregroundColor(.white))
+            }
+            .cornerRadius(12)
+
+            // Ürün Bilgileri
+            VStack(alignment: .leading, spacing: 4) {
+                Text(product.name)
+                    .font(.headline)
+                    .lineLimit(1)
+
+                Text("$\(product.price, specifier: "%.2f")")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+
+                Text(product.desc)
+                    .font(.caption)
+                    .lineLimit(2)
+                    .foregroundColor(.gray)
+            }
+            .padding([.leading, .trailing, .bottom])
+        }
+        .frame(width: 160, height: 250) // Kartın genel boyutu
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+    }
+}
+
+
 #Preview {
     ProductList()
-        .environment(ProductData())
+        .modelContainer(for: Product.self, inMemory: false)
 }
