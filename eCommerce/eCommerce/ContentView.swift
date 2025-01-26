@@ -13,6 +13,23 @@ struct ContentView: View {
     @Query private var products: [Product]
 
     var body: some View {
+        TabView {
+            ProductList()
+                .tabItem {
+                    Label("Anasayfa", systemImage: "house.fill")
+                }
+            
+            CartView()
+                .tabItem {
+                    Label("Sepet", systemImage: "cart.fill")
+                }
+            
+            ProfileView()
+                .tabItem {
+                    Label("Profil", systemImage: "person.fill")
+                }
+        }
+        /*
         NavigationStack {
             if(products.isEmpty){
                 Text("Satın alınabilir ürün bulunmuyor.")
@@ -43,48 +60,7 @@ struct ContentView: View {
                 }
             }
         }
-    }
-}
-
-struct ProductCard: View {
-    let product: Product
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            // Ürün Resmi
-            AsyncImage(url: URL(string: product.imageUrl)) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 150)
-                    .clipped()
-            } placeholder: {
-                Color.gray
-                    .frame(width: 150, height: 150)
-                    .overlay(Text("Yükleniyor...").foregroundColor(.white))
-            }
-            .cornerRadius(12)
-
-            // Ürün Bilgileri
-            VStack(alignment: .leading, spacing: 8) {
-                Text(product.name)
-                    .font(.headline)
-                    .lineLimit(1)
-
-                Text("$\(product.price, specifier: "%.2f")")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-
-                Text(product.desc)
-                    .font(.caption)
-                    .lineLimit(2)
-                    .foregroundColor(.gray)
-            }
-            .padding([.leading, .trailing, .bottom])
-        }
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+         */
     }
 }
 
