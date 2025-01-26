@@ -10,33 +10,33 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Product]
+    @Query private var products: [Product]
 
     var body: some View {
         NavigationStack {
-            if(items.isEmpty){
+            if(products.isEmpty){
                 Text("Satın alınabilir ürün bulunmuyor.")
                 NavigationLink(destination: AddProduct()) {
                     Text("Yeni Ürün Ekle")
                 }
             } else {
-                List {
-                    ForEach(items) { item in
-                        NavigationLink {
-                            Text("Product at \(item.name)")
-                            Text(String(item.price))
-                        } label: {
-                            Text(item.name)
+                NavigationView {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                            ForEach(products) { product in
+                                NavigationLink(destination: EditProduct(product: product)) {
+                                    ProductCard(product: product)
+                                }
+                                .buttonStyle(PlainButtonStyle()) // Kartın tasarımını bozmaz
+                            }
                         }
+                        .padding()
                     }
-                    .onDelete(perform: deleteProducts)
+                    .navigationTitle("Ürünler")
                 }
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
                     ToolbarItem {
-                        Button(action: addProduct) {
+                        NavigationLink(destination: AddProduct()) {
                             Label("Add Product", systemImage: "plus")
                         }
                     }
@@ -44,24 +44,51 @@ struct ContentView: View {
             }
         }
     }
+}
 
-    private func addProduct() {
-        withAnimation {
-            let newProduct = Product(name: "Test Product", price: 12.99, desc: "Test product description", imageUrl: "")
-            modelContext.insert(newProduct)
-        }
-    }
+struct ProductCard: View {
+    let product: Product
 
-    private func deleteProducts(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+    var body: some View {
+        VStack(alignment: .leading) {
+            // Ürün Resmi
+            AsyncImage(url: URL(string: product.imageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 150)
+                    .clipped()
+            } placeholder: {
+                Color.gray
+                    .frame(width: 150, height: 150)
+                    .overlay(Text("Yükleniyor...").foregroundColor(.white))
             }
+            .cornerRadius(12)
+
+            // Ürün Bilgileri
+            VStack(alignment: .leading, spacing: 8) {
+                Text(product.name)
+                    .font(.headline)
+                    .lineLimit(1)
+
+                Text("$\(product.price, specifier: "%.2f")")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+
+                Text(product.desc)
+                    .font(.caption)
+                    .lineLimit(2)
+                    .foregroundColor(.gray)
+            }
+            .padding([.leading, .trailing, .bottom])
         }
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Product.self, inMemory: true)
+        .modelContainer(for: Product.self, inMemory: false)
 }
