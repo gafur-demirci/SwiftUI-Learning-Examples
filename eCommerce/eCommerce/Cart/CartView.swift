@@ -9,7 +9,17 @@ import SwiftUI
 
 struct CartView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Sepetiniz Boş")
+                    .font(.title)
+                    .foregroundColor(.gray)
+                    .padding()
+
+                Spacer()
+            }
+            .navigationTitle("Sepet")
+        }
     }
 }
 
