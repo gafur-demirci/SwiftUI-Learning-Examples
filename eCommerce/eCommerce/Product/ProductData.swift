@@ -25,7 +25,3 @@ class Product: Identifiable, Hashable {
         self.imageUrl = imageUrl
     }
 }
-
-@Observable class ProductData {
-    var products: [Product] = []
-}
