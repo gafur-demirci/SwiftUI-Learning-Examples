@@ -32,6 +32,12 @@ struct AddProduct: View {
                 if let priceValue = Double(price) {
                     let newProduct = Product(name: name, price: priceValue, desc: description, imageUrl: imageUrl)
                     modelContext.insert(newProduct)
+                    do {
+                        try modelContext.save()
+                        print("Saved!")
+                    } catch {
+                        print("Veriler kaydedilemedi: \(error.localizedDescription)")
+                    }
                 }
             }
             .buttonStyle(.borderedProminent)
@@ -43,5 +49,5 @@ struct AddProduct: View {
 
 #Preview {
     AddProduct()
-        .modelContainer(for: Product.self, inMemory: true)
+        .modelContainer(for: Product.self, inMemory: false)
 }
