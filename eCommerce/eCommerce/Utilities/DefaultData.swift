@@ -1,3 +1,11 @@
+//
+//  DefaultData.swift
+//  eCommerce
+//
+//  Created by Abdulgafur Demirci on 26.01.2025.
+//
+
+
 struct DefaultData {
     static let users = [
         User(username: "admin", password: "admin123", userType: .admin),
@@ -6,8 +14,8 @@ struct DefaultData {
     ]
     
     static let products = [
-        Product(name: "Laptop", description: "High performance laptop", price: 1500.0),
-        Product(name: "Smartphone", description: "Latest model smartphone", price: 800.0),
-        Product(name: "Headphones", description: "Noise-canceling headphones", price: 150.0)
+        Product(name: "Laptop", price: 1500.0, desc: "High performance laptop",  imageUrl: "laptop"),
+        Product(name: "Smartphone", price: 800.0, desc: "Latest model smartphone",  imageUrl: "smartphone"),
+        Product(name: "Headphones", price: 150.0, desc: "Noise-canceling headphones",  imageUrl: "headphones")
     ]
 }
