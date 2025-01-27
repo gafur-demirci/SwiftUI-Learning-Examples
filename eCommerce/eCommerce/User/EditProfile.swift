@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct EditProfile: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var userManager: UserManager
@@ -118,3 +118,4 @@ struct EditProfile: View {
         UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
+*/
