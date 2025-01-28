@@ -25,7 +25,6 @@ struct mapView: View {
             }
         }
         .safeAreaInset(edge: .bottom, content: {
-
             LocationButton(.currentLocation) {
                 mapData.cameraPos = .userLocation(fallback: .automatic)
             }
