@@ -13,6 +13,8 @@ struct Login: View {
     @Query private var users: [User]
     @State private var username = ""
     @State private var password = ""
+    @State private var userType: UserType?
+    @State private var isLoggedIn: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -30,6 +32,10 @@ struct Login: View {
                 }, label: {
                     Text("Login")
                 })
+                NavigationLink("", isActive: $isLoggedIn) {
+                    chekcNavigate()
+                }
+                .hidden()
                 NavigationLink(destination: Register()) {
                     Text("Sign In")
                 }
@@ -37,22 +43,42 @@ struct Login: View {
             }
             .padding()
         }
+        .navigationTitle("Login")
     }
     
-    func loginUser() {
+    private func loginUser() {
         do {
             let descriptor = FetchDescriptor<User>(
                 predicate: #Predicate { $0.username == username && $0.password == password }
             )
             let users = try modelContext.fetch(descriptor)
 
-            if let _ = users.first {
+            if let user = users.first {
                 print("Login Successful")
+                userType = user.userType
+                isLoggedIn = true
             } else {
                 print("Login Failed")
             }
         } catch {
             print("Error fetching users: \(error)")
+        }
+    }
+    
+    @ViewBuilder
+    func chekcNavigate() -> some View {
+        switch userType {
+        case .admin:
+//            print("Admin login")
+            AddProduct()
+        case .customer:
+//            print( "Customer login")
+            ProductList()
+        case .seller:
+            Text("Seller")
+//            print( "Seller login")
+        case .none:
+            Text("None")
         }
     }
 }
