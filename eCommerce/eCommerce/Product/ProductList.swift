@@ -81,11 +81,27 @@ struct ProductCard: View {
                     .foregroundColor(.gray)
             }
             .padding([.leading, .trailing, .bottom])
+            VStack {
+                Button(action: {
+                    addChart(product: product)
+                },label: {
+                    Text("Sepete Ekle")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                })
+                .padding()
+            }
         }
-        .frame(width: 160, height: 250) // Kartın genel boyutu
+        .frame(width: 160, height: 300) // Kartın genel boyutu
         .background(Color.white)
         .cornerRadius(12)
         .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+    }
+    
+    func addChart(product: Product) {
+        print("Sepete Eklendi: \(product.name)")
     }
 }
 

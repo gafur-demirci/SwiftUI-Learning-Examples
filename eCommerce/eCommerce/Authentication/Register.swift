@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct Register: View {
-//    @ObservedObject var userManager: UserManager
+    @Environment(\.modelContext) private var modelContext
     @State private var username = ""
     @State private var password = ""
-    @State private var userType: User.UserType = .customer
+    @State private var userType: UserType = .customer
     
     var body: some View {
         VStack {
@@ -24,24 +24,26 @@ struct Register: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Picker("Kullanıcı Tipi", selection: $userType) {
-                Text("Admin").tag(User.UserType.admin)
-                Text("Müşteri").tag(User.UserType.customer)
-                Text("Satıcı").tag(User.UserType.seller)
+                Text("Admin").tag(UserType.admin)
+                Text("Müşteri").tag(UserType.customer)
+                Text("Satıcı").tag(UserType.seller)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding()
             
             Button("Kayıt Ol") {
-//                userManager.registerUser(username: username, password: password, userType: userType)
-//                let newUser = User()
-//                modelContext.insert(newUser)
-//                do {
-//                    try modelContext.save()
-//                    print("User Saved!")
-//                } catch {
-//                    print("Veriler kaydedilemedi: \(error.localizedDescription)")
-//                }
+                
+                let newUser = User(username: username, password: password, userType: userType, lastLoginDate: nil, profileImageData: nil)
+                modelContext.insert(newUser)
+                do {
+                    try modelContext.save()
+                    print("User Saved!")
+                } catch {
+                    print("Veriler kaydedilemedi: \(error.localizedDescription)")
+                }
+                
             }
+            .disabled(username.isEmpty || password.isEmpty || userType.rawValue == "")
             .padding()
         }
         .padding()

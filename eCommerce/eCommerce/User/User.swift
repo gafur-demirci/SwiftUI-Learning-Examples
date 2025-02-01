@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import UIKit
 
-enum UserType: String {
+enum UserType: String, Codable {
     case admin, customer, seller
 }
 
@@ -25,6 +25,9 @@ class User {
     init(username: String, password: String, userType: UserType, lastLoginDate: Date? = nil, profileImageData: Data? = nil) {
         self.id = UUID()
         self.username = username
+        self.password = password
+        self.userType = userType
+        self.lastLoginDate = lastLoginDate
         self.profileImageData = profileImageData
     }
 
