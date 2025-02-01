@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct TravelBookApp: App {
@@ -13,8 +14,10 @@ struct TravelBookApp: App {
 
     var body: some Scene {
         WindowGroup {
-            mapView()
-                .environment(MapData())
+            ContentView()
+                .modelContainer(for: [User.self, Product.self, Order.self])
+//            mapView()
+//                .environment(MapData())
         }
     }
 }

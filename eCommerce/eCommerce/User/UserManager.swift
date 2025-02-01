@@ -8,28 +8,28 @@
 import SwiftUI
 import SwiftData
 import UIKit
-
+/*
 class UserManager: ObservableObject {
     @Published var user: User?
     var modelContainer: ModelContainer
     
-    init() {
-        do {
-            self.modelContainer = try ModelContainer(for: User.self)
-            self.user = nil
-//            fetchUser()
-        }
-        catch {
-            // Handle error appropriately, perhaps by logging or showing an alert
-            print("Failed to initialize ModelContainer: \(error)")
-            do {
-                self.modelContainer = try ModelContainer()
-                self.user = nil
-            } catch {
-                print("Failed to initialize ModelContainer: \(error)")
-            }
-        }
-    }
+//    init() {
+//        do {
+//            self.modelContainer = try ModelContainer(for: User.self)
+//            self.user = nil
+////            fetchUser()
+//        }
+//        catch {
+//            // Handle error appropriately, perhaps by logging or showing an alert
+//            print("Failed to initialize ModelContainer: \(error)")
+//            do {
+//                self.modelContainer = try ModelContainer()
+//                self.user = nil
+//            } catch {
+//                print("Failed to initialize ModelContainer: \(error)")
+//            }
+//        }
+//    }
 
 //    // Fetch user from the database
 //    func fetchUser() {
@@ -64,4 +64,4 @@ class UserManager: ObservableObject {
 //    }
 
 }
-
+*/

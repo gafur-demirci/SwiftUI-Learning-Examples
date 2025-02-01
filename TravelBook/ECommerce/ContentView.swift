@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  TravelBook
 //
-//  Created by Abdulgafur Demirci on 19.01.2025.
+//  Created by Abdulgafur Demirci on 28.01.2025.
 //
 
 import SwiftUI
@@ -46,9 +46,4 @@ struct ContentView: View {
             }
         }
     }
-}
-
-
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

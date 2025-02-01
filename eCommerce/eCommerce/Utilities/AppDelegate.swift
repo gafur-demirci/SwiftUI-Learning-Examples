@@ -8,32 +8,32 @@
 import UIKit
 import CoreData
 import SwiftData
-
+/*
 class PersistenceController {
-    static let shared = PersistenceController()
+//    static let shared = PersistenceController()
     let container: ModelContainer
     
-    init() {
-        container = NSPersistentContainer(name: "ArtBookModel")
-        container.loadPersistentStores { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-    }
-    var context: ModelContext {
-        return container.viewContext
-    }
+//    init() {
+//        container = NSPersistentContainer(name: "ArtBookModel")
+//        container.loadPersistentStores { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }
+//        }
+//    }
+//    var context: ModelContext {
+//        return container.viewContext
+//    }
     func save() {
-        let context = container.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+//        let context = container.viewContext
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//                let nserror = error as NSError
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//            }
+//        }
     }
 }
 
@@ -76,3 +76,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
+*/

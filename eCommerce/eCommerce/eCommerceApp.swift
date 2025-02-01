@@ -23,40 +23,40 @@ extension EnvironmentValues {
 @main
 struct eCommerceApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    let persistenceController = PersistenceController.shared
-    
-    @StateObject private var userManager = UserManager()
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+//    let persistenceController = PersistenceController.shared
+//    
+//    @StateObject private var userManager = UserManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .modelContainer(for: [User.self, Product.self]) // SwiftData için modeller
                 .onAppear {
-                    addDefaultData()
+//                    addDefaultData()
                 }
         }
-        .modelContainer(for: [Product.self])
+//        .modelContainer(for: [Product.self])
     }
     
-    private func addDefaultData() {
-        let appDelegate = AppDelegate()
-        let context = appDelegate.persistentContainer.viewContext
-        let defaultDataManager = DefaultDataManager(context: context)
-        defaultDataManager.addDefaultDataIfNeeded()
-    }
-    
-    func addNewArt() {
-        let appDelegate = AppDelegate()
-        let context = appDelegate.persistentContainer.viewContext
-        let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paints", into: context)
-        
-        
-        do {
-            try context.save()
-            print("Saved")
-        } catch {
-            print("Error while saving")
-        }
-    }
+//    private func addDefaultData() {
+//        let appDelegate = AppDelegate()
+//        let context = appDelegate.persistentContainer.viewContext
+//        let defaultDataManager = DefaultDataManager(context: context)
+//        defaultDataManager.addDefaultDataIfNeeded()
+//    }
+//    
+//    func addNewArt() {
+//        let appDelegate = AppDelegate()
+//        let context = appDelegate.persistentContainer.viewContext
+//        let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paints", into: context)
+//        
+//        
+//        do {
+//            try context.save()
+//            print("Saved")
+//        } catch {
+//            print("Error while saving")
+//        }
+//    }
 }
