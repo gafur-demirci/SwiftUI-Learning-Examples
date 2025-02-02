@@ -10,6 +10,7 @@ import SwiftData
 
 struct Login: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(UserSessionManager.self) private var userSession
     @Query private var users: [User]
     @State private var username = ""
     @State private var password = ""
@@ -55,6 +56,7 @@ struct Login: View {
 
             if let user = users.first {
                 print("Login Successful")
+                userSession.login(user: user)
                 userType = user.userType
                 isLoggedIn = true
             } else {
@@ -73,7 +75,7 @@ struct Login: View {
             AddProduct()
         case .customer:
 //            print( "Customer login")
-            ProductList()
+            ContentView()
         case .seller:
             Text("Seller")
 //            print( "Seller login")
