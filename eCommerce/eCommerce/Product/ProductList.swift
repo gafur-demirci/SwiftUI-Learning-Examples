@@ -10,6 +10,7 @@ import SwiftData
 
 struct ProductList: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(UserSessionManager.self) private var userSession
     @Query private var products: [Product]
 
     var body: some View {
