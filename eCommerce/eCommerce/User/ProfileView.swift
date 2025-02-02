@@ -9,51 +9,51 @@ import SwiftUI
 import SwiftData
 
 struct ProfileView: View {
-    @State private var username = "Ahmet Yılmaz" // Örnek kullanıcı adı
-    @State private var profileImage: UIImage? = nil // Profil resmi, nil ise avatar gösterilecek
-//    @Environment(\.modelContainer) private var modelContainer
+    
+    @Environment(UserSessionManager.self) private var userSession
     @State private var showEditProfile = false
     @State private var showCallConfirmation = false
-    
-//    @StateObject private var userManager: UserManager
-
-    // UserManager'ı dışarıdan başlatıyoruz
-//    init() {
-//        _userManager = StateObject(wrappedValue: UserManager()) // UserManager'ı başlatıyoruz
-//    }
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                // Kullanıcı Bilgisi ve Avatar
-                UserProfileHeader(username: username, profileImage: profileImage)
-                
-                // Siparişlerim Listesi
-                OrderListSection()
+            if let user = userSession.currentUser {
+                VStack(spacing: 20) {
+                    Text("Hoşgeldin, \(user.username)!")
+                        .font(.title)
+                        .bold()
+                    // Kullanıcı Bilgisi ve Avatar
+                    UserProfileHeader(username: user.username, profileImage: user.profileImage)
+                    
+                    // Siparişlerim Listesi
+                    OrderListSection()
+                    
+                    // Ayarlarım ve Bize Ulaşın
+                    SettingsSection(showEditProfile: $showEditProfile, showCallConfirmation: $showCallConfirmation)
+                    
+                    Spacer()
+                    
+                    // Çıkış Yap Butonu
+                    LogoutButton()
+                }
+                .padding()
+                .navigationTitle("Profil")
+                .sheet(isPresented: $showEditProfile) {
+                    EditProfile()
+                }
+                .alert(isPresented: $showCallConfirmation) {
+                    Alert(
+                        title: Text("Çağrı Başlat"),
+                        message: Text("Müşteri hizmetlerini aramak istediğinizden emin misiniz?"),
+                        primaryButton: .default(Text("Evet"), action: {
+                            callSupport()
+                        }),
+                        secondaryButton: .cancel(Text("Hayır"))
+                    )
+                }
+            } else {
+                Text("Kullanıcı bilgisi yok")
+            }
 
-                // Ayarlarım ve Bize Ulaşın
-                SettingsSection(showEditProfile: $showEditProfile, showCallConfirmation: $showCallConfirmation)
-                
-                Spacer()
-
-                // Çıkış Yap Butonu
-                LogoutButton()
-            }
-            .padding()
-            .navigationTitle("Profil")
-            .sheet(isPresented: $showEditProfile) {
-//                EditProfile(userManager: userManager)
-            }
-            .alert(isPresented: $showCallConfirmation) {
-                Alert(
-                    title: Text("Çağrı Başlat"),
-                    message: Text("Müşteri hizmetlerini aramak istediğinizden emin misiniz?"),
-                    primaryButton: .default(Text("Evet"), action: {
-                        callSupport()
-                    }),
-                    secondaryButton: .cancel(Text("Hayır"))
-                )
-            }
         }
     }
 
