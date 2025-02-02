@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-/*
+
 struct EditProfile: View {
-    @Environment(\.modelContext) private var context
-    @ObservedObject var userManager: UserManager
+    @Environment(\.modelContext) private var modelContext
+    @Environment(UserSessionManager.self) private var userSession
 
     @State private var newUsername: String = ""
     @State private var selectedImage: UIImage?
@@ -29,7 +29,7 @@ struct EditProfile: View {
                             .onTapGesture {
                                 showImagePicker = true
                             }
-                    } else if let profileImage = userManager.user?.profileImage {
+                    } else if let profileImage = userSession.currentUser?.profileImage {
                         Image(uiImage: profileImage)
                             .resizable()
                             .scaledToFit()
@@ -39,7 +39,7 @@ struct EditProfile: View {
                                 showImagePicker = true
                             }
                     } else {
-                        Text(initials(for: userManager.user?.username ?? ""))
+                        Text(initials(for: userSession.currentUser?.username ?? ""))
                             .font(.largeTitle)
                             .foregroundColor(.white)
                             .frame(width: 100, height: 100)
@@ -94,8 +94,8 @@ struct EditProfile: View {
                 ImagePicker(image: $selectedImage)
             }
             .onAppear {
-                newUsername = userManager.user?.username ?? ""
-                selectedImage = userManager.user?.profileImage
+                newUsername = userSession.currentUser?.username ?? ""
+                selectedImage = userSession.currentUser?.profileImage
             }
         }
     }
@@ -109,7 +109,15 @@ struct EditProfile: View {
 
     // Değişiklikleri kaydet
     private func saveChanges() {
-        userManager.updateUser(username: newUsername, profileImage: selectedImage)
+
+        userSession.currentUser?.username = newUsername
+        userSession.currentUser?.profileImage = selectedImage
+        do {
+            try modelContext.save()
+            print("User Updated!")
+        } catch {
+            print("Veriler kaydedilemedi: \(error.localizedDescription)")
+        }
         dismissView()
     }
 
@@ -118,4 +126,4 @@ struct EditProfile: View {
         UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
-*/
+
