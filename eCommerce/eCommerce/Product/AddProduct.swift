@@ -10,7 +10,7 @@ import SwiftData
 
 struct AddProduct: View {
     @Environment(\.modelContext) private var modelContext
-
+    @Environment(UserSessionManager.self) private var userSession
     @State private var name: String = ""
     @State private var price: String = ""
     @State private var description: String = ""
