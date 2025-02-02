@@ -11,10 +11,13 @@ import SwiftData
 @main
 struct eCommerceApp: App {
     
+    @StateObject private var userSession = UserSessionManager()
+    
     var body: some Scene {
         WindowGroup {
 //            ContentView()
             Login()
+                .environment(userSession)
                 .modelContainer(for: [User.self, Product.self, CartItem.self]) // SwiftData için modeller
                 .onAppear {
                 }
