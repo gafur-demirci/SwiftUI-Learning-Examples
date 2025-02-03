@@ -15,7 +15,6 @@ struct eCommerceApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             Login()
                 .environment(userSession)
                 .modelContainer(for: [User.self, Product.self, CartItem.self]) // SwiftData için modeller
