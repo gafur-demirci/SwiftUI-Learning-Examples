@@ -29,38 +29,6 @@ struct ContentView: View {
                     Label("Profil", systemImage: "person.fill")
                 }
         }
-        /*
-        NavigationStack {
-            if(products.isEmpty){
-                Text("Satın alınabilir ürün bulunmuyor.")
-                NavigationLink(destination: AddProduct()) {
-                    Text("Yeni Ürün Ekle")
-                }
-            } else {
-                NavigationView {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                            ForEach(products) { product in
-                                NavigationLink(destination: EditProduct(product: product)) {
-                                    ProductCard(product: product)
-                                }
-                                .buttonStyle(PlainButtonStyle()) // Kartın tasarımını bozmaz
-                            }
-                        }
-                        .padding()
-                    }
-                    .navigationTitle("Ürünler")
-                }
-                .toolbar {
-                    ToolbarItem {
-                        NavigationLink(destination: AddProduct()) {
-                            Label("Add Product", systemImage: "plus")
-                        }
-                    }
-                }
-            }
-        }
-         */
     }
 }
 
