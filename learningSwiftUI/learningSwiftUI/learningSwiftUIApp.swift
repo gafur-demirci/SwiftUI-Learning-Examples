@@ -88,8 +88,9 @@ struct learningSwiftUIApp: App {
 //            CatchTheMouse()
 //            LandMarks()
 //                .environment(LandMarkData())
-            ArtBook()
-                .environment(\.managedObjectContext, persistenceController.context)
+//            ArtBook()
+//                .environment(\.managedObjectContext, persistenceController.context)
+            FaceIdCheck()
         }
         #if os(macOS)
         Settings {
