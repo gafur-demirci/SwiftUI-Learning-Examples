@@ -10,10 +10,7 @@ import SwiftUI
 @available(iOS 18.0, *)
 @main
 struct learningSwiftUIApp: App {
-    @UIApplicationDelegateAdaptor(ArtAppDelegate.self) var delegate
-    let persistenceController = PersistenceController.shared
 
-    
     var body: some Scene {
         WindowGroup {
             FaceIdCheck()
