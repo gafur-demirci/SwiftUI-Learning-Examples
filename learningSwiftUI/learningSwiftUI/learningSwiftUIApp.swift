@@ -13,7 +13,8 @@ struct learningSwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            FaceIdCheck()
+//            FaceIdCheck()
+            ListCurrency()
         }
     }
 }

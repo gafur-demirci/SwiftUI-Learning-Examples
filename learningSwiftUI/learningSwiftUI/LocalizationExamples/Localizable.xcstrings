@@ -13,6 +13,16 @@
     "/" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@'s Birthday is %@" : {
       "localizations" : {
         "en" : {
@@ -57,6 +67,9 @@
       }
     },
     "+" : {
+
+    },
+    "1 EUR Equals: " : {
 
     },
     "Active" : {
@@ -154,6 +167,9 @@
     "Cover" : {
 
     },
+    "Current Currencies" : {
+
+    },
     "Current value: %@" : {
 
     },
@@ -203,6 +219,9 @@
 
     },
     "Get Picture" : {
+
+    },
+    "Get Rates" : {
 
     },
     "Go Back" : {
