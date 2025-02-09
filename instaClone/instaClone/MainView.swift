@@ -9,7 +9,32 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                TabView {
+                    Tab {
+                        FeedsView()
+                    } label: {
+                        Image(systemName: "house.fill")
+                        Text("Feed")
+                    }
+                    Tab {
+                        UploadView()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up.fill")
+                        Text("Upload")
+                    }
+                    Tab {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "person.fill")
+                        Text("Settings")
+                    }
+                }
+            }
+        }
+        .padding()
+        .toolbarVisibility(.hidden)
     }
 }
 
