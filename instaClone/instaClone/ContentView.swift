@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
+    @State private var isAuthenticated = false
     
     var body: some View {
         NavigationStack {
@@ -32,23 +33,25 @@ struct ContentView: View {
                 .padding()
                 
                 HStack {
-                    NavigationLink (LocalizedStringKey("Sign In"), destination: MainView())
+                    Button("Sign In") {
+                        signIn()
+                    }
+                    .navigationDestination(isPresented: $isAuthenticated) {
+                        MainView()
+                    }
                     Spacer()
-                    NavigationLink (LocalizedStringKey("Sign Up"), destination: SignUpView())
+                    NavigationLink("Sign Up", destination: SignUpView())
                 }
                 .padding()
-                
             }
             .padding()
         }
+        .toolbarVisibility(.hidden)
     }
     
     func signIn() {
-        
-    }
-    
-    func signUp() {
-        
+        print("user signed in")
+        isAuthenticated = false
     }
 }
 
