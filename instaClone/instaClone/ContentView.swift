@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
 
 struct ContentView: View {
     
@@ -40,7 +40,10 @@ struct ContentView: View {
                         MainView()
                     }
                     Spacer()
-                    NavigationLink("Sign Up", destination: SignUpView())
+                    Button("Sign Up") {
+                        signUp()
+                    }
+                    .disabled(userEmail.isEmpty || userPassword.isEmpty )
                 }
                 .padding()
             }
@@ -52,6 +55,18 @@ struct ContentView: View {
     func signIn() {
         print("user signed in")
         isAuthenticated = false
+    }
+    
+    func signUp() {
+        print("user signed up")
+        Auth.auth().createUser(withEmail: userEmail, password: userPassword) { result, error in
+            if let error = error {
+                print("error signing up: \(error.localizedDescription)")
+                return
+            }
+            print("user signed up successfully")
+            self.isAuthenticated = true
+        }
     }
 }
 
