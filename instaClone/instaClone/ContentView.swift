@@ -50,11 +50,27 @@ struct ContentView: View {
             .padding()
         }
         .toolbarVisibility(.hidden)
+        .onAppear() {
+            let currentUser = Auth.auth().currentUser
+            if currentUser != nil {
+                isAuthenticated = true
+            }
+        }
     }
     
     func signIn() {
-        print("user signed in")
-        isAuthenticated = false
+        
+        if (userEmail != "" && userPassword != "") {
+            Auth.auth().signIn(withEmail: userEmail, password: userPassword) { authData, error in
+                if let error = error {
+                    print("error signing in: \(error.localizedDescription)")
+                    return
+                }
+                print("user signed in successfully")
+                isAuthenticated = true
+            }
+            
+        }
     }
     
     func signUp() {
