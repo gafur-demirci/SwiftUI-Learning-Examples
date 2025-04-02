@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject private var viewModel = JokesViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView(content: {
+            List(viewModel.jokes, id: \.self.id) { joke in
+                Text(joke.value)
+            }
+            .navigationTitle(Text("Chuck Norris Jokes"))
+            .toolbar {
+                Button(action: viewModel.fetchJokes) {
+                    Label("Refresh", systemImage: "arrow.clockwise")
+                }
+            }
+        })
+//        .onAppear(perform: viewModel.fetchJokes)
     }
 }
 
