@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct CustomCircular: View {
+    
+    let lineWidth: CGFloat
+    let backgroundColor: Color
+    let foregroundColor: Color
+    let percentage: Double
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        GeometryReader { geometry in
+            ZStack {
+                CircularShape(percent: 100, startAngle: 90)
+                    .stroke(style: StrokeStyle(lineWidth: lineWidth))
+                    .fill(backgroundColor)
+                CircularShape(percent: percentage, startAngle: -90)
+                    .stroke(style: StrokeStyle(lineWidth: lineWidth))
+                    .fill(foregroundColor)
+            }
+            .animation(.easeIn(duration: 1), value: percentage)
+            .padding(lineWidth/1.5)
+        }
     }
 }
 
 #Preview {
-    CustomCircular()
+    CustomCircular(lineWidth: 10, backgroundColor: .red, foregroundColor: .green, percentage: 50)
 }
