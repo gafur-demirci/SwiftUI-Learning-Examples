@@ -42,7 +42,6 @@ extension ContainerValues {
 extension View {
     func showBorder(_ show: Bool) -> some View {
         if #available(iOS 18.0, *) {
-            containerValue(\.showBorder, show)
             return containerValue(\.showBorder, show)
         }
         return Text("Error Occured")
