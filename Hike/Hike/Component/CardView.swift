@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct CardView: View {
+    // MARK: - PROPERTIES
+    
+    @State private var imageNumber: Int = 1
+    @State private var randomNumber: Int = 1
+    
     var body: some View {
-        
-        // MARK: Card
+        // MARK: CARD
         
         ZStack {
             CustomBackgroundView()
             VStack {
-                
                 // MARK: - HEADER
                 
                 VStack(alignment: .leading) {
@@ -44,9 +47,7 @@ struct CardView: View {
                         .foregroundColor(.customGrayMedium)
                 } //: HEADER
                 .padding(.horizontal, 30)
-                // MARK: - Main Content
-                
-                
+                // MARK: - MAIN CONTENT
                 
                 ZStack {
                     Circle()
@@ -58,15 +59,20 @@ struct CardView: View {
                             )
                         )
                         .frame(width: 256, height: 256)
-                    Image("image-1")
+                    Image("image-\(imageNumber)")
                         .resizable()
                         .scaledToFit()
-                }
+                        .animation(
+                            .default,
+                            value: imageNumber
+                        )
+                } //: MAIN CONTENT
                 
-                // MARK: - Footer
+                // MARK: - FOOTER
                 
                 Button(action: {
-                    
+                    // ACTION: Generate a random number
+                    randomImage()
                 }, label: {
                     Text("Explore More")
                         .font(.title2)
@@ -78,18 +84,28 @@ struct CardView: View {
                                 endPoint: .bottom
                             )
                         )
-                })
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [.customGrayLight, .customGrayMedium]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .cornerRadius(40)
+                        .shadow(
+                            color: .black.opacity(0.25),
+                            radius: 0.25,
+                            x: 1,
+                            y: 2
+                        )
+                }) //: FOOTER
+                .buttonStyle(GradientButtonStyle())
             }
-        } //: Card
+        } //: CARD
         .frame(width: 320, height: 570)
+    }
+    
+    // MARK: - FUNCTIONS
+    
+    func randomImage() {
+        
+        repeat {
+            randomNumber = Int.random(in: 1...5)
+        } while randomNumber == imageNumber
+        
+        imageNumber = randomNumber
     }
 }
 
