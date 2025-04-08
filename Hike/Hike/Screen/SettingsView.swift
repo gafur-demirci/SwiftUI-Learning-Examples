@@ -55,7 +55,52 @@ struct SettingsView: View {
             // MARK: - SECTION: ICONS
             
             // MARK: - SECTION: ABOUT
-            
+            Section(content: {
+                // 1. Basic Labeled Content
+                // LabeledContent("Application", value: "Hike")
+                
+                // 2. Advanced Labeled Content
+                /*
+                LabeledContent {
+                    Text("Hike")
+                        .foregroundStyle(.primary)
+                        .fontWeight(.heavy)
+                } label: {
+                    // Label
+                    HStack {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .frame(width: 30, height: 30)
+                                .foregroundStyle(.blue)
+                            Image(systemName: "apps.iphone")
+                                .foregroundStyle(.white)
+                                .fontWeight(.semibold)
+                        }
+                        Text("Application")
+                            .fontWeight(.medium)
+                    }
+                }
+                 */
+                CustomListRowView(rowLabel: "Application", rowIcon: "apps.iphone", rowContent: "HIKE", rowTintColor: .blue)
+                CustomListRowView(rowLabel: "Compatibility", rowIcon: "info.circle", rowContent: "iOS, iPadOS", rowTintColor: .red)
+                CustomListRowView(rowLabel: "Technology", rowIcon: "swift", rowContent: "Swift", rowTintColor: .orange)
+                CustomListRowView(rowLabel: "Version", rowIcon: "gear", rowContent: "1.0", rowTintColor: .purple)
+                CustomListRowView(rowLabel: "Developer", rowIcon: "ellipsis.curlybraces", rowContent: "John Doe", rowTintColor: .mint)
+                CustomListRowView(rowLabel: "Designer", rowIcon: "paintpalette", rowContent: "Robert Petras", rowTintColor: .pink)
+                CustomListRowView(rowLabel: "Website", rowIcon: "globe", rowTintColor: .indigo, rowLinkLabel: "Softtech", rowLinkDestination: "https://softtech.com.tr")
+
+            }, header: {
+                HStack {
+                    Text("ABOUT THE APP")
+                }
+            }, footer: {
+                HStack {
+                    Spacer()
+                    Text("Copyright © All right reversed.")
+                    Spacer()
+                }
+                .padding(.vertical, 8)
+            }) //: SECTION
         } //: LIST
     }
 }
