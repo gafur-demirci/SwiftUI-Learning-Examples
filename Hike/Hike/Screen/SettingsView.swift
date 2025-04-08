@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    // MARK: - PROPERTIES
+    
+    private let alternateAppIcons: [String] = [
+        "AppIcon-MagnifyingGlass",
+        "AppIcon-Map",
+        "AppIcon-Mushroom",
+        "AppIcon-Camera",
+        "AppIcon-Backpack",
+        "AppIcon-Campfire"
+    ]
+    
     var body: some View {
         List {
             
@@ -54,33 +66,53 @@ struct SettingsView: View {
             .listRowSeparator(Visibility.hidden)
             // MARK: - SECTION: ICONS
             
+            Section(content: {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(alternateAppIcons.indices, id: \.self) { item in
+                            Button(action: {
+                                print("Icon \(alternateAppIcons[item]) was pressed")
+                                
+                                UIApplication.shared.setAlternateIconName(alternateAppIcons[item]) { error in
+                                    if let error = error {
+                                        print("Error setting alternate icon: \(error.localizedDescription)")
+                                    } else {
+                                        print("Alternate icon setted to \(alternateAppIcons[item]) successfully.")
+                                    }
+                                }
+                            }, label: {
+                                Image("\(alternateAppIcons[item])-Preview")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(.buttonBorder)
+                            })
+                            .buttonStyle(.borderless)
+                        }
+                    }
+                } //: SCROLL VİEW
+                .padding(.top, 12)
+                Text("Choose your favorite app icon from the collection above.")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
+                    .font(.footnote)
+                    .padding(.bottom, 12)
+            }, header: {
+                Text("Alternate Icons")
+            }, footer: {
+                Text("")
+            }
+            )
+            .listRowSeparator(.hidden)
+            
             // MARK: - SECTION: ABOUT
             Section(content: {
                 // 1. Basic Labeled Content
                 // LabeledContent("Application", value: "Hike")
                 
                 // 2. Advanced Labeled Content
-                /*
-                LabeledContent {
-                    Text("Hike")
-                        .foregroundStyle(.primary)
-                        .fontWeight(.heavy)
-                } label: {
-                    // Label
-                    HStack {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .frame(width: 30, height: 30)
-                                .foregroundStyle(.blue)
-                            Image(systemName: "apps.iphone")
-                                .foregroundStyle(.white)
-                                .fontWeight(.semibold)
-                        }
-                        Text("Application")
-                            .fontWeight(.medium)
-                    }
-                }
-                 */
+
                 CustomListRowView(rowLabel: "Application", rowIcon: "apps.iphone", rowContent: "HIKE", rowTintColor: .blue)
                 CustomListRowView(rowLabel: "Compatibility", rowIcon: "info.circle", rowContent: "iOS, iPadOS", rowTintColor: .red)
                 CustomListRowView(rowLabel: "Technology", rowIcon: "swift", rowContent: "Swift", rowTintColor: .orange)
