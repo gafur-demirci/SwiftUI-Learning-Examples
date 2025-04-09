@@ -14,13 +14,29 @@ struct ContentView: View {
     @Query private var wishes: [Wish]
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(wishes) { wish in
+                    Text(wish.title)
+                        .font(.title.weight(.light))
+                        .padding(.vertical, 2)
+                }
+            }
+            .navigationBarTitle("Wishlist")
+            .navigationBarItems(trailing: Button("Add") {
+                
+            })
+            .overlay {
+                if wishes.isEmpty {
+                    ContentUnavailableView(
+                        "My Wishlist",
+                        systemImage: "heart.circle",
+                        description:
+                            Text("No wishes yet. Add one to het started.")
+                    )
+                }
+            }
         }
-        .padding()
     }
 }
 
