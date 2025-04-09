@@ -21,4 +21,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: Wish.self, inMemory: true)
 }
