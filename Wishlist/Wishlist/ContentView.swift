@@ -28,7 +28,19 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Wishlist")
-            .navigationBarItems(trailing: Button("Add") {
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button(action: {
+                        isAlertShowing.toggle()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .imageScale(.large)
+                    })
+                })
+            }
+//            .navigationBarItems(trailing: Button("Add") { })
+            .alert("Create a new wish", isPresented: $isAlertShowing) {
+                TextField("Enter a wish", text: $title)
                 
                 Button(action: {
                     modelContext.insert(Wish(title: title))
