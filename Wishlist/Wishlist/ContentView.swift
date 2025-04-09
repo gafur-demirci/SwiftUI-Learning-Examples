@@ -25,7 +25,13 @@ struct ContentView: View {
             .navigationBarTitle("Wishlist")
             .navigationBarItems(trailing: Button("Add") {
                 
-            })
+                Button(action: {
+                    modelContext.insert(Wish(title: title))
+                    title = ""
+                }, label: {
+                    Text("Save")
+                })
+            }
             .overlay {
                 if wishes.isEmpty {
                     ContentUnavailableView(
