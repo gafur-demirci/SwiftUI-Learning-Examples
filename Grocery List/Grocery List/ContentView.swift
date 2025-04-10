@@ -14,11 +14,31 @@ struct ContentView: View {
     @Query private var items: [GroceryItem]
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(items) { item in
+                    Text(item.name)
+                        .font(.title.weight(.light))
+                        .padding(.vertical,2)
+                        .foregroundStyle(item.isCompleted ? Color.accentColor : Color.primary)
+                        .strikethrough(item.isCompleted)
+                        .italic(item.isCompleted)
+                }
+            }
+            .navigationBarTitle("Grocery List")
+            .navigationBarItems(trailing: Button("Add") {
+                
+            })
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView(
+                        "No items yet",
+                        systemImage: "cart.circle",
+                        description:
+                            Text("Add some items to the shopping list.")
+                    )
+                }
+            }
         }
     }
 }
