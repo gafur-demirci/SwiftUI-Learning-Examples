@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Item {
+class GroceryItem {
     var name: String
     var isCompleted: Bool
     
