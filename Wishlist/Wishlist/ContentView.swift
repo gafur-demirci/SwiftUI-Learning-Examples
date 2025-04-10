@@ -13,6 +13,9 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var wishes: [Wish]
     
+    @State private var isAlertShowing: Bool = false
+    @State private var title: String = ""
+    
     var body: some View {
         NavigationStack {
             List {
