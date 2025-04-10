@@ -20,10 +20,30 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .padding()
     }
 }
 
-#Preview {
+
+#Preview("Sample Data") {
+    let sampleData: [GroceryItem] = [
+        GroceryItem(name: "Bakery & Bread", isCompleted: false),
+        GroceryItem(name: "Meat & Seafood", isCompleted: true),
+        GroceryItem(name: "Cereals", isCompleted: .random()),
+        GroceryItem(name: "Pasta & Rice", isCompleted: .random()),
+        GroceryItem(name: "Cheese & Eggs", isCompleted: .random())
+    ]
+    let container = try! ModelContainer(for: GroceryItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    
+    for item in sampleData {
+        container.mainContext.insert(item)
+    }
+
+    return ContentView()
+        .modelContainer(container)
+}
+
+
+#Preview("Empty List") {
     ContentView()
+        .modelContainer(for: GroceryItem.self, inMemory: true)
 }
