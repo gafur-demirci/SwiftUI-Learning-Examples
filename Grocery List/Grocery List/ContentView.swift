@@ -13,6 +13,10 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [GroceryItem]
     
+    @State private var item: String = ""
+    
+    @FocusState private var isFocused: Bool
+    
     var body: some View {
         NavigationStack {
             List {
