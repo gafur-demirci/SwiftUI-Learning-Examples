@@ -26,9 +26,37 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Grocery List")
-            .navigationBarItems(trailing: Button("Add") {
-                
-            })
+//            .navigationBarItems(trailing: Button("Add") {
+//                
+//            })
+            .safeAreaInset(edge: .bottom) {
+                VStack(spacing: 12) {
+                    TextField("Add item", text: $item)
+                        .textFieldStyle(.plain)
+                        .padding(12)
+                        .background(.tertiary)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .font(.title.weight(.light))
+                        .focused($isFocused)
+                    Button {
+                        withAnimation {
+                            guard !item.isEmpty else { return }
+                            modelContext.insert(GroceryItem(name: item, isCompleted: false))
+                        }
+                        item = ""
+                        isFocused = false
+                    } label: {
+                        Text("Save")
+                            .font(.title2.weight(.medium))
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle)
+                    .controlSize(.extraLarge)
+                }
+                .padding()
+                .background(.bar)
+            }
             .overlay {
                 if items.isEmpty {
                     ContentUnavailableView(
