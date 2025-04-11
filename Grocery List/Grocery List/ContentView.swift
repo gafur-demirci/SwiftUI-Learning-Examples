@@ -23,6 +23,17 @@ struct ContentView: View {
                         .foregroundStyle(item.isCompleted ? Color.accentColor : Color.primary)
                         .strikethrough(item.isCompleted)
                         .italic(item.isCompleted)
+                        .swipeActions(content: {
+                            Button("Delete", role: .destructive) {
+                                modelContext.delete(item)
+                            }
+                        })
+                        .swipeActions(edge: .leading, content: {
+                            Button("Done", systemImage: item.isCompleted ? "xmark.circle" : "checkmark.circle") {
+                                item.isCompleted.toggle()
+                            }
+                            .tint(item.isCompleted ? Color.accentColor : Color.green)
+                        })
                 }
             }
             .navigationBarTitle("Grocery List")
