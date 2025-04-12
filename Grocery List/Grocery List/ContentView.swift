@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     
@@ -16,6 +17,13 @@ struct ContentView: View {
     @State private var item: String = ""
     
     @FocusState private var isFocused: Bool
+    
+    let buttonTip = ButtonTip()
+    
+    init() {
+        setupTips()
+//        try? Tips.configure()
+    }
     
     var body: some View {
         NavigationStack {
@@ -41,9 +49,18 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Grocery List")
-//            .navigationBarItems(trailing: Button("Add") {
-//                
-//            })
+            .toolbar {
+                if items.isEmpty {
+                 ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            
+                        }, label: {
+                            Label("Essentials", systemImage: "carrot")
+                        })
+                        .popoverTip(buttonTip)
+                    }
+                }
+            }
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 12) {
                     TextField("Add item", text: $item)
@@ -82,6 +99,19 @@ struct ContentView: View {
                     )
                 }
             }
+        }
+    }
+    
+    func setupTips () {
+        do {
+            try Tips.resetDatastore()
+            Tips.showAllTipsForTesting()
+            try Tips.configure([
+                .displayFrequency(.immediate),
+            ])
+            
+        } catch {
+            print("Error setting up tips: \(error.localizedDescription)")
         }
     }
 }
