@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		06D166CD2DAA7AF40005C767 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D166CC2DAA7AF40005C767 /* Pet.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		06D166BE2DAA7A180005C767 /* Paws.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paws.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D166CC2DAA7AF40005C767 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		06D166B52DAA7A180005C767 = {
 			isa = PBXGroup;
 			children = (
+				06D166CC2DAA7AF40005C767 /* Pet.swift */,
 				06D166C02DAA7A180005C767 /* Paws */,
 				06D166BF2DAA7A180005C767 /* Products */,
 			);
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D166CD2DAA7AF40005C767 /* Pet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
