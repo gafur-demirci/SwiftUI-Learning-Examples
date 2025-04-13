@@ -74,10 +74,55 @@ struct ContentView: View {
                 EmptyListView()
             }
         }
-        .padding()
+        // MARK: - SAFE AREA
+        .safeAreaInset(edge: .bottom, alignment: .center) {
+            HStack {
+                if movies.count >= 2 {
+                    // RANDOMIZE BUTTON
+                    Button(action: {
+                        randomMovieGenerator()
+                        isShowingAlert = true
+                    }, label: {
+                        ButtonImageView(symbolName: "arrow.trianglehead.2.clockwise.rotate.90.circle.fill")
+                    })
+                    .alert(randomMovie, isPresented: $isShowingAlert) {
+                        Button("OK", role: .cancel) {}
+                    }
+                    .accessibilityLabel("Random Movie")
+                    .sensoryFeedback(.success, trigger: isShowingAlert)
+                    
+                    Spacer()
+                }
+                // NEW MOVIE BUTTON
+                Button(action: {
+                    isSheetPresented.toggle()
+                }, label: {
+                    ButtonImageView(symbolName: "plus.circle.fill")
+                })
+                .accessibilityLabel("New Movie")
+                .sensoryFeedback(.success, trigger: isSheetPresented)
+            } //: HSTACK
+            .padding(.horizontal)
+        } //: SAFE AREA
+        // MARK: SHEET
+        .sheet(isPresented: $isSheetPresented, content: {
+            NewMovieFormView()
+        }) //: SHEET
+    }
+    
+    // MARK: FUNCTIONS
+    
+    private func randomMovieGenerator() {
+        randomMovie = movies.randomElement()!.title
     }
 }
 
-#Preview {
+#Preview("Sample Data") {
     ContentView()
+        .modelContainer(Movie.preview)
+}
+
+#Preview("Empty List") {
+    ContentView()
+        .modelContainer(for: Movie.self, inMemory: true)
 }
