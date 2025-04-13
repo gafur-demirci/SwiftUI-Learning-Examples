@@ -46,6 +46,11 @@ struct EmptyListView: View {
     }
 }
 
-#Preview {
+#Preview("Light Mode") {
     EmptyListView()
+}
+
+#Preview("Dark Mode") {
+    EmptyListView()
+        .preferredColorScheme(.dark)
 }
