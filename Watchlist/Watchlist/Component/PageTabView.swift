@@ -14,5 +14,6 @@ struct PageTabView: View {
 }
 
 #Preview {
-    PageTabView()
+    PageTabView(icon: "1.circle", description: "Add some movies to the watchlist if you plan to watch later")
+        .padding()
 }
