@@ -17,5 +17,5 @@ struct ButtonImageView: View {
 }
 
 #Preview {
-    ButtonImageView()
+    ButtonImageView(symbolName: "plus.circle.fill")
 }
