@@ -13,7 +13,16 @@ struct PageTabView: View {
     var description: String
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(systemName: icon)
+                .imageScale(.large)
+                .font(.largeTitle.weight(.light))
+                .symbolEffect(.breathe)
+            Text(description)
+                .font(.title.weight(.light))
+                .fontWidth(.compressed)
+                .multilineTextAlignment(.center)
+        }
     }
 }
 
