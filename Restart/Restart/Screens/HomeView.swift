@@ -67,6 +67,11 @@ struct HomeView: View {
             .buttonBorderShape(.capsule)
             .controlSize(.large)
         } //: VSTACK
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isAnimating = true
+            }
+        }
     } //: BODY
 }
 
