@@ -30,6 +30,12 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFit()
                     .padding()
+                    .offset(y: isAnimating ? 35 : -35)
+                    .animation(
+                        .easeInOut(duration: 4)
+                        .repeatForever(autoreverses: true),
+                        value: isAnimating
+                    )
             }
             
             // MARK: - CENTER
