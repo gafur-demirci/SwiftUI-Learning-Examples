@@ -11,6 +11,7 @@ struct HomeView: View {
     
     // MARK: - PROPERTIES
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
+    @State private var isAnimating: Bool = false
     
     // MARK: - BODY
     
