@@ -119,6 +119,9 @@ struct OnboardingView: View {
                 .padding()
             } //: VSTACK
         } //: ZSTACK
+        .onAppear {
+            isAnimating = true
+        }
     }
 }
 
