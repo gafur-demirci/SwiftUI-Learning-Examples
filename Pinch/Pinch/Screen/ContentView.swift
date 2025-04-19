@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // MARK: PROPERTIES
+    
+    @State private var isAnimating: Bool = false
+    @State private var imageScale: CGFloat = 1
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
