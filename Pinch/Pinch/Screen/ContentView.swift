@@ -28,6 +28,10 @@ struct ContentView: View {
         }
     }
     
+    func currentPage() -> String {
+        return pages[pageIndex - 1].imageName
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
