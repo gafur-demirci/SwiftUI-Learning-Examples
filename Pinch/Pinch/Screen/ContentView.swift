@@ -78,6 +78,60 @@ struct ContentView: View {
                     .padding(.top, 30)
                 , alignment: .top
             )
+            // MARK: - CONTROLS
+            .overlay(
+                Group {
+                    HStack {
+                        // MARK: - SCALE DOWN
+                        
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                if self.imageScale > 1 {
+                                    self.imageScale -= 1
+                                    
+                                    if self.imageScale <= 1 {
+                                        resetImageState()
+                                    }
+                                }
+                            }
+                            
+                        },label: {
+                            ControlImageView(icon: "minus.magnifyingglass")
+                        })
+                        
+                        // MARK: - RESET
+                        
+                        Button(action: {
+                                resetImageState()
+                        },label: {
+                            ControlImageView(icon: "arrow.up.left.and.down.right.magnifyingglass")
+                        })
+                        
+                        // MARK: - SCALE UP
+                        
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                if self.imageScale < 5 {
+                                    self.imageScale += 1
+                                    
+                                    if self.imageScale > 5 {
+                                        self.imageScale = 5
+                                    }
+                                }
+                            }
+                        },label: {
+                            ControlImageView(icon: "plus.magnifyingglass")
+                        })
+                        
+                    } //: CONTROLS
+                    .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .opacity(isAnimating ? 1 : 0)
+                }
+                .padding(.bottom, 30),
+                alignment: .bottom
+            )
         } //: NAVIGATION
     }
 }
