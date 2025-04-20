@@ -180,6 +180,25 @@ struct ContentView: View {
                     
                     
                     // MARK: - THUMBNAILS
+                    
+                    ForEach(pages) { page in
+                        Image(page.thumbnailName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .shadow(radius: 4)
+                            .opacity(isDrawerOpen ? 1 : 0)
+                            .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
+                            .onTapGesture {
+                                self.isAnimating = true
+                                self.pageIndex = page.id
+                                withAnimation(.easeOut) {
+                                    self.isDrawerOpen = false
+                                }
+                            }
+                    }
+                    
                     Spacer()
                 } //: DRAWER
                 .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
