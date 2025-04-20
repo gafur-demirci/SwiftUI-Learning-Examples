@@ -13,6 +13,16 @@ struct ContentView: View {
     
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
+    @State private var imageOffset: CGSize = .zero
+    
+    // MARK: - FUNCTIONS
+    
+    func resetImageState() {
+        return withAnimation(.spring()) {
+            self.imageOffset = .zero
+            self.imageScale = 1
+        }
+    }
     
     var body: some View {
         NavigationStack {
