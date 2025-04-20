@@ -16,6 +16,9 @@ struct ContentView: View {
     @State private var imageOffset: CGSize = .zero
     @State private var isDrawerOpen: Bool = false
     
+    let pages: [Page] = pagesData
+    @State private var pageIndex: Int = 1
+    
     // MARK: - FUNCTIONS
     
     func resetImageState() {
