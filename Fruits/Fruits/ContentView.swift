@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: - PROPERTIES
+    
+    @State private var isShowingSettings: Bool = false
+    
+    var fruits: [Fruit] = fruitsData
+
+    // MARK: - BODY
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
