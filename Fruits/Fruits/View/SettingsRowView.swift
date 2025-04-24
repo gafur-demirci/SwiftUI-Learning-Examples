@@ -23,5 +23,11 @@ struct SettingsRowView: View {
 }
 
 #Preview {
-    SettingsRowView()
+    Group {
+      SettingsRowView(name: "Developer", content: "John / Jane")
+        .padding()
+      SettingsRowView(name: "Website", linkLabel: "SwiftUI Masterclass", linkDestination: "swiftuimasterclass.com")
+        .preferredColorScheme(.dark)
+        .padding()
+    }
 }
