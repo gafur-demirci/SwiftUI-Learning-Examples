@@ -16,15 +16,10 @@
               Image(systemName: "info.circle")
               Text(nutrients[item])
             }
-            .foregroundColor(fruit.gradientColors[1])
-            .font(Font.system(.body).bold())
-            
-            Spacer(minLength: 25)
-            
-            Text(fruit.nutrition[item])
-              .multilineTextAlignment(.trailing)
-          }
-        }
-      }
-    } //: BOX
-  }
+        } //: BOX
+    }
+}
+
+#Preview {
+    FruitNutrientsView(fruit: fruitsData[0])
+}
