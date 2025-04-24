@@ -21,5 +21,5 @@ struct SettingsLabelView: View {
 }
 
 #Preview {
-    SettingsLabelView()
+    SettingsLabelView(labelText: "Fruits", labelImage: "info.circle")
 }
