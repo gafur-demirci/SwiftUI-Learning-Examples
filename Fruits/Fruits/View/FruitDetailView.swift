@@ -20,5 +20,5 @@ struct FruitDetailView: View {
 }
 
 #Preview {
-    FruitDetailView()
+    FruitDetailView(fruit: fruitsData[0])
 }
