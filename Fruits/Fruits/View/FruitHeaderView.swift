@@ -1,3 +1,12 @@
+//
+//  FruitHeaderView.swift
+//  Fruits
+//
+//  Created by Abdulgafur Demirci on 22.04.2025.
+//
+
+import SwiftUI
+
 struct FruitHeaderView: View {
   // MARK: - PROPERTIES
   
@@ -25,4 +34,8 @@ struct FruitHeaderView: View {
       }
     }
   }
+}
+
+#Preview {
+    FruitHeaderView(fruit: fruitsData[0])
 }
