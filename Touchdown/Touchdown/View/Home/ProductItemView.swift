@@ -40,5 +40,5 @@ struct ProductItemView: View {
 }
 
 #Preview {
-    ProductItemView()
+    ProductItemView(product: products[0])
 }
