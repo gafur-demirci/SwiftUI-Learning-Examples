@@ -23,5 +23,5 @@ struct FeaturedItemView: View {
 }
 
 #Preview {
-    FeaturedItemView()
+    FeaturedItemView(player: players[0])
 }
