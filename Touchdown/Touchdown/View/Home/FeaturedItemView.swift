@@ -15,7 +15,10 @@ struct FeaturedItemView: View {
     // MARK: - BODY
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      Image(player.image)
+        .resizable()
+        .scaledToFit()
+        .cornerRadius(12)
     }
 }
 
