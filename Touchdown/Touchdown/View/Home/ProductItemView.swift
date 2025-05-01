@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ProductItemView: View {
+    // MARK: - PROPERTY
+    
+    let product: Product
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
