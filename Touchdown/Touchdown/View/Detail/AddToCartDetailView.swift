@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct AddToCartDetailView: View {
+    // MARK: - PROPERTY
+    
+    @EnvironmentObject var shop: Shop
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
