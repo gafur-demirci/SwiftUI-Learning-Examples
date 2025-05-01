@@ -1,14 +1,14 @@
 //
-//  AfricaApp.swift
-//  Africa
+//  TouchdownApp.swift
+//  Touchdown
 //
-//  Created by Abdulgafur Demirci on 24.04.2025.
+//  Created by Abdulgafur Demirci on 27.04.2025.
 //
 
 import SwiftUI
 
 @main
-struct AfricaApp: App {
+struct TouchdownApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
