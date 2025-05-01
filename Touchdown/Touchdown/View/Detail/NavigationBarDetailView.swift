@@ -15,7 +15,27 @@ struct NavigationBarDetailView: View {
     // MARK: - BODY
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      HStack {
+        Button(action: {
+          withAnimation(.easeIn) {
+            feedback.impactOccurred()
+            shop.selectedProduct = nil
+            shop.showingProduct = false
+          }
+        }, label: {
+          Image(systemName: "chevron.left")
+            .font(.title)
+            .foregroundColor(.white)
+        })
+        
+        Spacer()
+        
+        Button(action: {}, label: {
+          Image(systemName: "cart")
+            .font(.title)
+            .foregroundColor(.white)
+        })
+      } //: HSTACK
     }
 }
 
