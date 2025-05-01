@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct TopPartDetailView: View {
+    // MARK: - PROPERTY
+    
+    @EnvironmentObject var shop: Shop
+    @State private var isAnimating: Bool = false
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
