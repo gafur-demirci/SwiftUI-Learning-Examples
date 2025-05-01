@@ -41,5 +41,5 @@ struct CategoryItemView: View {
 }
 
 #Preview {
-    CategoryItemView()
+    CategoryItemView(category: categories[0])
 }
