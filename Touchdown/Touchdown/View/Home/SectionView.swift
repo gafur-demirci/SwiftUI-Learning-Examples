@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SectionView: View {
+    // MARK: - PROPERTY
+    
+    @State var rotateClockwise: Bool
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
