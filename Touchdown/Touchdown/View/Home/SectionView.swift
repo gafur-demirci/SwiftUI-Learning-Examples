@@ -32,5 +32,5 @@ struct SectionView: View {
 }
 
 #Preview {
-    SectionView()
+    SectionView(rotateClockwise: true)
 }
