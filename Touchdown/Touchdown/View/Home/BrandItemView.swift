@@ -27,5 +27,5 @@ struct BrandItemView: View {
 }
 
 #Preview {
-    BrandItemView()
+    BrandItemView(brand: brands[0])
 }
