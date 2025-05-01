@@ -29,5 +29,5 @@ struct TitleView: View {
 }
 
 #Preview {
-    TitleView()
+    TitleView(title: "Helmet")
 }
