@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct TitleView: View {
+    // MARK: - PREVIEW
+    
+    var title: String
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
