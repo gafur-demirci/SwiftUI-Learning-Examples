@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct NavigationBarView: View {
+    // MARK: - PROPERTY
+    
+    @State private var isAnimated: Bool = false
+    
+    // MARK: - BODY
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
