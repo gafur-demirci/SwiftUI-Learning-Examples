@@ -6,14 +6,61 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		06201C6D2DC6429B00ABE196 /* stickers.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 06201C662DC6429A00ABE196 /* stickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06201C6B2DC6429B00ABE196 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06201C022DC6022900ABE196 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06201C652DC6429A00ABE196;
+			remoteInfo = stickers;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		06201C722DC6429B00ABE196 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				06201C6D2DC6429B00ABE196 /* stickers.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		06201C0A2DC6022900ABE196 /* Learn by Doing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn by Doing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06201C662DC6429A00ABE196 /* stickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = stickers.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		06201C6E2DC6429B00ABE196 /* Exceptions for "stickers" folder in "stickers" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 06201C652DC6429A00ABE196 /* stickers */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		06201C0C2DC6022900ABE196 /* Learn by Doing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Learn by Doing";
+			sourceTree = "<group>";
+		};
+		06201C672DC6429A00ABE196 /* stickers */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				06201C6E2DC6429B00ABE196 /* Exceptions for "stickers" folder in "stickers" target */,
+			);
+			path = stickers;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				06201C0C2DC6022900ABE196 /* Learn by Doing */,
+				06201C672DC6429A00ABE196 /* stickers */,
 				06201C0B2DC6022900ABE196 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				06201C0A2DC6022900ABE196 /* Learn by Doing.app */,
+				06201C662DC6429A00ABE196 /* stickers.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +104,12 @@
 				06201C062DC6022900ABE196 /* Sources */,
 				06201C072DC6022900ABE196 /* Frameworks */,
 				06201C082DC6022900ABE196 /* Resources */,
+				06201C722DC6429B00ABE196 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				06201C6C2DC6429B00ABE196 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				06201C0C2DC6022900ABE196 /* Learn by Doing */,
@@ -69,6 +120,26 @@
 			productName = "Learn by Doing";
 			productReference = 06201C0A2DC6022900ABE196 /* Learn by Doing.app */;
 			productType = "com.apple.product-type.application";
+		};
+		06201C652DC6429A00ABE196 /* stickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06201C6F2DC6429B00ABE196 /* Build configuration list for PBXNativeTarget "stickers" */;
+			buildPhases = (
+				06201C642DC6429A00ABE196 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				06201C672DC6429A00ABE196 /* stickers */,
+			);
+			name = stickers;
+			packageProductDependencies = (
+			);
+			productName = stickers;
+			productReference = 06201C662DC6429A00ABE196 /* stickers.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +152,9 @@
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					06201C092DC6022900ABE196 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					06201C652DC6429A00ABE196 = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
@@ -100,12 +174,20 @@
 			projectRoot = "";
 			targets = (
 				06201C092DC6022900ABE196 /* Learn by Doing */,
+				06201C652DC6429A00ABE196 /* stickers */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		06201C082DC6022900ABE196 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06201C642DC6429A00ABE196 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -123,6 +205,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06201C6C2DC6429B00ABE196 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06201C652DC6429A00ABE196 /* stickers */;
+			targetProxy = 06201C6B2DC6429B00ABE196 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		06201C132DC6022A00ABE196 /* Debug */ = {
@@ -256,9 +346,9 @@
 				DEVELOPMENT_TEAM = ZV38746378;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Learn-by-Doing-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -284,9 +374,9 @@
 				DEVELOPMENT_TEAM = ZV38746378;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Learn-by-Doing-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -298,6 +388,46 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		06201C702DC6429B00ABE196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZV38746378;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stickers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Learn by Doing";
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.abdulgafur.demirci.Learn-by-Doing.stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		06201C712DC6429B00ABE196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZV38746378;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stickers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Learn by Doing";
+				INFOPLIST_KEY_NSStickerSharingLevel = OS;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.abdulgafur.demirci.Learn-by-Doing.stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -319,6 +449,15 @@
 			buildConfigurations = (
 				06201C162DC6022A00ABE196 /* Debug */,
 				06201C172DC6022A00ABE196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06201C6F2DC6429B00ABE196 /* Build configuration list for PBXNativeTarget "stickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06201C702DC6429B00ABE196 /* Debug */,
+				06201C712DC6429B00ABE196 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
