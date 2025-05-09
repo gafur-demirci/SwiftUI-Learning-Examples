@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		06643E432DC9E7C200C9E8DC /* Honeymoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Honeymoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06643E5F2DC9E7EE00C9E8DC /* Honeymoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Honeymoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		06643E452DC9E7C200C9E8DC /* Honeymoon */ = {
+		06643EC52DCA366800C9E8DC /* Honeymoon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Honeymoon;
 			sourceTree = "<group>";
@@ -19,7 +19,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		06643E402DC9E7C200C9E8DC /* Frameworks */ = {
+		06643E5C2DC9E7EE00C9E8DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06643E3A2DC9E7C200C9E8DC = {
+		06643E562DC9E7EE00C9E8DC = {
 			isa = PBXGroup;
 			children = (
-				06643E452DC9E7C200C9E8DC /* Honeymoon */,
-				06643E442DC9E7C200C9E8DC /* Products */,
+				06643EC52DCA366800C9E8DC /* Honeymoon */,
+				06643E602DC9E7EE00C9E8DC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		06643E442DC9E7C200C9E8DC /* Products */ = {
+		06643E602DC9E7EE00C9E8DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06643E432DC9E7C200C9E8DC /* Honeymoon.app */,
+				06643E5F2DC9E7EE00C9E8DC /* Honeymoon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		06643E422DC9E7C200C9E8DC /* Honeymoon */ = {
+		06643E5E2DC9E7EE00C9E8DC /* Honeymoon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06643E532DC9E7C400C9E8DC /* Build configuration list for PBXNativeTarget "Honeymoon" */;
+			buildConfigurationList = 06643E6A2DC9E7EF00C9E8DC /* Build configuration list for PBXNativeTarget "Honeymoon" */;
 			buildPhases = (
-				06643E3F2DC9E7C200C9E8DC /* Sources */,
-				06643E402DC9E7C200C9E8DC /* Frameworks */,
-				06643E412DC9E7C200C9E8DC /* Resources */,
+				06643E5B2DC9E7EE00C9E8DC /* Sources */,
+				06643E5C2DC9E7EE00C9E8DC /* Frameworks */,
+				06643E5D2DC9E7EE00C9E8DC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				06643E452DC9E7C200C9E8DC /* Honeymoon */,
+				06643EC52DCA366800C9E8DC /* Honeymoon */,
 			);
 			name = Honeymoon;
 			packageProductDependencies = (
 			);
 			productName = Honeymoon;
-			productReference = 06643E432DC9E7C200C9E8DC /* Honeymoon.app */;
+			productReference = 06643E5F2DC9E7EE00C9E8DC /* Honeymoon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		06643E3B2DC9E7C200C9E8DC /* Project object */ = {
+		06643E572DC9E7EE00C9E8DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					06643E422DC9E7C200C9E8DC = {
+					06643E5E2DC9E7EE00C9E8DC = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = 06643E3E2DC9E7C200C9E8DC /* Build configuration list for PBXProject "Honeymoon" */;
+			buildConfigurationList = 06643E5A2DC9E7EE00C9E8DC /* Build configuration list for PBXProject "Honeymoon" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 06643E3A2DC9E7C200C9E8DC;
+			mainGroup = 06643E562DC9E7EE00C9E8DC;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 06643E442DC9E7C200C9E8DC /* Products */;
+			productRefGroup = 06643E602DC9E7EE00C9E8DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06643E422DC9E7C200C9E8DC /* Honeymoon */,
+				06643E5E2DC9E7EE00C9E8DC /* Honeymoon */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		06643E412DC9E7C200C9E8DC /* Resources */ = {
+		06643E5D2DC9E7EE00C9E8DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		06643E3F2DC9E7C200C9E8DC /* Sources */ = {
+		06643E5B2DC9E7EE00C9E8DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		06643E512DC9E7C400C9E8DC /* Debug */ = {
+		06643E682DC9E7EF00C9E8DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		06643E522DC9E7C400C9E8DC /* Release */ = {
+		06643E692DC9E7EF00C9E8DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +246,7 @@
 			};
 			name = Release;
 		};
-		06643E542DC9E7C400C9E8DC /* Debug */ = {
+		06643E6B2DC9E7EF00C9E8DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -259,8 +259,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -274,7 +275,7 @@
 			};
 			name = Debug;
 		};
-		06643E552DC9E7C400C9E8DC /* Release */ = {
+		06643E6C2DC9E7EF00C9E8DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -287,8 +288,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,25 +307,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06643E3E2DC9E7C200C9E8DC /* Build configuration list for PBXProject "Honeymoon" */ = {
+		06643E5A2DC9E7EE00C9E8DC /* Build configuration list for PBXProject "Honeymoon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06643E512DC9E7C400C9E8DC /* Debug */,
-				06643E522DC9E7C400C9E8DC /* Release */,
+				06643E682DC9E7EF00C9E8DC /* Debug */,
+				06643E692DC9E7EF00C9E8DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06643E532DC9E7C400C9E8DC /* Build configuration list for PBXNativeTarget "Honeymoon" */ = {
+		06643E6A2DC9E7EF00C9E8DC /* Build configuration list for PBXNativeTarget "Honeymoon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				06643E542DC9E7C400C9E8DC /* Debug */,
-				06643E552DC9E7C400C9E8DC /* Release */,
+				06643E6B2DC9E7EF00C9E8DC /* Debug */,
+				06643E6C2DC9E7EF00C9E8DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 06643E3B2DC9E7C200C9E8DC /* Project object */;
+	rootObject = 06643E572DC9E7EE00C9E8DC /* Project object */;
 }
