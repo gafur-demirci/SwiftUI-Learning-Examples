@@ -8,11 +8,108 @@
 import SwiftUI
 
 struct InfoView: View {
+    
+    // MARK: - PROPERTIES
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .center, spacing: 20) {
+                
+                HeaderComponent()
+                
+                Spacer(minLength: 10)
+                
+                Text("App Info")
+                    .fontWeight(.black)
+                    .modifier(TitleModifier())
+                
+                AppInfoView()
+                
+                Text("Creadits")
+                    .fontWeight(.black)
+                    .modifier(TitleModifier())
+                
+                CreditsView() //: HSTACK
+                
+                Spacer(minLength: 10)
+                
+                Button(action: {
+                    print("Button Tapped!")
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Continue".uppercased())
+                        .modifier(ButtonModifier())
+                }) //: BUTTON
+                
+                
+            } //: VSTACK
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding(.top, 15)
+            .padding(.bottom, 25)
+            .padding(.horizontal, 25)
+        } //: SCROLL
     }
 }
 
 #Preview {
     InfoView()
+}
+
+struct AppInfoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            RowAppInfoView(itemOne: "Application", itemTwo: "Honeymoon")
+            RowAppInfoView(itemOne: "Compatibliity", itemTwo: "iPhone, iPad")
+            RowAppInfoView(itemOne: "Developer", itemTwo: "Abdulgafur Demirci")
+            RowAppInfoView(itemOne: "Designer", itemTwo: "Robert Petras")
+            RowAppInfoView(itemOne: "Website", itemTwo: "www.softtech.com.tr")
+            RowAppInfoView(itemOne: "Version", itemTwo: "1.0.0")
+        } //: VSTACK
+    }
+}
+
+struct RowAppInfoView: View {
+    
+    // MARK: - PROPERTIES
+    
+    let itemOne: String
+    let itemTwo: String
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(itemOne)
+                    .foregroundStyle(.gray)
+                Spacer()
+                Text(itemTwo)
+                    .foregroundStyle(.black)
+            } //: HSTACK
+        } //: VSTACK
+        Divider()
+    }
+}
+
+struct CreditsView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Photos")
+                    .foregroundStyle(.gray)
+                Spacer()
+                Text("Unsplash")
+                    .foregroundStyle(.gray)
+            } //: HSTACK
+            Divider()
+            
+            Text("Photographers")
+                .foregroundStyle(.gray)
+            
+            Text("Shifaaz Shamoon (Maldives), Grillot Edouard (France), Evan Wise (Greece), Christoph Schulz (United Arab Emirates), Andrew Coelho (USA), Damiano Baschiera (Italy), Daniel Olah (Hungary), Andrzej Rusinowski (Poland), Lucas Miguel (Slovenia), Florencia Potter (Spain), Ian Simmonds (USA), Ian Keefe (Canada), Denys Nevozhai (Thailand), David Köhler (Italy), Andre Benz (USA), Alexandre Chambon (South Korea), Roberto Nickson (Mexico), Ajit Paul Abraham (UK), Jeremy Bishop (USA), Davi Costa (Brazil), Liam Pozz (Australia)")
+                .multilineTextAlignment(.leading)
+                .font(.footnote)
+            
+        } //: VSTACK
+    }
 }
