@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct SymbolModifier: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct SymbolModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundStyle(.white)
+            .font(.system(size: 128))
+            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.2), radius: 12, x: 0, y: 0)
     }
-}
-
-#Preview {
-    SymbolModifier()
 }
