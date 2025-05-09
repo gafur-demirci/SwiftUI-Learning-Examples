@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-struct HoneymoonModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    HoneymoonModel()
+struct Destination {
+    var place: String
+    var country: String
+    var image: String
 }
