@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct ButtonModifier: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct ButtonModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .padding()
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(
+                Capsule()
+                    .fill(.pink)
+            )
+            .foregroundStyle(.white)
     }
-}
-
-#Preview {
-    ButtonModifier()
 }
