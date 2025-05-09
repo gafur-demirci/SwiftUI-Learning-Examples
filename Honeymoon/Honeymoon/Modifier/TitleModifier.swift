@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct TitleModifier: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct TitleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundStyle(.pink)
     }
-}
-
-#Preview {
-    TitleModifier()
 }
