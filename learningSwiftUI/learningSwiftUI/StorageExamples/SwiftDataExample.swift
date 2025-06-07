@@ -163,7 +163,7 @@ struct ListBooksView: View {
         if (!search.isEmpty) {
             let searchLower = search.lowercased()
             predicate = #Predicate<MineBook> { book in
-                book.title.localizedStandardContains(searchLower ?? "")
+                book.title.localizedStandardContains(searchLower)
             }
         }
         _books = Query<MineBook, [MineBook]>(filter: predicate, sort: \MineBook.title, order: orderBooks)
